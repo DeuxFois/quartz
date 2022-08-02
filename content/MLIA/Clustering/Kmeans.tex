@@ -1,0 +1,108 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Kmeans},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Kmeans}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+\tightlist
+\item
+  données (d'apprentissage)\\
+  {\(\left\{ \mathbf{x}_{i} \right\}_{i = 1}^{m}\)} avec
+  {\(\mathbf{x}_{i} \in \mathbb{R}^{d}\)}
+\item
+  centroïde\\
+  {\(\mathbf{\mu} = \frac{1}{m}\sum\limits_{i}^{m}\mathbf{x}_{i}\)}
+\item
+  inertie
+  {\(\mathcal{I}_{T} = \sum\limits_{\mathbf{x}_{i}}\left\| \mathbf{x}_{i} - \mathbf{\mu} \right\|^{2}\)}\\
+  \includegraphics{https://miro.medium.com/max/700/1*5oS5b3j47zvCe43HuyUiUg.gif}
+\end{itemize}
+
+\includegraphics{/home/deuxfois/Documents/Obsidian Vaults/DevGoal/DevGoal/Pasted image 20220406110758.png}
+
+\hypertarget{inertie}{%
+\subsection{Inertie}\label{inertie}}
+
+L'inertie {\(\mathcal{I}_{T}\)} d'un nuage des points est représentée
+par la distance au carré des points à leur centroïde
+
+\[\sum\limits_{\mathbf{x}_{i}}\left\| \mathbf{x}_{i} - \mathbf{\mu} \right\|^{2} = \sum\limits_{c = 1}m_{c}\left\| \mathbf{\mu}_{c} - \mathbf{\mu} \right\|^{2}\quad + \sum\limits_{c = 1}\sum\limits_{\mathbf{x}_{i} \mid {\hat{y}}_{i} = c}\left\| \mathbf{x}_{i} - \mathbf{\mu}_{c} \right\|^{2}\]
+
+\textbf{théorème de Huygens}\\
+Inertie totale = Inertie inter-classe + Inertie intra-classe
+
+\[\mathcal{I}_{T} = \mathcal{I}_{B} + \mathcal{I}_{W}\]
+
+\hypertarget{eviter-un-minimum-local}{%
+\subsection{Eviter un minimum local}\label{eviter-un-minimum-local}}
+
+\hypertarget{choix-du-nombre-de-cluster}{%
+\subsection{choix du nombre de
+cluster}\label{choix-du-nombre-de-cluster}}
+
+\end{document}
