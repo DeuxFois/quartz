@@ -1,0 +1,227 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Composite permet d’agencer les objets dans des arborescences afin de pouvoir traiter celles-ci comme des objets individuels.
+ Problème L’utilisation de ce patron doit être réservée aux applications dont la structure principale peut être représentée sous la forme d’une arborescence."><title>Composite / Composite</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://quartz.jzhao.xyz//icon.png><link href=https://quartz.jzhao.xyz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://quartz.jzhao.xyz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://quartz.jzhao.xyz/js/darkmode.63d6a3e095d0bd2b935b62adec9dc11b.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://quartz.jzhao.xyz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.138e8e684375e828e1fe07635a41b9e8.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.10367ca03749dc74c72b80b9868d2b00.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!1;drawGraph("https://quartz.jzhao.xyz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://quartz.jzhao.xyz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/quartz.jzhao.xyz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://quartz.jzhao.xyz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://quartz.jzhao.xyz/>🪴 Quartz 3.2</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Composite / Composite</h1><p class=meta>Last updated
+Aug 2, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Architecture/Design_Pattern/Structurel/Composite.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://quartz.jzhao.xyz/tags/design_pattern/>Design pattern</a></li><li><a href=https://quartz.jzhao.xyz/tags/structurel/>Structurel</a></li></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#problème>Problème</a></li><li><a href=#solution>Solution</a></li><li><a href=#analogie>Analogie</a></li><li><a href=#structure>Structure</a></li><li><a href=#pseudo-code>Pseudo-code</a></li><li><a href=#possibilités-dapplication>Possibilités d’application</a></li><li><a href=#mise-en-œuvre>Mise en œuvre</a></li><li><a href=#avantages-et-inconvénients>Avantages et inconvénients</a></li><li><a href=#liens-avec-les-autres-patrons>Liens avec les autres patrons</a></li><li><a href=#exemples-de-code>Exemples de code</a><ol><li><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook>Soutenez notre site gratuit et obtenez l’ebook !</a></li></ol></li></ol></nav></details></aside><p><strong>Composite</strong> permet d’agencer les objets dans des arborescences afin de pouvoir traiter celles-ci comme des objets individuels.</p><p><img src=https://quartz.jzhao.xyz//../../_resources/composite_9d0fd2b82f3248b2a4bbbe88c8faff48.png width=auto alt="Patron de conception composite"></p><a href=#problème><h2 id=problème><span class=hanchor arialabel=Anchor># </span>Problème</h2></a><p>L’utilisation de ce patron doit être réservée aux applications dont la structure principale peut être représentée sous la forme d’une arborescence.</p><p>Prenons les deux objets suivants : <code>Produits</code> et <code>Boîtes</code>. Une boîte peut contenir plusieurs produits ainsi qu’un certain nombre de boîtes plus petites. Ces petites boîtes peuvent également contenir quelques produits ou même d’autres boîtes encore plus petites, et ainsi de suite.</p><p>Vous décidez de mettre au point un système de commandes qui utilise ces classes. Les commandes peuvent être composées de produits simples sans emballage, d’autres boîtes remplies de produits… et d’autres boîtes. Comment allez-vous déterminer le coût total d’une telle commande ?</p><img width=370 height=0 src=../../_resources/problem-fr_580f92b2debd4408874c5dbd7277f3c2.png class=jop-noMdConv><p>Une commande peut contenir divers produits empaquetés à l’intérieur de boîtes, elles-mêmes rangées dans de plus grosses boîtes, etc. La structure complète ressemble à un arbre inversé.</p><p>Vous pouvez tenter l’approche directe qui consiste à déballer toutes les boîtes, prendre chaque produit et en faire la somme pour obtenir le total. Ce mode de calcul peut facilement se mettre en place dans le monde réel mais dans un programme, ce n’est pas aussi simple que de créer une boucle. Il faut connaître à l’avance la classe des <code>Produits</code> et des <code>Boîtes</code> que l’on parcourt, le niveau d’imbrication des boîtes ainsi que d’autres détails. Tout ceci rend l’approche directe assez compliquée et même parfois impossible.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span>Solution</h2></a><p>Le patron de conception composite vous propose de manipuler les <code>Produits</code> et les <code>Boîtes</code> à l’aide d’une interface qui déclare une méthode de calcul du prix total.</p><p>Comment cette méthode peut-elle fonctionner ? Pour un produit, on retourne simplement son prix. Pour une boîte, on parcourt chacun de ses objets, on leur demande leur prix, puis on retourne un total pour la boîte. Si l’un de ces objets est une boîte plus petite, cette dernière va aussi parcourir son propre contenu et ainsi de suite, jusqu’à ce que tous les prix aient été calculés. Une boîte peut même ajouter des frais supplémentaires, comme le prix de l‘emballage.</p><img width=600 height=0 src=../../_resources/composite-comic-1-fr_b0e5f413de0e4ab6a74ea7bf76583.png class=jop-noMdConv><p>Le patron de conception composite emploie une méthode récursive afin de parcourir tous les composants d’une arborescence.</p><p>La cerise sur le gâteau est que vous n’avez même pas besoin de connaître la classe concrète des objets de l’arborescence. Vous n’avez pas besoin de savoir si un objet est un produit tout simple ou une boîte sophistiquée, vous les manipulez de la même manière grâce à une interface commune. Lorsque vous faites appel à une méthode, les objets s’occupent de faire transiter la requête en descendant vers les feuilles de l’arbre.</p><a href=#analogie><h2 id=analogie><span class=hanchor arialabel=Anchor># </span>Analogie</h2></a><img width=280 height=0 src=../../_resources/live-example_80e4964736e14dd9a7650bd9726c82f3.png class=jop-noMdConv><p>Un exemple de structure militaire.</p><p>En général, les armées d’un pays sont structurées en hiérarchies. Une armée comporte plusieurs divisions, une division est composée de brigades, une brigade est composée de compagnies, qui peuvent elles-mêmes être divisées en escouades. Pour finir, une escouade est un petit groupe de soldats. Les ordres sont donnés au sommet de la hiérarchie et passés au niveau directement inférieur à chaque soldat, qui sait quoi en faire.</p><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span>Structure</h2></a><img width=360 height=0 src=../../_resources/structure-fr_b1c7adcbd2c0414e90db59731cc46613.png class=jop-noMdConv><ol><li><p>L’interface <strong>Composant</strong> décrit les opérations communes aux objets simples et complexes de l’arborescence.</p></li><li><p>Une <strong>Feuille</strong> est un élément de base d’une branche qui n’a pas de sous-élément.</p><p>En général les feuilles font le plus gros du travail, car elles n’ont personne à qui le déléguer.</p></li><li><p>Le <strong>Conteneur</strong> (alias <em>composite</em>) est un élément composé de sous-éléments : des feuilles ou d’autres conteneurs. Un conteneur ne connait pas les classes de ses enfants. Il passe par l’interface composant pour interagir avec ses sous-éléments.</p><p>Lorsqu’il reçoit une requête, un conteneur délègue la tâche à ses sous-éléments, traite les résultats intermédiaires, puis renvoie le résultat final au client.</p></li><li><p>Le <strong>Client</strong> manipule les éléments depuis l’interface composant, ce qui lui permet de fonctionner de la même manière pour les éléments simples et complexes de l’arborescence.</p></li></ol><a href=#pseudo-code><h2 id=pseudo-code><span class=hanchor arialabel=Anchor># </span>Pseudo-code</h2></a><p>Dans cet exemple, le patron de conception <strong>Composite</strong> nous permet de gérer des imbrications de formes géométriques dans un éditeur graphique.</p><img width=370 height=0 src=../../_resources/example_34b02f2e13e44c3db158e38965b13a02.png class=jop-noMdConv><p>Exemple de l’éditeur des formes géométriques.</p><p>La classe <code>CompositionGraphique</code> est un conteneur doté d’un certain nombre de formes, incluant même des formes composées. Une forme composée possède les mêmes méthodes qu’une forme simple. Mais plutôt que de tout gérer toute seule, une forme composée envoie une requête récursive à tous ses enfants et « totalise » le résultat.</p><p>Le code client manipule ces formes en passant par l’interface commune. De ce fait, le client ne sait jamais s’il est en train de manipuler une forme ou une composition. Le client peut manipuler des structures d’objets très complexes sans jamais être couplé avec les classes concrètes de cette structure.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// L’interface du composant déclare des opérations communes pour
+</span></span><span class=line><span class=cl>// les objets simples et complexes d’une composition.
+</span></span><span class=line><span class=cl>interface Graphic is
+</span></span><span class=line><span class=cl>    method move(x, y)
+</span></span><span class=line><span class=cl>    method draw()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// La classe feuille représente les objets finaux d’une
+</span></span><span class=line><span class=cl>// composition. Un objet feuille ne peut pas avoir de sous-
+</span></span><span class=line><span class=cl>// objets. En général, ce sont les feuilles qui lancent les
+</span></span><span class=line><span class=cl>// traitements. Les objets composite ne font que déléguer le
+</span></span><span class=line><span class=cl>// travail à leurs sous-composants.
+</span></span><span class=line><span class=cl>class Dot implements Graphic is
+</span></span><span class=line><span class=cl>    field x, y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor Dot(x, y) { ... }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method move(x, y) is
+</span></span><span class=line><span class=cl>        this.x += x, this.y += y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method draw() is
+</span></span><span class=line><span class=cl>        // Dessine un point aux coordonnées X et Y.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Toutes les classes composant peuvent étendre d’autres
+</span></span><span class=line><span class=cl>// composants.
+</span></span><span class=line><span class=cl>class Circle extends Dot is
+</span></span><span class=line><span class=cl>    field radius
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor Circle(x, y, radius) { ... }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method draw() is
+</span></span><span class=line><span class=cl>        // Trace un cercle de rayon R aux coordonnées X et Y.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// La classe composite représente les composants complexes qui
+</span></span><span class=line><span class=cl>// peuvent avoir des enfants. Les objets composite délèguent
+</span></span><span class=line><span class=cl>// généralement les tâches à leurs enfants et « additionnent »
+</span></span><span class=line><span class=cl>// ensuite le résultat.
+</span></span><span class=line><span class=cl>class CompoundGraphic implements Graphic is
+</span></span><span class=line><span class=cl>    field children: array of Graphic
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Un composite peut ajouter ou retirer d’autres composants
+</span></span><span class=line><span class=cl>    // (simples ou complexes) de la liste de ses enfants.
+</span></span><span class=line><span class=cl>    method add(child: Graphic) is
+</span></span><span class=line><span class=cl>        // Ajoute un enfant au tableau d’enfants.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method remove(child: Graphic) is
+</span></span><span class=line><span class=cl>        // Retire un enfant du tableau d’enfants.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method move(x, y) is
+</span></span><span class=line><span class=cl>        foreach (child in children) do
+</span></span><span class=line><span class=cl>            child.move(x, y)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Un composite exécute sa logique principale d’une certaine
+</span></span><span class=line><span class=cl>    // manière : il parcourt récursivement tous ses enfants,
+</span></span><span class=line><span class=cl>    // puis récupère et additionne leurs résultats. L’objet est
+</span></span><span class=line><span class=cl>    // entièrement parcouru, car les enfants du composite
+</span></span><span class=line><span class=cl>    // passent ces appels à leurs propres enfants et ainsi de
+</span></span><span class=line><span class=cl>    // suite.
+</span></span><span class=line><span class=cl>    method draw() is
+</span></span><span class=line><span class=cl>        // 1. Pour chaque composant enfant :
+</span></span><span class=line><span class=cl>        //     - Dessine le composant.
+</span></span><span class=line><span class=cl>        //     - Met à jour le rectangle de délimitation.
+</span></span><span class=line><span class=cl>        // 2. Dessine un rectangle en pointillé en utilisant les
+</span></span><span class=line><span class=cl>        // coordonnées de la délimitation.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Le code client manipule les composants grâce à leur interface
+</span></span><span class=line><span class=cl>// de base. Ainsi, le code client peut aussi bien prendre en
+</span></span><span class=line><span class=cl>// charge les composants simples que les complexes.
+</span></span><span class=line><span class=cl>class ImageEditor is
+</span></span><span class=line><span class=cl>    field all: CompoundGraphic
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method load() is
+</span></span><span class=line><span class=cl>        all = new CompoundGraphic()
+</span></span><span class=line><span class=cl>        all.add(new Dot(1, 2))
+</span></span><span class=line><span class=cl>        all.add(new Circle(5, 3, 10))
+</span></span><span class=line><span class=cl>        // ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Combine les composants sélectionnés en un seul composant
+</span></span><span class=line><span class=cl>    // complexe.
+</span></span><span class=line><span class=cl>    method groupSelected(components: array of Graphic) is
+</span></span><span class=line><span class=cl>        group = new CompoundGraphic()
+</span></span><span class=line><span class=cl>        foreach (component in components) do
+</span></span><span class=line><span class=cl>            group.add(component)
+</span></span><span class=line><span class=cl>            all.remove(component)
+</span></span><span class=line><span class=cl>        all.add(group)
+</span></span><span class=line><span class=cl>        // Tous les composants vont être dessinés.
+</span></span><span class=line><span class=cl>        all.draw()
+</span></span></code></pre></td></tr></table></div></div><a href=#possibilités-dapplication><h2 id=possibilités-dapplication><span class=hanchor arialabel=Anchor># </span>Possibilités d’application</h2></a><p>Utilisez le composite si vous devez gérer une structure d’objets qui ressemble à une arborescence.</p><p>Le patron de conception composite vous propose deux éléments de base qui partagent la même interface : des feuilles simples et des conteneurs complexes. Un conteneur peut être composé de feuilles et d’autres conteneurs. Grâce à cela, vous pouvez construire une structure récursive composée d’objets imbriqués qui ressemble à un arbre.</p><p>Utilisez ce patron si vous voulez que le client interagisse avec les éléments simples aussi bien que complexes de façon uniforme.</p><p>Tous les éléments définis dans le patron composite partagent une interface commune. En utilisant cette interface, le client n’a pas besoin de connaître la classe concrète des objets qu’il manipule.</p><a href=#mise-en-œuvre><h2 id=mise-en-œuvre><span class=hanchor arialabel=Anchor># </span>Mise en œuvre</h2></a><ol><li><p>Assurez-vous que votre application possède bien la forme d’une arborescence. Décomposez-la en conteneurs et en éléments simples. Rappelez-vous que les conteneurs doivent pouvoir accueillir des éléments simples et d’autres conteneurs.</p></li><li><p>Déclarez l’interface composant avec une liste de méthodes qui fonctionnent à la fois avec les composants simples et complexes.</p></li><li><p>Créez une classe feuille pour représenter les éléments simples. Un même programme peut avoir plusieurs classes feuille différentes.</p></li><li><p>Créez une classe conteneur pour représenter les éléments complexes. Fournissez un attribut de type tableau à cette classe, afin de stocker les références aux sous-éléments. Ce tableau doit pouvoir stocker les feuilles et les conteneurs, assurez-vous donc qu’il est bien déclaré avec le type d’interface du composant.</p><p>Tout en implémentant les méthodes de l’interface composant, gardez en tête que les conteneurs sont censés déléguer la majeure partie du travail à leurs sous-éléments.</p></li><li><p>Enfin, définissez des méthodes pour ajouter ou retirer des éléments enfants du conteneur.</p><p>Elles peuvent être placées à l’intérieur de l’interface composant, mais ceci ne respecte pas le <em>principe de ségrégation des interfaces</em>, car la classe feuille contiendra des méthodes vides. L’avantage est que le client pourra traiter ces éléments uniformément, même lorsqu’il construit l’arborescence.</p></li></ol><a href=#avantages-et-inconvénients><h2 id=avantages-et-inconvénients><span class=hanchor arialabel=Anchor># </span>Avantages et inconvénients</h2></a><ul><li><p>Vous pouvez travailler dans des structures arborescentes complexes plus facilement en utilisant les avantages du polymorphisme et de la récursivité.</p></li><li><p><em>Principe ouvert/fermé</em>. Vous pouvez introduire de nouveaux types d’éléments dans l’application qui pourront directement être intégrés dans l’arborescence, sans avoir à réécrire l’existant.</p></li><li><p>Vous rencontrerez parfois des difficultés pour définir une interface commune à certaines classes dont les fonctionnalités sont trop différentes. Dans certains scénarios, vous devez créer une interface composant bien trop générique, rendant le fonctionnement difficile à comprendre.</p></li></ul><a href=#liens-avec-les-autres-patrons><h2 id=liens-avec-les-autres-patrons><span class=hanchor arialabel=Anchor># </span>Liens avec les autres patrons</h2></a><ul><li><p>Vous pouvez utiliser le
+<a href=https://refactoring.guru/fr/design-patterns/builder rel=noopener>Monteur</a> lorsque vous créez des arbres
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composites</a> complexes, car vous pouvez programmer les étapes de la construction récursivement.</p></li><li><p>La
+<a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de Responsabilité</a> est souvent utilisée en conjonction avec le
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composite</a>. Dans ce cas, lorsqu’une feuille reçoit une demande, elle la passe le long de la chaîne de ses composants parent, jusqu’à la racine de l’arborescence.</p></li><li><p>Vous pouvez utiliser les
+<a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateurs</a> pour parcourir des arbres
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composites</a>.</p></li><li><p>Vous pouvez utiliser le
+<a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a> pour lancer une opération sur un arbre
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composite</a> entier.</p></li><li><p>Vous pouvez transformer des nœuds de feuilles de l’arbre
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composite</a> en
+<a href=https://refactoring.guru/fr/design-patterns/flyweight rel=noopener>Poids mouches</a> et les partager pour économiser de la RAM.</p></li><li><p>Le
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composite</a> et le
+<a href=https://refactoring.guru/fr/design-patterns/decorator rel=noopener>Décorateur</a> ont des diagrammes de structure similaires puisqu’ils reposent sur la composition récursive pour organiser un nombre variable d’objets.</p><p>Un <em>décorateur</em> est comme un <em>composite</em>, mais avec un seul composant enfant. Il y a une autre différence importante : Le <em>décorateur</em> ajoute des responsabilités supplémentaires à l’objet emballé, alors que le <em>composite</em> se contente d’« additionner » les résultats de ses enfants.</p><p>Mais ces patrons de conception peuvent également coopérer : vous pouvez utiliser le <em>décorateur</em> pour étendre le comportement d’un objet spécifique d’un arbre <em>Composite</em>.</p></li><li><p>Les conceptions qui reposent énormément sur le
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composite</a> et le
+<a href=https://refactoring.guru/fr/design-patterns/decorator rel=noopener>Décorateur</a> tirent des avantages à utiliser le
+<a href=https://refactoring.guru/fr/design-patterns/prototype rel=noopener>Prototype</a>. Il vous permet de cloner les structures complexes plutôt que de les reconstruire à partir de rien.</p></li></ul><a href=#exemples-de-code><h2 id=exemples-de-code><span class=hanchor arialabel=Anchor># </span>Exemples de code</h2></a><p><a href=https://refactoring.guru/fr/design-patterns/composite/java/example rel=noopener><img width=43 height=56 src=../../_resources/java_cddd45c358d44950bc20aa720f3073e9.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/composite/csharp/example rel=noopener><img width=43 height=56 src=../../_resources/csharp_9ee8f1ab64754c309327678c40a2eac6.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/composite/cpp/example rel=noopener><img width=43 height=56 src=../../_resources/cpp_e109cacad19646fa97256bddbecca1ef.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/composite/php/example rel=noopener><img width=43 height=56 src=../../_resources/php_f55a4a1644624ab190464f495b13fb46.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/composite/python/example rel=noopener><img width=43 height=56 src=../../_resources/python_bf895152b2334ec5bee680903a241b88.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/composite/ruby/example rel=noopener><img width=43 height=56 src=../../_resources/ruby_f43914161d714c68a3c23dcba231dbcb.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/composite/swift/example rel=noopener><img width=43 height=56 src=../../_resources/swift_0ff1aa551f734f3486fa1e165415c235.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/composite/typescript/example rel=noopener><img width=43 height=56 src=../../_resources/typescript_e7a822d44f51485baa0f0b6732bd5973.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/composite/go/example rel=noopener><img width=43 height=56 src=../../_resources/go_700610496e944b678f790fe980867e82.svg class=jop-noMdConv></a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=200 height=200 src=../../_resources/patterns-book-banner-3_b7186cc19bb1492aa7fbba8752e.png class=jop-noMdConv></a></p><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook><h3 id=soutenez-notre-site-gratuit-et-obtenez-lebook><span class=hanchor arialabel=Anchor># </span>Soutenez notre site gratuit et obtenez l’ebook !</h3></a><ul><li>22 patrons de conception et 8 principes expliqués en profondeur.</li><li>444 pages de vulgarisation, bien structurées et faciles à lire.</li><li>225 illustrations et diagrammes clairs pour aider à la compréhension.</li><li>Une archive avec des exemples de code dans 9 langages.</li><li>Tous les appareils sont pris en charge : formats PDF/EPUB/MOBI/KFX.</li></ul><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><a href=#suivant><h4 id=suivant><span class=hanchor arialabel=Anchor># </span>Suivant</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/decorator rel=noopener>Décorateur</a></p><a href=#retour><h4 id=retour><span class=hanchor arialabel=Anchor># </span>Retour</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/bridge rel=noopener>Pont</a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=245 height=375 src=../../_resources/web-cover-fr_b0303e5e113d4c42a31c5869bb0afeba.png class=jop-noMdConv></a></p><p>Cet article est tiré de notre ebook <strong>Plongée au cœur des PATRONS DE CONCEPTION</strong></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><p>Facebook</p><p>Twitter</p><ul><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li><li><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a></li></ul><p><a href=https://refactoring.guru/design-patterns/composite rel=noopener>English</a>
+<a href=https://refactoring.guru/es/design-patterns/composite rel=noopener>Español</a>
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Français</a>
+<a href=https://refactoring.guru/pl/design-patterns/composite rel=noopener>Polski</a>
+<a href=https://refactoring.guru/pt-br/design-patterns/composite rel=noopener>Português-Br</a>
+<a href=https://refactoring.guru/ru/design-patterns/composite rel=noopener>Русский</a>
+<a href=https://refactoring.guru/uk/design-patterns/composite rel=noopener>Українська</a>
+<a href=https://refactoringguru.cn/design-patterns/composite rel=noopener>中文</a></p><p><a href=https://refactoring.guru/fr rel=noopener><img src=https://quartz.jzhao.xyz//../../_resources/logo-covid-winter_9446b885daab426cb6a5aef9e562fd4a.png width=auto alt=Refactoring.Guru></a></p><p><img src=https://quartz.jzhao.xyz//../../_resources/winter-hat_631d205432054cf48d112ccb24ee09ea.png width=auto alt></p><ul><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/what-is-pattern rel=noopener>Introduction</a></li><li><a href=https://refactoring.guru/fr/design-patterns/catalog rel=noopener>Catalogue</a></li><li><a href=https://refactoring.guru/fr/design-patterns/creational-patterns rel=noopener>Patrons de création</a></li><li><a href=https://refactoring.guru/fr/design-patterns/structural-patterns rel=noopener>Patrons structurels</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/adapter rel=noopener>Adaptateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/bridge rel=noopener>Pont</a></li><li><a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composite</a></li><li><a href=https://refactoring.guru/fr/design-patterns/decorator rel=noopener>Décorateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/facade rel=noopener>Façade</a></li><li><a href=https://refactoring.guru/fr/design-patterns/flyweight rel=noopener>Poids mouche</a></li><li><a href=https://refactoring.guru/fr/design-patterns/proxy rel=noopener>Procuration</a></li></ul></li><li><a href=https://refactoring.guru/fr/design-patterns/behavioral-patterns rel=noopener>Patrons comportementaux</a></li><li><a href=https://refactoring.guru/fr/design-patterns/examples rel=noopener>Exemples de code</a></li></ul></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation (commenter bientôt)</a></li></ul><p><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a>
+<a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Nous contacter</a></p><ul><li><a href=https://refactoring.guru/fr rel=noopener>Accueil</a></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a></li><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Forum</a></li><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li></ul><p>2014-2021
+<a href=https://refactoring.guru/fr rel=noopener>Refactoring.Guru</a>. Tous droits réservés.
+<img src=https://quartz.jzhao.xyz//../../_resources/fa-building_2ef73d2cc24c48378a5ecb3c7bd5cf91.svg width=auto alt="Organization address"> Khmelnitske shosse 19 / 27, Kamianets-Podilskyi, Ukraine, 32305 Email:
+<a rel=noopener class="internal-link broken" data-src=mailto:support@refactoring.guru>support@refactoring.guru</a></p><p>Illustrations par
+<a href=http://zhart.us/ rel=noopener>Dmitry Zhart</a></p><ul><li><a href=https://refactoring.guru/fr/terms rel=noopener>Termes et conditions</a></li><li><a href=https://refactoring.guru/fr/privacy-policy rel=noopener>Politique de protection de la vie privée</a></li><li><a href=https://refactoring.guru/fr/content-usage-policy rel=noopener>Politique de l’utilisation des données</a></li></ul></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/Architecture/Design_Pattern/Structurel/Sommaire/ data-ctx=Composite data-src=/Architecture/Design_Pattern/Structurel/Sommaire class=internal-link></a></li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://quartz.jzhao.xyz/js/graph.afdb02e537635f9a611b53a988e5645b.js></script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://quartz.jzhao.xyz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>

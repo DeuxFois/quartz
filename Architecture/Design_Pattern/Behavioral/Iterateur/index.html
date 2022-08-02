@@ -1,0 +1,243 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Itérateur permet de parcourir les éléments d’une collection sans révéler sa représentation interne (liste, pile, arbre, etc.).
+ Problème Les collections ne servent que de conteneur pour un groupe d’objets, mais elles demeurent l’un des types de données les plus utilisés en programmation."><title>Itérateur / Iterator</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://quartz.jzhao.xyz//icon.png><link href=https://quartz.jzhao.xyz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://quartz.jzhao.xyz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://quartz.jzhao.xyz/js/darkmode.63d6a3e095d0bd2b935b62adec9dc11b.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://quartz.jzhao.xyz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.138e8e684375e828e1fe07635a41b9e8.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.10367ca03749dc74c72b80b9868d2b00.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!1;drawGraph("https://quartz.jzhao.xyz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://quartz.jzhao.xyz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/quartz.jzhao.xyz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://quartz.jzhao.xyz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://quartz.jzhao.xyz/>🪴 Quartz 3.2</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Itérateur / Iterator</h1><p class=meta>Last updated
+Aug 2, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Architecture/Design_Pattern/Behavioral/Iterateur.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://quartz.jzhao.xyz/tags/behavioral/>Behavioral</a></li><li><a href=https://quartz.jzhao.xyz/tags/design_pattern/>Design pattern</a></li></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#problème>Problème</a></li><li><a href=#solution>Solution</a></li><li><a href=#analogie>Analogie</a></li><li><a href=#structure>Structure</a></li><li><a href=#pseudo-code>Pseudo-code</a></li><li><a href=#possibilités-dapplication>Possibilités d’application</a></li><li><a href=#mise-en-œuvre>Mise en œuvre</a></li><li><a href=#avantages-et-inconvénients>Avantages et inconvénients</a></li><li><a href=#liens-avec-les-autres-patrons>Liens avec les autres patrons</a></li><li><a href=#exemples-de-code>Exemples de code</a><ol><li><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook>Soutenez notre site gratuit et obtenez l’ebook !</a></li></ol></li></ol></nav></details></aside><p><strong>Itérateur</strong> permet de parcourir les éléments d’une collection sans révéler sa représentation interne (liste, pile, arbre, etc.).</p><p><img src=https://quartz.jzhao.xyz//../../_resources/iterator-en_501f7a11e44141d492b0baad75db40a4.png width=auto alt="Patron de conception itérateur"></p><a href=#problème><h2 id=problème><span class=hanchor arialabel=Anchor># </span>Problème</h2></a><p>Les collections ne servent que de conteneur pour un groupe d’objets, mais elles demeurent l’un des types de données les plus utilisés en programmation.</p><p><img src=https://quartz.jzhao.xyz//../../_resources/problem1_2fc25640bca040988e4287daebb51b84.png width=auto alt="Différents types de collections"></p><p>Différents types de collections.</p><p>La majorité des collections stockent leurs éléments dans de simples listes, mais certaines d’entre elles sont basées sur les piles, les arbres, les graphes ou d’autres structures complexes de données.</p><p>Quelle que soit sa structure, une collection doit fournir un moyen d’accéder à ses éléments pour permettre au code de les utiliser. Elle doit donner la possibilité de parcourir tous ses éléments sans passer plusieurs fois par les mêmes.</p><p>À première vue, cela semble simple pour les collections qui ressemblent à une liste. Vous lancez juste une boucle sur tous les éléments. Mais comment faites-vous pour parcourir séquentiellement les éléments d’une structure complexe de données comme un arbre ? Un jour donné, vous allez peut-être vous en sortir avec un parcours en profondeur. Mais le lendemain, vous allez avoir besoin d’un parcours en largeur. La semaine d’après, vous allez avoir besoin d’autre chose pour établir un parcours aléatoire des éléments de l’arbre.</p><img width=600 height=0 src=../../_resources/problem2_0ecb79889e184ac98023693dac74e812.png><p>Il y a plusieurs manières de parcourir une même collection.</p><p>Plus vous ajoutez d’algorithmes différents pour parcourir votre collection et plus vous masquez sa responsabilité principale : stocker efficacement les données. De plus, certains algorithmes sont dédiés à un usage spécifique. Il serait donc bizarre de les ajouter au comportement d’une collection générique.</p><p>Le code client qui va se servir de ces collections se fiche probablement de la manière dont elles stockent leurs éléments. Cependant, ces collections fournissent différentes manières d’accéder à leurs éléments, vous couplez donc forcément votre code aux classes de ces collections.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span>Solution</h2></a><p>Le but du patron de conception itérateur est d’extraire le comportement qui permet de parcourir une collection et de le mettre dans un objet que l’on nomme <em>itérateur</em>.</p><img width=400 height=0 src=../../_resources/solution1_21256d25a80e4bcf81bc90fdc0941349.png><p>Les itérateurs implémentent différents algorithmes de parcours. Plusieurs itérateurs peuvent parcourir une même collection simultanément.</p><p>En plus d’implémenter l’algorithme de parcours, un objet itérateur encapsule tous les détails comme la position actuelle et le nombre d’éléments restants avant d’atteindre la fin. Grâce à cela, plusieurs itérateurs peuvent parcourir une même collection simultanément et indépendamment les uns des autres.</p><p>En général, les itérateurs fournissent une méthode principale pour récupérer les éléments d’une collection. Le client peut appeler la méthode en continu jusqu’à ce qu’elle ne retourne plus rien, ce qui signifie que l’itérateur a parcouru tous les éléments.</p><p>Les itérateurs doivent tous implémenter la même interface. Le code client est ainsi compatible avec tous les types de collections et tous les algorithmes de parcours, tant que l’itérateur adéquat existe. Si vous voulez effectuer un parcours un peu spécial dans une collection, il vous suffit de créer une nouvelle classe itérateur, sans toucher à la collection ni au client.</p><a href=#analogie><h2 id=analogie><span class=hanchor arialabel=Anchor># </span>Analogie</h2></a><img width=640 height=0 src=../../_resources/iterator-comic-1-fr_fcc0876115e6408691fe2cd5a9e8bc.png><p>Différentes manières de parcourir Rome.</p><p>Vous projetez de visiter Rome pendant quelques jours et voulez voir ses principaux sites et attractions. Mais une fois sur place, vous risquez de perdre beaucoup de temps à tourner en rond et même de ne pas réussir à trouver le Colisée.</p><p>Vous pourriez acheter une application de guide virtuel sur votre smartphone qui vous permettrait de trouver votre chemin. C’est pratique et peu onéreux, et vous pourriez visiter des sites intéressants à volonté.</p><p>Vous pourriez également dépenser une partie de votre budget pour engager un guide local qui connait la ville comme sa poche. Il adapterait votre séjour en fonction de vos goûts et de vos attentes, vous ferait visiter toutes les attractions et vous raconterait des histoires passionnantes. Ce serait vraiment génial, mais malheureusement, beaucoup plus cher.</p><p>Toutes ces possibilités — des directions aléatoires que vous prenez, l’application sur smartphone ou le guide humain — sont des itérateurs sur une vaste collection de sites et d’attractions dans Rome.</p><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span>Structure</h2></a><img width=480 height=0 src=../../_resources/structure_1f99bf777bea49bd89ea0878050acb3d.png><ol><li><p>L’interface <strong>Itérateur</strong> déclare les opérations nécessaires au parcours d’une collection : récupérer le prochain élément, donner la position actuelle, recommencer la boucle depuis le début, etc.</p></li><li><p>Les <strong>Itérateurs Concrets</strong> implémentent les algorithmes qui servent au parcours d’une collection. L’objet itérateur doit garder la trace du parcours actuel. Grâce à cela, plusieurs itérateurs peuvent parcourir la même collection de manière indépendante.</p></li><li><p>L’interface <strong>Collection</strong> déclare une ou plusieurs méthodes pour récupérer des itérateurs compatibles avec la collection. Le type de retour de la méthode doit être l’interface de l’itérateur afin de permettre aux collections concrètes de renvoyer tous types d’itérateurs.</p></li><li><p>Les <strong>Collections Concrètes</strong> renvoient les nouvelles instances de la classe concrète de l’itérateur lorsque le client en demande une. Vous vous demandez peut-être où l’on doit mettre le reste du code de la collection. Ne vous inquiétez pas, il devrait être dans la même classe. Ces détails ne sont pas très importants pour ce patron de conception, je me permets donc de les omettre.</p></li><li><p>Le <strong>Client</strong> manipule les collections et les itérateurs grâce à leurs interfaces. Ceci permet de ne pas coupler le client avec les classes concrètes et d’utiliser différents itérateurs et collections avec le même code client.</p><p>En général, les clients ne créent pas les itérateurs, ils les récupèrent auprès des collections. Mais dans certains cas, le client peut en créer un directement. Le client peut par exemple définir son propre itérateur spécial.</p></li></ol><a href=#pseudo-code><h2 id=pseudo-code><span class=hanchor arialabel=Anchor># </span>Pseudo-code</h2></a><p>Dans cet exemple, le patron de conception <strong>Itérateur</strong> va servir à parcourir un type spécial de collection qui encapsule l’accès au graphe social de Facebook. Cette collection procure plusieurs itérateurs qui parcourent les profils de différentes manières.</p><img width=600 height=0 src=../../_resources/example_2ddab3334fe4409a838558aa329de764.png><p>Un exemple d’itération sur les profils sociaux.</p><p>L’itérateur des ‘amis’ peut être utilisé pour parcourir les amis d’un profil donné. L’itérateur des ‘collègues’ fait la même chose, sauf qu’il ignore les amis qui ne travaillent pas dans la même entreprise que la personne sélectionnée. Ces deux itérateurs implémentent une interface commune qui permet aux clients d’aller chercher les profils sans tenir compte des détails de l’implémentation, comme l’identification ou l’envoi de requêtes REST.</p><p>Le code client n’est pas couplé aux classes concrètes, car il manipule les collections et les itérateurs en passant par leurs interfaces. Si vous décidez de connecter votre application à un réseau social, vous devez simplement fournir de nouvelles classes de collections et d’itérateurs sans toucher au code existant.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span><span class=lnt>93
+</span><span class=lnt>94
+</span><span class=lnt>95
+</span><span class=lnt>96
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// L’interface collection doit déclarer une fabrique pour créer
+</span></span><span class=line><span class=cl>// des itérateurs. Si vous avez besoin de plusieurs types
+</span></span><span class=line><span class=cl>// d’itérations dans votre programme, vous pouvez déclarer
+</span></span><span class=line><span class=cl>// plusieurs méthodes.
+</span></span><span class=line><span class=cl>interface SocialNetwork is
+</span></span><span class=line><span class=cl>    method createFriendsIterator(profileId):ProfileIterator
+</span></span><span class=line><span class=cl>    method createCoworkersIterator(profileId):ProfileIterator
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Chaque collection concrète est couplée à un ensemble de
+</span></span><span class=line><span class=cl>// classes concrètes Itérateur qu’elle retourne. Mais le client
+</span></span><span class=line><span class=cl>// en est indépendant, car la signature de ces méthodes renvoie
+</span></span><span class=line><span class=cl>// des interfaces itérateur.
+</span></span><span class=line><span class=cl>class Facebook implements SocialNetwork is
+</span></span><span class=line><span class=cl>    // ...Le code principal de la collection devrait être écrit
+</span></span><span class=line><span class=cl>    // ici...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Code de création de l’itérateur.
+</span></span><span class=line><span class=cl>    method createFriendsIterator(profileId) is
+</span></span><span class=line><span class=cl>        return new FacebookIterator(this, profileId, &#34;friends&#34;)
+</span></span><span class=line><span class=cl>    method createCoworkersIterator(profileId) is
+</span></span><span class=line><span class=cl>        return new FacebookIterator(this, profileId, &#34;coworkers&#34;)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// L’interface commune à tous les itérateurs.
+</span></span><span class=line><span class=cl>interface ProfileIterator is
+</span></span><span class=line><span class=cl>    method getNext():Profile
+</span></span><span class=line><span class=cl>    method hasMore():bool
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// La classe concrète Itérateur.
+</span></span><span class=line><span class=cl>class FacebookIterator implements ProfileIterator is
+</span></span><span class=line><span class=cl>    // L’itérateur a besoin d’une référence à la collection
+</span></span><span class=line><span class=cl>    // qu’il parcourt.
+</span></span><span class=line><span class=cl>    private field facebook: Facebook
+</span></span><span class=line><span class=cl>    private field profileId, type: string
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Un objet itérateur parcourt la collection indépendamment
+</span></span><span class=line><span class=cl>    // des autres itérateurs. Il doit donc stocker l’état de
+</span></span><span class=line><span class=cl>    // l’itération.
+</span></span><span class=line><span class=cl>    private field currentPosition
+</span></span><span class=line><span class=cl>    private field cache: array of Profile
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor FacebookIterator(facebook, profileId, type) is
+</span></span><span class=line><span class=cl>        this.facebook = facebook
+</span></span><span class=line><span class=cl>        this.profileId = profileId
+</span></span><span class=line><span class=cl>        this.type = type
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    private method lazyInit() is
+</span></span><span class=line><span class=cl>        if (cache == null)
+</span></span><span class=line><span class=cl>            cache = facebook.socialGraphRequest(profileId, type)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Chaque classe concrète Itérateur a sa propre
+</span></span><span class=line><span class=cl>    // implémentation de l’interface commune Itérateur.
+</span></span><span class=line><span class=cl>    method getNext() is
+</span></span><span class=line><span class=cl>        if (hasMore())
+</span></span><span class=line><span class=cl>            currentPosition++
+</span></span><span class=line><span class=cl>            return cache[currentPosition]
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method hasMore() is
+</span></span><span class=line><span class=cl>        lazyInit()
+</span></span><span class=line><span class=cl>        return currentPosition &lt; cache.length
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Voici une astuce très pratique : vous pouvez passer un
+</span></span><span class=line><span class=cl>// itérateur à une classe du client, plutôt que de lui donner
+</span></span><span class=line><span class=cl>// accès à une collection complète. Cette manipulation vous
+</span></span><span class=line><span class=cl>// permet de ne pas exposer la collection au client.
+</span></span><span class=line><span class=cl>//
+</span></span><span class=line><span class=cl>// Elle vous permet également de modifier la façon dont le
+</span></span><span class=line><span class=cl>// client fonctionne avec les collections lors de son exécution,
+</span></span><span class=line><span class=cl>// en lui passant un itérateur différent. Cette manipulation
+</span></span><span class=line><span class=cl>// serait impossible si le code client était couplé aux classes
+</span></span><span class=line><span class=cl>// concrètes de l’itérateur.
+</span></span><span class=line><span class=cl>class SocialSpammer is
+</span></span><span class=line><span class=cl>    method send(iterator: ProfileIterator, message: string) is
+</span></span><span class=line><span class=cl>        while (iterator.hasMore())
+</span></span><span class=line><span class=cl>            profile = iterator.getNext()
+</span></span><span class=line><span class=cl>            System.sendEmail(profile.getEmail(), message)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// La classe application configure les collections et les
+</span></span><span class=line><span class=cl>// itérateurs, puis les envoie au code client.
+</span></span><span class=line><span class=cl>class Application is
+</span></span><span class=line><span class=cl>    field network: SocialNetwork
+</span></span><span class=line><span class=cl>    field spammer: SocialSpammer
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method config() is
+</span></span><span class=line><span class=cl>        if working with Facebook
+</span></span><span class=line><span class=cl>            this.network = new Facebook()
+</span></span><span class=line><span class=cl>        if working with LinkedIn
+</span></span><span class=line><span class=cl>            this.network = new LinkedIn()
+</span></span><span class=line><span class=cl>        this.spammer = new SocialSpammer()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method sendSpamToFriends(profile) is
+</span></span><span class=line><span class=cl>        iterator = network.createFriendsIterator(profile.getId())
+</span></span><span class=line><span class=cl>        spammer.send(iterator, &#34;Very  important  message&#34;)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method sendSpamToCoworkers(profile) is
+</span></span><span class=line><span class=cl>        iterator = network.createCoworkersIterator(profile.getId())
+</span></span><span class=line><span class=cl>        spammer.send(iterator, &#34;Very  important  message&#34;)
+</span></span></code></pre></td></tr></table></div></div><a href=#possibilités-dapplication><h2 id=possibilités-dapplication><span class=hanchor arialabel=Anchor># </span>Possibilités d’application</h2></a><p>Utilisez le patron de conception itérateur quand la structure de données de votre collection est trop complexe et que vous voulez cacher ces détails aux clients (parce que c’est pratique ou pour des raisons de sécurité).</p><p>L’itérateur encapsule le détail du fonctionnement de la structure complexe de données et passe plusieurs méthodes simples au client qui lui permettent d’accéder aux éléments de la collection. En plus d’être très pratique pour le client, ce fonctionnement permet de protéger la collection d’actions maladroites ou malicieuses que le client pourrait entreprendre s’il travaillait directement avec la collection.</p><p>Utilisez l’itérateur pour que le code du parcours soit le moins dupliqué possible dans votre application.</p><p>Un algorithme qui permet une itération complexe sur la collection a tendance à être très volumineux. Si on le place à l’intérieur de la logique de l’application, cela va masquer la responsabilité du code original et le rendre moins maintenable. Pour rendre le code encore plus simple et propre, vous pouvez écrire l’algorithme de parcours dans leur itérateur.</p><p>Utilisez ce patron pour permettre à votre code de naviguer dans des structures de données complexes ou inconnues.</p><p>Ce patron procure des interfaces génériques pour les collections et les itérateurs. Si votre code utilise bien ces interfaces, il va pouvoir manipuler toutes les collections (et leurs itérateurs) qui les implémentent.</p><a href=#mise-en-œuvre><h2 id=mise-en-œuvre><span class=hanchor arialabel=Anchor># </span>Mise en œuvre</h2></a><ol><li><p>Déclarez l’interface itérateur. Elle doit comporter au moins une méthode qui récupère le prochain élément de la collection. Mais pour qu’elle soit vraiment utile, vous devriez en ajouter d’autres, par exemple récupérer l’élément précédent, connaitre la position actuelle ou vérifier la fin de l’itération.</p></li><li><p>Déclarez l’interface de la collection et écrivez une méthode pour récupérer les itérateurs. Le type de la valeur de retour doit être l’interface de l’itérateur. Vous pouvez déclarer des itérateurs supplémentaires si vous pensez en utiliser d’autres.</p></li><li><p>Mettez en place les classes concrètes des itérateurs pour les collections que vous allez parcourir. Un objet itérateur ne peut être lié qu’à une seule instance d’une collection. En général, ce lien est établi dans le constructeur de l’itérateur.</p></li><li><p>Implémentez l’interface de la collection dans les classes de collection. Son but est de fournir un raccourci pour le client qui crée les itérateurs spécifiques à chaque classe de la collection. L’objet collection doit s’envoyer lui-même au constructeur de l’itérateur pour établir un lien entre eux.</p></li><li><p>Écumez le code et remplacez toutes les occurrences de parcours de collection par vos itérateurs. Le client va chercher un nouvel itérateur chaque fois qu’il parcourt les éléments d’une collection.</p></li></ol><a href=#avantages-et-inconvénients><h2 id=avantages-et-inconvénients><span class=hanchor arialabel=Anchor># </span>Avantages et inconvénients</h2></a><ul><li><p><em>Principe de responsabilité unique</em>. Vous allez nettoyer le code client et les collections en déplaçant les algorithmes de parcours — souvent très lourds — dans des classes séparées.</p></li><li><p><em>Principe ouvert/fermé</em>. Vous pouvez implémenter de nouveaux types de collections et d’itérateurs et les utiliser avec le code existant sans rien endommager.</p></li><li><p>Vous pouvez parcourir une même collection avec plusieurs itérateurs simultanément, car chacun possède son propre état d’itération.</p></li><li><p>Pour cette même raison, vous pouvez arrêter une itération et la reprendre quand vous le souhaitez.</p></li><li><p>L’utilisation de ce patron est exagérée si votre application ne se sert que de collections simples.</p></li><li><p>Les itérateurs sont parfois moins efficaces que certaines collections spécialisées.</p></li></ul><a href=#liens-avec-les-autres-patrons><h2 id=liens-avec-les-autres-patrons><span class=hanchor arialabel=Anchor># </span>Liens avec les autres patrons</h2></a><ul><li><p>Vous pouvez utiliser les
+<a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateurs</a> pour parcourir des arbres
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composites</a>.</p></li><li><p>Vous pouvez utiliser la
+<a href=https://refactoring.guru/fr/design-patterns/factory-method rel=noopener>Fabrique</a> avec l’
+<a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a> pour permettre aux sous-classes des collections de renvoyer différents types d’itérateurs compatibles avec les collections.</p></li><li><p>Vous pouvez utiliser le
+<a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a> avec l’
+<a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a> pour récupérer l’état actuel de l’itération et rétablir sa valeur plus tard si besoin.</p></li><li><p>Vous pouvez utiliser le
+<a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a> avec l’
+<a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a> pour parcourir une structure de données complexe et lancer un traitement sur ses éléments, même s’ils ont des classes différentes.</p></li></ul><a href=#exemples-de-code><h2 id=exemples-de-code><span class=hanchor arialabel=Anchor># </span>Exemples de code</h2></a><p><a href=https://refactoring.guru/fr/design-patterns/iterator/java/example rel=noopener><img width=43 height=56 src=../../_resources/java_80295644eeeb4e4a972ef25b49bc2f84.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator/csharp/example rel=noopener><img width=43 height=56 src=../../_resources/csharp_a3bb14453ba248209a05c5cf757e853d.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator/cpp/example rel=noopener><img width=43 height=56 src=../../_resources/cpp_e20bc7135f8f4cbcab34e445aab47a45.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator/php/example rel=noopener><img width=43 height=56 src=../../_resources/php_f3b217e7d71441829db577cbd79a775f.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator/python/example rel=noopener><img width=43 height=56 src=../../_resources/python_331652b8107d4be69f6cb734dfd670d8.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator/ruby/example rel=noopener><img width=43 height=56 src=../../_resources/ruby_b5f3b8ad6111427db96cb188aeedb21d.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator/swift/example rel=noopener><img width=43 height=56 src=../../_resources/swift_2dca1076918a4873b4081dc406724da9.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator/typescript/example rel=noopener><img width=43 height=56 src=../../_resources/typescript_fafb290b652e4a6cace0e60aeebe87a8.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator/go/example rel=noopener><img width=43 height=56 src=../../_resources/go_fbdf882ed399416899d18c0995afa795.svg></a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=200 height=200 src=../../_resources/patterns-book-banner-3_b247475588e24e328a07540bc39.png></a></p><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook><h3 id=soutenez-notre-site-gratuit-et-obtenez-lebook><span class=hanchor arialabel=Anchor># </span>Soutenez notre site gratuit et obtenez l’ebook !</h3></a><ul><li>22 patrons de conception et 8 principes expliqués en profondeur.</li><li>444 pages de vulgarisation, bien structurées et faciles à lire.</li><li>225 illustrations et diagrammes clairs pour aider à la compréhension.</li><li>Une archive avec des exemples de code dans 9 langages.</li><li>Tous les appareils sont pris en charge : formats PDF/EPUB/MOBI/KFX.</li></ul><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><a href=#suivant><h4 id=suivant><span class=hanchor arialabel=Anchor># </span>Suivant</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a></p><a href=#retour><h4 id=retour><span class=hanchor arialabel=Anchor># </span>Retour</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=245 height=375 src=../../_resources/web-cover-fr_265d416a363d448ca9c0b2d2d4d267cc.png></a></p><p>Cet article est tiré de notre ebook
+<strong>Plongée au cœur des
+PATRONS DE CONCEPTION</strong></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><p>Facebook</p><p>Twitter</p><ul><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li><li><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a></li></ul><p><a href=https://refactoring.guru/design-patterns/iterator rel=noopener>English</a>
+<a href=https://refactoring.guru/es/design-patterns/iterator rel=noopener>Español</a>
+<a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Français</a>
+<a href=https://refactoring.guru/pl/design-patterns/iterator rel=noopener>Polski</a>
+<a href=https://refactoring.guru/pt-br/design-patterns/iterator rel=noopener>Português-Br</a>
+<a href=https://refactoring.guru/ru/design-patterns/iterator rel=noopener>Русский</a>
+<a href=https://refactoring.guru/uk/design-patterns/iterator rel=noopener>Українська</a>
+<a href=https://refactoringguru.cn/design-patterns/iterator rel=noopener>中文</a></p><p><a href=https://refactoring.guru/fr rel=noopener><img src=https://quartz.jzhao.xyz//../../_resources/logo-covid-winter_d4a3549cf80e41cb8d56f93adbf43b33.png width=auto alt=Refactoring.Guru></a></p><p><img src=https://quartz.jzhao.xyz//../../_resources/winter-hat_32416e0a3bfd423e8b557478b85bede0.png width=auto alt></p><ul><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/what-is-pattern rel=noopener>Introduction</a></li><li><a href=https://refactoring.guru/fr/design-patterns/catalog rel=noopener>Catalogue</a></li><li><a href=https://refactoring.guru/fr/design-patterns/creational-patterns rel=noopener>Patrons de création</a></li><li><a href=https://refactoring.guru/fr/design-patterns/structural-patterns rel=noopener>Patrons structurels</a></li><li><a href=https://refactoring.guru/fr/design-patterns/behavioral-patterns rel=noopener>Patrons comportementaux</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a></li><li><a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a></li><li><a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a></li><li><a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/state rel=noopener>État</a></li><li><a href=https://refactoring.guru/fr/design-patterns/strategy rel=noopener>Stratégie</a></li><li><a href=https://refactoring.guru/fr/design-patterns/template-method rel=noopener>Patron de méthode</a></li><li><a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a></li></ul></li><li><a href=https://refactoring.guru/fr/design-patterns/examples rel=noopener>Exemples de code</a></li></ul></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation (commenter bientôt)</a></li></ul><p><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a>
+<a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Nous contacter</a></p><ul><li><a href=https://refactoring.guru/fr rel=noopener>Accueil</a></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a></li><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Forum</a></li><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li></ul><p>2014-2021
+<a href=https://refactoring.guru/fr rel=noopener>Refactoring.Guru</a>. Tous droits réservés.
+<img src=https://quartz.jzhao.xyz//../../_resources/fa-building_ea399000da7f42d690350c9008b03211.svg width=auto alt="Organization address"> Khmelnitske shosse 19 / 27, Kamianets-Podilskyi, Ukraine, 32305
+Email:
+<a rel=noopener class="internal-link broken" data-src=mailto:support@refactoring.guru>support@refactoring.guru</a></p><p>Illustrations par
+<a href=http://zhart.us/ rel=noopener>Dmitry Zhart</a></p><ul><li><a href=https://refactoring.guru/fr/terms rel=noopener>Termes et conditions</a></li><li><a href=https://refactoring.guru/fr/privacy-policy rel=noopener>Politique de protection de la vie privée</a></li><li><a href=https://refactoring.guru/fr/content-usage-policy rel=noopener>Politique de l’utilisation des données</a></li></ul></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/Architecture/Design_Pattern/Behavioral/Sommaire/ data-ctx=Itérateur data-src=/Architecture/Design_Pattern/Behavioral/Sommaire class=internal-link></a></li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://quartz.jzhao.xyz/js/graph.afdb02e537635f9a611b53a988e5645b.js></script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://quartz.jzhao.xyz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>

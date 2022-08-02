@@ -1,0 +1,349 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Thread Life Cycle (image:baeldung.com)
+In the life cycle, there are 7 states. lets discuss about them,
+New This the state where the thread is created."><title>Understanding Threads in Java.</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://quartz.jzhao.xyz//icon.png><link href=https://quartz.jzhao.xyz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://quartz.jzhao.xyz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://quartz.jzhao.xyz/js/darkmode.63d6a3e095d0bd2b935b62adec9dc11b.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://quartz.jzhao.xyz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.138e8e684375e828e1fe07635a41b9e8.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.10367ca03749dc74c72b80b9868d2b00.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!1;drawGraph("https://quartz.jzhao.xyz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://quartz.jzhao.xyz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/quartz.jzhao.xyz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://quartz.jzhao.xyz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://quartz.jzhao.xyz/>🪴 Quartz 3.2</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Understanding Threads in Java.</h1><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Master/Concurrence%20dans%20les%20syst%c3%a8mes/Understanding%20Threads%20in%20Java.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://quartz.jzhao.xyz/tags/concurrence/>Concurrence</a></li><li><a href=https://quartz.jzhao.xyz/tags/s1/>S1</a></li></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#new>New</a></li><li><a href=#readyrunnable>Ready/Runnable</a></li><li><a href=#running>Running</a></li><li><a href=#blocked>Blocked</a></li><li><a href=#waiting>Waiting</a></li><li><a href=#timed-waiting>Timed Waiting</a></li><li><a href=#dead>Dead</a></li></ol><ol><li><a href=#extending-thread-class>Extending Thread class</a></li><li><a href=#facts-about-creating-thread-by-extending-thread-class>Facts about creating thread by Extending Thread class,</a></li><li><a href=#implement-runnable-interface>Implement Runnable Interface</a></li></ol><ol><li><a href=#facts-about-the-thread-priority>Facts about the Thread Priority</a></li></ol><ol><li><a href=#join-method>Join Method</a></li><li><a href=#yield-method>Yield Method</a></li><li><a href=#sleep-method>Sleep Method</a></li><li><a href=#interrupt-method>Interrupt Method</a></li></ol><ol><li><a href=#sign-up-for-nft-weekly-digest>Sign up for NFT Weekly Digest</a><ol><li><a href=#by-nerd-for-tech>By Nerd For Tech</a></li></ol></li><li><a href=#more-from-nerd-for-techhttpsmediumcomnerd-for-techsourcepost_page-----1f5a074d5753-----------------------------------><a href="https://medium.com/nerd-for-tech?source=post_page-----1f5a074d5753-----------------------------------">More from Nerd For Tech</a></a></li><li><a href=#more-from-medium>More from Medium</a></li><li><a href=#related>Related</a></li></ol></nav></details></aside><a href=#thread-life-cycle><h1 id=thread-life-cycle><span class=hanchor arialabel=Anchor># </span>Thread Life Cycle</h1></a><img width=692 height=566 src=../../../_resources/1_kNkBnKP2QAqNsGnlqkJhHw_b8ee10d38f85426781f67b55b.jpeg class=jop-noMdConv><p>(image:baeldung.com)</p><p>In the life cycle, there are 7 states. lets discuss about them,</p><a href=#new><h2 id=new><span class=hanchor arialabel=Anchor># </span>New</h2></a><p>This the state where the thread is created.</p><a href=#readyrunnable><h2 id=readyrunnable><span class=hanchor arialabel=Anchor># </span>Ready/Runnable</h2></a><p>When the <code>start()</code> method is invoked to a particular thread, it will switch state from <strong>New</strong> to <strong>Ready or Runnable</strong> state</p><a href=#running><h2 id=running><span class=hanchor arialabel=Anchor># </span>Running</h2></a><p>The Thread will switch to Running state when <code>run()</code> method is invoked. which means when the process is executing. But it may go back to Ready/Runnable state and come back to Running state and this can happen again and again also.</p><a href=#blocked><h2 id=blocked><span class=hanchor arialabel=Anchor># </span>Blocked</h2></a><p>This is the state where one thread blocked on the lock because other thread has already acquired this lock.</p><a href=#waiting><h2 id=waiting><span class=hanchor arialabel=Anchor># </span>Waiting</h2></a><p>In this state, the thread will wait forever until if there is any interruption. Usually the invocation of <code>join()</code> or <code>wait()</code> method will put the thread in waiting state.</p><a href=#timed-waiting><h2 id=timed-waiting><span class=hanchor arialabel=Anchor># </span>Timed Waiting</h2></a><p>When <code>sleep()</code> method or <code>join()</code> or <code>wait()</code> methods with timeout are invoked, that state is known as <strong>Timed Waiting.</strong> Name itself explains that the the thread will wait for a certain given time.</p><a href=#dead><h2 id=dead><span class=hanchor arialabel=Anchor># </span>Dead</h2></a><p>This state represents the completion of process.</p><a href=#how-to-create-a-thread-in-java-><h1 id=how-to-create-a-thread-in-java-><span class=hanchor arialabel=Anchor># </span>how to create a Thread in Java ?</h1></a><p>In Java, there are two ways to create a thread and they are,</p><ul><li>By Extend Thread class</li><li>By Implement Runnable Interface</li></ul><p>lets check it one by one,</p><a href=#extending-thread-class><h2 id=extending-thread-class><span class=hanchor arialabel=Anchor># </span>Extending Thread class</h2></a><p>In here I am going to use 2 classes. So to create a Thread, we need to extend the Printer class with the Thread class as shown in the code below.</p><p>Now to run the thread, we have to create an instance of the Thread class in the main method of the Application class and invoke that <code>start()</code> to that instance as I mentioned in the code below.</p><p>So If I run the application I will get the output as,</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;7cde&#34;&gt;&lt;/a&gt;Main thread is running....
+</span></span><span class=line><span class=cl>Child thread is running....
+</span></span></code></pre></td></tr></table></div></div><a href=#facts-about-creating-thread-by-extending-thread-class><h2 id=facts-about-creating-thread-by-extending-thread-class><span class=hanchor arialabel=Anchor># </span>Facts about creating thread by Extending Thread class,</h2></a><ul><li>It is not must to override the run method in Thread class. Lets see why, when I call the <code>start()</code> it will check the Printer thread. Since I don’t have the <code>start()</code>method there, it will check the parent class witch is Thread class. In Thread class there will be a <code>start()</code> and that invokes <code>run()</code> method. So when calling run method it will the printer Thread class, since it doesn’t has the <code>run()</code> method, it will check the Thread class and it doesn’t do anything. Inside that run method, if the target is set then it will execute <code>target.run()</code> method. In our case we don’t have any target so it’s just don’t do anything. thats the reason it worked. So If we are not overriding the run method which means we are not doing any tasks, because all the process of threads have to go to <code>run()</code> method. This is only valid when we are Extend the Thread class. But when we implement the runnable interface, java program will force you to override the <code>run()</code> method. Because thats the behavior of the runnable interface which we are going to look next.</li><li>As you can see from the above code snippet, even though the <code>start()</code> method invoked(in line number 7 on the Application class) before printing the sentence in the main thread, it was printed after the main thread prints. which means, there is no guarantee that invoking <code>start()</code> method will immediately run the thread and it is entirely depend on the JRE(based on the OS). In the previous point, I mentioned about <code>target</code> which is a runnable object. In our case printer object, so if it has <code>run()</code> method then it will execute it and if not it will got the super class and execute the <code>run()</code> method as I said before. lets see some example,</li></ul><p>so in this child thread this should print from 1 to 10.</p><p>and in the main thread this should print from 1 to 100</p><p>So I run this program several time to test the result. (I have taken only first few lines of the output to avoid too many unwanted spaces in the article)</p><blockquote><p>1st time output</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;dbf5&#34;&gt;&lt;/a&gt;Main thread is running....
+</span></span><span class=line><span class=cl>Child thread is running....
+</span></span><span class=line><span class=cl>main 0
+</span></span><span class=line><span class=cl>child 0
+</span></span><span class=line><span class=cl>child 1
+</span></span><span class=line><span class=cl>main 1
+</span></span><span class=line><span class=cl>main 2
+</span></span><span class=line><span class=cl>main 3
+</span></span><span class=line><span class=cl>child 2
+</span></span><span class=line><span class=cl>main 4
+</span></span><span class=line><span class=cl>child 3
+</span></span><span class=line><span class=cl>main 5
+</span></span><span class=line><span class=cl>child 4
+</span></span><span class=line><span class=cl>main 6
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>.
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>2nd time output</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;37eb&#34;&gt;&lt;/a&gt;Main thread is running....
+</span></span><span class=line><span class=cl>Child thread is running....
+</span></span><span class=line><span class=cl>child 0
+</span></span><span class=line><span class=cl>main 0
+</span></span><span class=line><span class=cl>main 1
+</span></span><span class=line><span class=cl>main 2
+</span></span><span class=line><span class=cl>child 1
+</span></span><span class=line><span class=cl>main 3
+</span></span><span class=line><span class=cl>child 2
+</span></span><span class=line><span class=cl>main 4
+</span></span><span class=line><span class=cl>child 3
+</span></span><span class=line><span class=cl>main 5
+</span></span><span class=line><span class=cl>child 4
+</span></span><span class=line><span class=cl>main 6
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>.
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>3rd time output</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;8c85&#34;&gt;&lt;/a&gt;Main thread is running....
+</span></span><span class=line><span class=cl>Child thread is running....
+</span></span><span class=line><span class=cl>child 0
+</span></span><span class=line><span class=cl>main 0
+</span></span><span class=line><span class=cl>child 1
+</span></span><span class=line><span class=cl>main 1
+</span></span><span class=line><span class=cl>child 2
+</span></span><span class=line><span class=cl>main 2
+</span></span><span class=line><span class=cl>child 3
+</span></span><span class=line><span class=cl>main 3
+</span></span><span class=line><span class=cl>child 4
+</span></span><span class=line><span class=cl>main 4
+</span></span><span class=line><span class=cl>child 5
+</span></span><span class=line><span class=cl>main 5
+</span></span><span class=line><span class=cl>child 6
+</span></span><span class=line><span class=cl>main 6
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>.
+</span></span></code></pre></td></tr></table></div></div><p>So from the above results, each execution has different orders, so this gave a conclusion, that there is no guarantee the thread will start immediate whenever the <code>start()</code> method is invoked. Its because of the <strong>Thread Scheduler</strong> and this decides which thread should run (order) and its entirely depends on JRE (OS based) as I mentioned above.</p><ul><li>What will happen if we invoke <code>run()</code> method without the <code>start()</code> method ? lets find out,</li></ul><p>So when I run the above program, I got the output as follows,</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;0493&#34;&gt;&lt;/a&gt;Main thread is running....
+</span></span><span class=line><span class=cl>Child thread is running....
+</span></span><span class=line><span class=cl>main main 0
+</span></span><span class=line><span class=cl>child Thread-0 0
+</span></span><span class=line><span class=cl>main main 1
+</span></span><span class=line><span class=cl>child Thread-0 1
+</span></span><span class=line><span class=cl>main main 2
+</span></span><span class=line><span class=cl>child Thread-0 2
+</span></span><span class=line><span class=cl>main main 3
+</span></span><span class=line><span class=cl>child Thread-0 3
+</span></span><span class=line><span class=cl>main main 4
+</span></span><span class=line><span class=cl>child Thread-0 4
+</span></span><span class=line><span class=cl>main main 5
+</span></span><span class=line><span class=cl>child Thread-0 5
+</span></span><span class=line><span class=cl>main main 6
+</span></span><span class=line><span class=cl>main main 7
+</span></span><span class=line><span class=cl>main main 8
+</span></span><span class=line><span class=cl>main main 9
+</span></span><span class=line><span class=cl>main main 10
+</span></span><span class=line><span class=cl>child Thread-0 6
+</span></span><span class=line><span class=cl>child Thread-0 7
+</span></span><span class=line><span class=cl>child Thread-0 8
+</span></span><span class=line><span class=cl>child Thread-0 9
+</span></span><span class=line><span class=cl>main main 11
+</span></span><span class=line><span class=cl>main main 12
+</span></span><span class=line><span class=cl>main main 13
+</span></span><span class=line><span class=cl>main main 14
+</span></span><span class=line><span class=cl>main main 15
+</span></span><span class=line><span class=cl>main main 16
+</span></span><span class=line><span class=cl>main main 17
+</span></span><span class=line><span class=cl>main main 18
+</span></span><span class=line><span class=cl>main main 19
+</span></span><span class=line><span class=cl>main main 20
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>main main 99
+</span></span></code></pre></td></tr></table></div></div><p>So as you can see from the above output, I got the thread names because in the code, I have invoked <code>getName()</code> for the current threads. So lets see,</p><p>as you can see I have removed the start method and used only run method and I got output as follows,</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;22ee&#34;&gt;&lt;/a&gt;Child thread is running....
+</span></span><span class=line><span class=cl>child main 0
+</span></span><span class=line><span class=cl>child main 1
+</span></span><span class=line><span class=cl>child main 2
+</span></span><span class=line><span class=cl>child main 3
+</span></span><span class=line><span class=cl>child main 4
+</span></span><span class=line><span class=cl>child main 5
+</span></span><span class=line><span class=cl>child main 6
+</span></span><span class=line><span class=cl>child main 7
+</span></span><span class=line><span class=cl>child main 8
+</span></span><span class=line><span class=cl>child main 9
+</span></span><span class=line><span class=cl>Main thread is running....
+</span></span><span class=line><span class=cl>main main 0
+</span></span><span class=line><span class=cl>main main 1
+</span></span><span class=line><span class=cl>main main 2
+</span></span><span class=line><span class=cl>main main 3
+</span></span><span class=line><span class=cl>main main 4
+</span></span><span class=line><span class=cl>main main 5
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>main main 99
+</span></span></code></pre></td></tr></table></div></div><p>So as you can the from the output, it execute the child before executing the main because the <code>run()</code> method is not giving chance to create a threat which means we only have one thread in this scenario. So as a result it execute as a normal method call. So <code>start()</code> method is necessary because whenever this method is called, the JVM will handle lot of things such as, check whether the thread is already exist or not, whether the thread is ready to run and then it will register on the registers and add it to the thread pool and finally it will invoke the <code>run()</code> method. So if we invoke <code>run()</code> method without <code>start()</code> method then it won’t be a multi-threading scenario.</p><ul><li>What will happen if we override the <code>start()</code> method in the Thread class? Yes, but lets say we are invoking <code>start()</code> method in <code>Printer class</code>, what it does is, it will look for the immediate class and it has the method so it will run and it won’t go to the super class to create a thread. So is there any way to create the thread even overriding the <code>start()</code> method? answer is yes we can, by simply putting <code>super.start()</code> inside the <code>start()</code> method of the Printer class.</li><li>What will happen if we overload the <code>run()</code> method? Yes, but Thread classes’ start method always invoke with the no arguments.</li><li>Most of the programmers think that the java program will terminate once the main thread terminates. But in reality its not a daemon thread so the child thread can actually continue. what we can do is, we can change the printer thread object to a daemon thread by giving <code>printer.setDaemon(true);</code> in the main class. At this point when you run the program, when the main thread ends the child thread also suppose to end but you may notice that the child thread will run for a certain period of time even after the main thread ends because at the moment when the main thread printing the last line, the child thread already processed up to certain values and the delay is occurred because of the time taken to print.</li><li>The main disadvantage of this method is, we will loose the hierarchy of the classes when we extend Thread class to that particular class because Java does not support multiple inheritances.</li></ul><p><img src=https://quartz.jzhao.xyz//../../../_resources/1_MpLGv4eK0oMbUncxGz6IHw_ff0f795e28904e10867d7529a.jpeg width=auto alt></p><a href=#implement-runnable-interface><h2 id=implement-runnable-interface><span class=hanchor arialabel=Anchor># </span>Implement Runnable Interface</h2></a><p>In the above code we have used implements Runnable instead of extending from Thread class.</p><p>Runnable interface is a <strong>SAM (Single Abstract Method)</strong> it has a single method called run and thats it. In this case we don’t have intermediate Thread class so we don’t have someone to implement the <code>run()</code> method. So what we did here is, We create an instance from a Thread class (which means we can pass Runnable instance to that as I mentioned in the previous thread creating method and also to give thread behavior) called <code>thread</code> and I pass the object <code>printer</code> as the parameter to the thread instance. Now <code>printer</code> is a <strong>Runnable class</strong>. That is why I invoked the start method from thread instance. And I got the output as follows,</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;7eea&#34;&gt;&lt;/a&gt;Main thread is running....
+</span></span><span class=line><span class=cl>Child thread is running....
+</span></span><span class=line><span class=cl>main main 0
+</span></span><span class=line><span class=cl>child  0
+</span></span><span class=line><span class=cl>main main 1
+</span></span><span class=line><span class=cl>child  1
+</span></span><span class=line><span class=cl>main main 2
+</span></span><span class=line><span class=cl>child  2
+</span></span><span class=line><span class=cl>main main 3
+</span></span><span class=line><span class=cl>child  3
+</span></span><span class=line><span class=cl>child  4
+</span></span><span class=line><span class=cl>child  5
+</span></span><span class=line><span class=cl>main main 4
+</span></span><span class=line><span class=cl>child  6
+</span></span><span class=line><span class=cl>main main 5
+</span></span><span class=line><span class=cl>child  7
+</span></span><span class=line><span class=cl>main main 6
+</span></span><span class=line><span class=cl>child  8
+</span></span><span class=line><span class=cl>main main 7
+</span></span><span class=line><span class=cl>child  9
+</span></span><span class=line><span class=cl>main main 8
+</span></span><span class=line><span class=cl>child  10
+</span></span><span class=line><span class=cl>main main 9
+</span></span><span class=line><span class=cl>child  11
+</span></span><span class=line><span class=cl>Main thread Ends here
+</span></span><span class=line><span class=cl>child  12
+</span></span><span class=line><span class=cl>child  13
+</span></span><span class=line><span class=cl>child  14
+</span></span><span class=line><span class=cl>child  15
+</span></span><span class=line><span class=cl>child  16
+</span></span><span class=line><span class=cl>child  17
+</span></span><span class=line><span class=cl>child  18
+</span></span><span class=line><span class=cl>child  19
+</span></span><span class=line><span class=cl>===========================
+</span></span></code></pre></td></tr></table></div></div><p>So this the method of creating thread in the second approach.</p><p>There are eight constructors in the Thread class such as,</p><ul><li>Thread()</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;c9bd&#34;&gt;&lt;/a&gt;Thread T1 = new Thread();
+</span></span></code></pre></td></tr></table></div></div><ul><li>Thread(Runnable target)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;3567&#34;&gt;&lt;/a&gt;Thread T2 = new Thread(printer);
+</span></span></code></pre></td></tr></table></div></div><ul><li>Thread(String name)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;03a2&#34;&gt;&lt;/a&gt;Thread T3 = new Thread(name:&#34;printerThread&#34;);
+</span></span></code></pre></td></tr></table></div></div><ul><li>Threat(Runnable target, String name)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;4184&#34;&gt;&lt;/a&gt;Thread T4 = new Thread(printer, name:&#34;printerThread&#34;);
+</span></span></code></pre></td></tr></table></div></div><ul><li>Thread(ThreadGroup group, String name)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;d26c&#34;&gt;&lt;/a&gt;Thread T5 = new Thread(new ThreadGroup(),name:&#34;printerThread&#34;);
+</span></span></code></pre></td></tr></table></div></div><ul><li>Thread(ThreadGroup group, Runnable target)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;b8bf&#34;&gt;&lt;/a&gt;Thread T6 = new Thread(new ThreadGroup(),printer);
+</span></span></code></pre></td></tr></table></div></div><ul><li>Thread(ThreadGroup group, Runnable target, String name)</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;5afd&#34;&gt;&lt;/a&gt;Thread T7 = new Thread(new ThreadGroup(),printer,name:&#34;printerThread&#34;);
+</span></span></code></pre></td></tr></table></div></div><ul><li>Thread(ThreadGroup group, Runnable target, String name, long stack size)</li></ul><a href=#thread-priority><h1 id=thread-priority><span class=hanchor arialabel=Anchor># </span>Thread Priority</h1></a><p>Every thread has a thread priority and it will run according to the priority. and I to 10 is the Range of thread priority in Java. Basically 10 is the highest priority, 1 is the lowest and 5 is the normal priority.</p><p>Lets see how to set the Thread Priority to the previous example,</p><p>So to set the priority we have to invoke setPriority method to the thread. In our case the name of the thread is <code>thread</code>. So I invoked the method as in the above code (line number 9) and set it as a lowest priority thread.</p><a href=#facts-about-the-thread-priority><h2 id=facts-about-the-thread-priority><span class=hanchor arialabel=Anchor># </span>Facts about the Thread Priority</h2></a><ul><li>Most of the programmers think that 5 is the default priority for every threads but that is not the case. Lets say there are two threads T1(main) and T2(child) and the thread priority is set to 5 for both threads. In reality there will be no changes. There is actually a rule in Thread Priority which is Main thread’s default priority value s 5 because it was created by the system. thereafter any thread that are created will inherit the parent thread priority value. So when creating the T1, the priority will be 5 and once we create T2 from T1, it will also take the same value even we didn’t set anything. But later we can set the priority by invoking the <code>setPriority()</code> method to the particular thread.</li><li>What will happen when we give priority value which are not in the range like 11 then what will happen ? I’ve tried to run a program by giving the thread priority to 11 and I got the output as follows,</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;3b01&#34;&gt;&lt;/a&gt;Exception in thread &#34;main&#34; java.lang.IllegalArgumentException
+</span></span><span class=line><span class=cl>    at java.base/java.lang.Thread.setPriority(Thread.java:1137)
+</span></span><span class=line><span class=cl>    at threadSample.Application.main(Application.java:9)
+</span></span></code></pre></td></tr></table></div></div><p>as you can see I got an error saying <code>IllegalArgumentException</code>. So there is no chance it will automatically set to 10.</p><ul><li>What will happen when we give priority value 1 and 10 for threads T1 and T2 respectively? most of the time there won’t be any big difference in the order of execution. Yes, the JVM will listen to the priority but we can’t be so sure that JVM will do accordingly. So if you want to see how it works, we have to implement this in the real project and there is way we can take the <strong>Thread dump</strong> and see. In there status of all threads will be recorded.</li></ul><a href=#other-methods-in-thread><h1 id=other-methods-in-thread><span class=hanchor arialabel=Anchor># </span>Other Methods in Thread</h1></a><a href=#join-method><h2 id=join-method><span class=hanchor arialabel=Anchor># </span>Join Method</h2></a><p>Lets say there are two threads T1 and T2. T1 wants to wait for T2 to complete the task, then T1 should call the join method on T2 thread. We also can set time for T1 to wait. lets see what are those ways to call join method.</p><p><code>T2.join()</code> — this will wait forever or until T2 dies</p><p><code>T2.join(long millis)</code> —this will wait <code>millis</code> milliseconds for this thread to die.</p><p><code>T2.join(long millis,int nanos)</code> — this will wait <code>millis</code> milliseconds plus <code>nanos</code> nanoseconds for this thread to die.</p><p>So whenever the join method is called, the thread will go to waiting state from Running state. In this example T1 thread will go to waiting state. Lets see on what case the T1 will go back to the running state,</p><ol><li>T2 complete its process</li><li>Timeout (only if the time is set)</li><li>When it is interrupted</li></ol><a href=#yield-method><h2 id=yield-method><span class=hanchor arialabel=Anchor># </span>Yield Method</h2></a><p>When the <code>yield()</code> method is invoked, then it will send a hint to the scheduler that the current thread is willing to yield its current use of a processor. It is a native method because it not implemented in Java. Lets say there are three threads T1,T2 and T3. So once the T1 calls the <code>yield()</code> method, the scheduler will give chance to other threads and it is not sure that T2 or T3 give get the chance immediately. Lets say T2 is getting the chance and once it completes at that moment also we can’t say that the scheduler will give the chance to T1. Its totally depend on the process called <strong>Primitive Scheduling</strong> and if the platform doesn’t support this process so you won’t able to see these kind of execution.</p><a href=#sleep-method><h2 id=sleep-method><span class=hanchor arialabel=Anchor># </span>Sleep Method</h2></a><p>when this method is called, it can wait for a certain amount of time. In here there are two different approach to call this method such as,</p><ol><li><code>sleep(long millis)</code> method which is a native method and simply we can give the sleep time in the parameter.</li><li><code>sleep(long millis,int nanos)</code> method which is not a native method(implemented in Java).</li></ol><p>So if the sleep time finishes or if there is any interruption then the thread will go back to the running state.</p><a href=#interrupt-method><h2 id=interrupt-method><span class=hanchor arialabel=Anchor># </span>Interrupt Method</h2></a><p>When this method is invoked, the particular thread will comeback to the ready state from the waiting state. That is why when calling a sleep method we should include try catch method as follows,</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;f78d&#34;&gt;&lt;/a&gt;try {
+</span></span><span class=line><span class=cl>     Thread.sleep(1000);
+</span></span><span class=line><span class=cl>} catch (InterruptedException e) {
+</span></span><span class=line><span class=cl>    // TODO Auto-generated catch block
+</span></span><span class=line><span class=cl>    e.printStackTrace();
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><p>so to interrupt the thread we have to call the method as follows,</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;a id=&#34;7e07&#34;&gt;&lt;/a&gt;thread.interrupt();
+</span></span></code></pre></td></tr></table></div></div><p>In our example lets say<code>thread</code> is sleeping for 5000 ms and once we call the above method it will come back to the ready state. Important note here is one interrupt will only work for one sleep method. What if we call this method on the <code>thread</code> which is not sleeping. This will wait and execute the <code>interrupt()</code> method once the <code>sleep()</code> method is invoked until that it won’t do anything.</p><p>The <strong>Synchronization</strong> part will be discussed in a separate article.</p><a href=#references><h1 id=references><span class=hanchor arialabel=Anchor># </span>References</h1></a><p>I have referred the following YouTube playlist to write this article, which was made by</p><p><a href="https://medium.com/u/26403c4bd160?source=post_page-----1f5a074d5753-----------------------------------" rel=noopener>Krishantha Dinesh</a></p><p>.</p><p>And I also referred the following to complete this article,</p><p><a href=https://docs.oracle.com/javase/7/docs/api/java/lang/Thread.html rel=noopener>## Thread (Java Platform SE 7 )<br>### Every thread has a priority. Threads with higher priority are executed in preference to threads with lower priority…<br>docs.oracle.com</a></p><p><a href=https://www.baeldung.com/java-thread-lifecycle rel=noopener>## Life Cycle of a Thread in Java | Baeldung<br>### In this article, we’ll discuss in detail a core concept in Java - the lifecycle of a thread. We’ll use a quick…<br>www.baeldung.com</a></p><a href=#sign-up-for-nft-weekly-digest><h2 id=sign-up-for-nft-weekly-digest><span class=hanchor arialabel=Anchor># </span>Sign up for NFT Weekly Digest</h2></a><a href=#by-nerd-for-tech><h3 id=by-nerd-for-tech><span class=hanchor arialabel=Anchor># </span>By Nerd For Tech</h3></a><p>Subscribe to our weekly News Letter to receive top stories from the Industry Professionals around the world 
+<a href="https://medium.com/nerd-for-tech/newsletters/nft-weekly-digest?source=newsletter_v3_promo--------------------------newsletter_v3_promo--------------" rel=noopener>Take a look.</a></p><p>By signing up, you will create a Medium account if you don’t already have one. Review our
+<a href="https://policy.medium.com/medium-privacy-policy-f03bf92035c9?source=newsletter_v3_promo--------------------------newsletter_v3_promo--------------" rel=noopener>Privacy Policy</a> for more information about our privacy practices.</p><h2 id=more-from-nerd-for-techhttpsmediumcomnerd-for-techsourcepost_page-----1f5a074d5753-----------------------------------><a href="https://medium.com/nerd-for-tech?source=post_page-----1f5a074d5753-----------------------------------" rel=noopener>More from Nerd For Tech</a></h2><p>NFT is an Educational Media House. Our mission is to bring the invaluable knowledge and experiences of experts from all over the world to the novice. To know more about us, visit
+<a href=https://www.nerdfortech.org/ rel=noopener>https://www.nerdfortech.org/</a>.</p><p><img src=https://quartz.jzhao.xyz//../../../_resources/0_GSwtgEg-SbPpbCjc_c71d1aa93609450b94e21801ca57df1.jpg width=auto alt="Ramsunthar Sivasankar"></p><p><a href="https://medium.com/@ramsunthar?source=post_page-----1f5a074d5753----0-------------------------------" rel=noopener>Ramsunthar Sivasankar</a></p><p><a href="https://medium.com/nerd-for-tech/introduction-to-git-and-github-for-beginners-cb52d3ac7d6f?source=post_page-----1f5a074d5753----0-------------------------------" rel=noopener>·May 15, 2021</a></p><p><a href="https://medium.com/nerd-for-tech/introduction-to-git-and-github-for-beginners-cb52d3ac7d6f?source=post_page-----1f5a074d5753----0-------------------------------" rel=noopener>## Introduction to GIT and GitHub for Beginners<br>If you’re totally new to Git, this guide will walk you through getting started with Git, knowing what it’s for, and some basic principles you’ll need to know. What is Version Control ? The method of storing and controlling changes to software code is known as version control, sometimes known as source control. …</a></p><p><a href="https://medium.com/tag/git?source=post_page-----1f5a074d5753---------------git--------------------" rel=noopener>Git</a></p><p><a href="https://medium.com/nerd-for-tech/introduction-to-git-and-github-for-beginners-cb52d3ac7d6f?source=post_page-----1f5a074d5753----0-------------------------------" rel=noopener>8 min read</a></p><p><a href="https://medium.com/nerd-for-tech/introduction-to-git-and-github-for-beginners-cb52d3ac7d6f?source=post_page-----1f5a074d5753----0-------------------------------" rel=noopener><img width=112 height=112 src=../../../_resources/1_Jl2VDHVzFBDdXggRprziUg_f60de1697703420ab549794e2.png class=jop-noMdConv></a></p><hr><p>Share your ideas with millions of readers.</p><p><a href="https://medium.com/new-story?source=post_page_footer_cta_write----------------------------------------" rel=noopener>Write on Medium</a></p><hr><p><img src=https://quartz.jzhao.xyz//../../../_resources/0_GSwtgEg-SbPpbCjc_c71d1aa93609450b94e21801ca57df1.jpg width=auto alt="Ramsunthar Sivasankar"></p><p><a href="https://medium.com/@ramsunthar?source=post_page-----1f5a074d5753----1-------------------------------" rel=noopener>Ramsunthar Sivasankar</a></p><p><a href="https://medium.com/nerd-for-tech/floating-point-rounding-problem-in-programming-world-86c5639c102c?source=post_page-----1f5a074d5753----1-------------------------------" rel=noopener>·May 15, 2021</a></p><p><a href="https://medium.com/nerd-for-tech/floating-point-rounding-problem-in-programming-world-86c5639c102c?source=post_page-----1f5a074d5753----1-------------------------------" rel=noopener>## Floating Point Rounding problem in Programming World<br>Before starting anything, Look at the following java program, What do you think of this code, will it end when i hits 0 ?. lets look at the output, 10.0…</a></p><p><a href="https://medium.com/tag/java?source=post_page-----1f5a074d5753---------------java--------------------" rel=noopener>Java</a></p><p><a href="https://medium.com/nerd-for-tech/floating-point-rounding-problem-in-programming-world-86c5639c102c?source=post_page-----1f5a074d5753----1-------------------------------" rel=noopener>5 min read</a></p><p><a href="https://medium.com/nerd-for-tech/floating-point-rounding-problem-in-programming-world-86c5639c102c?source=post_page-----1f5a074d5753----1-------------------------------" rel=noopener><img src=https://quartz.jzhao.xyz//../../../_resources/0_JHz0PqvwkU1XUJ1d_354adecee9da4f6c9329d9f2b5cd906.png width=auto alt="Floating Point Rounding problem in Programming World"></a></p><hr><p><img src=https://quartz.jzhao.xyz//../../../_resources/1_PuxdEbc0FA5hv0KgRpGvrA_7ba8e3d014594d2d96102ea72.jpeg width=auto alt="Rufat Khaslarov"></p><p><a href="https://medium.com/@rufat-khaslarov?source=post_page-----1f5a074d5753----2-------------------------------" rel=noopener>Rufat Khaslarov</a></p><p><a href="https://medium.com/nerd-for-tech/my-name-is-typescript-and-im-the-strictest-tool-on-earth-fce8fe41b353?source=post_page-----1f5a074d5753----2-------------------------------" rel=noopener>·May 15, 2021</a></p><p><a href="https://medium.com/nerd-for-tech/my-name-is-typescript-and-im-the-strictest-tool-on-earth-fce8fe41b353?source=post_page-----1f5a074d5753----2-------------------------------" rel=noopener>## My Name Is TypeScript, and I’m the Strictest Tool on Earth.<br>About 2 million NPM downloads per month. More than 50% of developers use it on a daily basis. Almost 80% of the new projects are started with it out of the box. Last year, it has surged in popularity, leaving Python in 3rd place on Stack Overflow Trends. …</a></p><p><a href="https://medium.com/tag/typescript?source=post_page-----1f5a074d5753---------------typescript--------------------" rel=noopener>Typescript</a></p><p><a href="https://medium.com/nerd-for-tech/my-name-is-typescript-and-im-the-strictest-tool-on-earth-fce8fe41b353?source=post_page-----1f5a074d5753----2-------------------------------" rel=noopener>4 min read</a></p><p><a href="https://medium.com/nerd-for-tech/my-name-is-typescript-and-im-the-strictest-tool-on-earth-fce8fe41b353?source=post_page-----1f5a074d5753----2-------------------------------" rel=noopener><img width=112 height=112 src=../../../_resources/1_5YCL6C6hYyGirwY74_zhFg_533cb3bc7b154733b607415b5.jpeg class=jop-noMdConv></a></p><hr><p><img src=https://quartz.jzhao.xyz//../../../_resources/2_xN2CPzDQO9CYNDC8I9Sg1w_1e76da101b1c41dda7684f0dd.jpeg width=auto alt="Amit Singh Rathore"></p><p><a href="https://medium.com/@asrathore08?source=post_page-----1f5a074d5753----3-------------------------------" rel=noopener>Amit Singh Rathore</a></p><p><a href="https://medium.com/nerd-for-tech/valid-number-daily-challenge-may-bb469d04ceb0?source=post_page-----1f5a074d5753----3-------------------------------" rel=noopener>·May 15, 2021</a></p><p><a href="https://medium.com/nerd-for-tech/valid-number-daily-challenge-may-bb469d04ceb0?source=post_page-----1f5a074d5753----3-------------------------------" rel=noopener>## Valid Number — Daily Challenge May<br>Today’s question is from Daily Leetcode Coding Challenge — May Edition. It is a Hard-tagged question. Let us look into the problem statement. 65. Valid Number A valid number can be split up into these components (in order): 1. A decimal number or an integer. 2.(Optional) …</a></p><p><a href="https://medium.com/tag/python?source=post_page-----1f5a074d5753---------------python--------------------" rel=noopener>Python</a></p><p><a href="https://medium.com/nerd-for-tech/valid-number-daily-challenge-may-bb469d04ceb0?source=post_page-----1f5a074d5753----3-------------------------------" rel=noopener>2 min read</a></p><p><a href="https://medium.com/nerd-for-tech/valid-number-daily-challenge-may-bb469d04ceb0?source=post_page-----1f5a074d5753----3-------------------------------" rel=noopener><img width=36 height=19 src=../../../_resources/1_Jm2pgdUBpBcKMoRG17FglQ_e942a6c049954569a8caeb462.jpeg class=jop-noMdConv></a></p><hr><img width=24 height=24 src=../../../_resources/1_4ZQgRPwzxhgWyrRUFdh2vg_a74b6b9bcb3d4e22a900f7cb6.jpeg class=jop-noMdConv><p><a href="https://medium.com/@christopher-elias?source=post_page-----1f5a074d5753----4-------------------------------" rel=noopener>Christopher Elias</a></p><p><a href="https://medium.com/nerd-for-tech/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-ii-fd55842951cf?source=post_page-----1f5a074d5753----4-------------------------------" rel=noopener>·May 15, 2021</a></p><p><a href="https://medium.com/nerd-for-tech/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-ii-fd55842951cf?source=post_page-----1f5a074d5753----4-------------------------------" rel=noopener>## Safe Retrofit calls extension with kotlin Coroutines for Android in 2021 — Part II<br>Hello again 👋, this is the second part of the series. If you haven’t read the first part, I encourage you to do it in order to understand all the things we are going to do now. Safe Retrofit calls extension with kotlin Coroutines for Android in 2021 — Part I christopher-elias.medium.com Now that we know how do we have to handle exceptions with coroutines…</a></p><p><a href="https://medium.com/tag/android-app-development?source=post_page-----1f5a074d5753---------------android_app_development--------------------" rel=noopener>Android App Development</a></p><p><a href="https://medium.com/nerd-for-tech/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-ii-fd55842951cf?source=post_page-----1f5a074d5753----4-------------------------------" rel=noopener>3 min read</a></p><p><a href="https://medium.com/nerd-for-tech/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-ii-fd55842951cf?source=post_page-----1f5a074d5753----4-------------------------------" rel=noopener><img src=https://quartz.jzhao.xyz//../../../_resources/0_OXju1fJY1LAZYizK_8c08878f91f44c55b90a3b7f3be60bc.jpg width=auto alt="Safe Retrofit calls extension with kotlin Coroutines for Android in 2021 — Part II"></a></p><hr><p><a href="https://medium.com/nerd-for-tech?source=post_page-----1f5a074d5753-----------------------------------" rel=noopener>Read more from Nerd For Tech</a></p><a href=#more-from-medium><h2 id=more-from-medium><span class=hanchor arialabel=Anchor># </span>More from Medium</h2></a><p><a href="https://medium.com/@chescarobertson/a-glitch-in-the-matrix-bea962130cd9?source=post_internal_links---------0-------------------------------" rel=noopener><img width=58 height=58 src=../../../_resources/1_h4S5qtDKMN6S2uFVJ3oB6g_d431bcbcd9984ba9bbffc4725.jpeg class=jop-noMdConv><br>A Glitch in the Matrix<br>Maintenance, glitches and acronyms galore.</a></p><p><a href="https://medium.com/@ivarb/cross-account-data-migration-using-aws-database-migration-service-d0c5a54b6caf?source=post_internal_links---------1-------------------------------" rel=noopener><img width=58 height=58 src=../../../_resources/1_SABnYfT-DtAuwGOgkqs79g_bf5e22ca10a44400bf983b6c7.jpeg class=jop-noMdConv><br>Cross-account data migration using AWS Database Migration Service</a></p><p><a href="https://medium.com/mongodb-performance-tuning/bulk-operations-in-mongodb-fbc308acc332?source=post_internal_links---------2-------------------------------" rel=noopener><img width=58 height=58 src=../../../_resources/1_eijebHTf3Tzw35tJD8fdQg_e433c13ddceb4282a2ded4161.png class=jop-noMdConv><br>Bulk Operations in MongoDB<br>Like most databases, mongoDB has mechanisms for bulk operations. Using these effectively is critical to optimal database performance</a></p><p><a href="https://medium.com/@snowingada/adventures-in-cardano-stake-pool-operation-pt-1-497a674e5f28?source=post_internal_links---------3-------------------------------" rel=noopener><img width=58 height=58 src=../../../_resources/1_dl_sKg3pDfBtAE1uOKiUeQ_bc7c20833633493fb5a03ac62.png class=jop-noMdConv><br>Adventures in Cardano Stake Pool Operation Pt. 1</a></p><p><a href="https://medium.com/@sanashamanji/java-interface-and-abstract-class-c629b80abe95?source=post_internal_links---------4-------------------------------" rel=noopener>Java Interface and Abstract Class<br>Abstract class and interface both are used to achieve abstraction where we can declare the abstract methods.</a></p><p><a href="https://medium.com/better-programming/how-to-create-an-aurora-ui-using-css-eb27d674b69?source=post_internal_links---------5-------------------------------" rel=noopener><img width=58 height=58 src=../../../_resources/0_xt2bufniUFIf36eS_a2f872b830364401ad0f46d65572314.jpg class=jop-noMdConv><br>How To Create an Aurora UI Using CSS<br>A look at the new UI design trend from a developer’s point of view</a></p><p><a href="https://medium.com/@sebastian_kut/automated-deployment-of-laravel-application-to-shared-hosting-hostinger-com-b00121168b38?source=post_internal_links---------6-------------------------------" rel=noopener>Automated deployment of Laravel Application to shared hosting (hostinger.com)</a></p><p><a href="https://medium.com/@stretch0996/what-to-expect-in-stafi-in-the-second-quarter-of-2021-e4d820cedaef?source=post_internal_links---------7-------------------------------" rel=noopener><img width=58 height=58 src=../../../_resources/1_q9uOess1x3l-lja1Es3tyA_2x_2a1f6094495148279b8b94.jpeg class=jop-noMdConv><br>What To Expect In StaFi In The Second Quarter of 2021</a></p><p><a href="https://medium.com/m/signin?operation=login&redirect=https%3A%2F%2Fmedium.com%2Fnerd-for-tech%2Funderstanding-threads-in-java-1f5a074d5753&source=--------------------------nav_reg--------------" rel=noopener>Sign In</a></p><p><a href=https://medium.com/@ramsunthar rel=noopener><img width=88 height=88 src=../../../_resources/0_GSwtgEg-SbPpbCjc_e810bc966db0440fbe41c9a9587023c.jpg class=jop-noMdConv></a></p><p><a href=https://medium.com/@ramsunthar rel=noopener>## Ramsunthar Sivasankar</a></p><p>Associate Software Engineer at Virtusa</p><a href=#related><h2 id=related><span class=hanchor arialabel=Anchor># </span>Related</h2></a><p><a href="https://medium.com/@liu-111/why-you-should-use-spring-as-a-java-developer-3300ee6e401b?source=read_next_recirc---------0---------------------234d0aa7_c574_4112_9d62_76907adcef81----------" rel=noopener><img width=58 height=58 src=../../../_resources/1_8gukzCgXD1aMWg_ULhFLQQ_cedf64e9ee724e03aaaf1afa3.png class=jop-noMdConv><br>Why you Should use Spring as a Java Developer</a></p><p><a href="https://medium.com/@pranay120398/collections-in-java-a21eb6fdfb0c?source=read_next_recirc---------1---------------------234d0aa7_c574_4112_9d62_76907adcef81----------" rel=noopener><img width=58 height=58 src=../../../_resources/1_s4XHbw-1tciwVVpE2s3Yag_b2652178632b47b7a56848017.png class=jop-noMdConv><br>Collections in Java<br>The most dominant and crucial resource in the digital world is Data, with the access and storage of this entity anyone of us can lead…</a></p><p><a href="https://medium.com/@pasindusri/my-first-ever-experience-in-building-servlet-rest-api-78782280842a?source=read_next_recirc---------2---------------------234d0aa7_c574_4112_9d62_76907adcef81----------" rel=noopener><img width=58 height=58 src=../../../_resources/1_iQPTq0gFlZ1MzXSCAjZEEg_3f1533d8da6541929fa930681.png class=jop-noMdConv><br>My first ever experience in building servlet REST API.</a></p><p><a href="https://medium.com/nerd-for-tech/enums-in-java-f70b155b443e?source=read_next_recirc---------3---------------------234d0aa7_c574_4112_9d62_76907adcef81----------" rel=noopener><img width=58 height=58 src=../../../_resources/1_XBvCfESsMSN8LFGPpURVUQ_4ac9d4726fc24fef9be2b66ad.png class=jop-noMdConv><br>Enums in JAVA<br>Java enum is a special type of class that we can use to represent constant variables.  Usually, we can write a constant value by using a…</a></p><p><a href=https://help.medium.com/hc/en-us rel=noopener>Help</a></p><p><a href=https://medium.statuspage.io rel=noopener>Status</a></p><p><a href=https://about.medium.com/creators/ rel=noopener>Writers</a></p><p><a href=https://blog.medium.com rel=noopener>Blog</a></p><p><a href=https://medium.com/jobs-at-medium/work-at-medium-959d1a85284e rel=noopener>Careers</a></p><p><a href=https://policy.medium.com/medium-privacy-policy-f03bf92035c9 rel=noopener>Privacy</a></p><p><a href=https://policy.medium.com/medium-terms-of-service-9db0094a1e0f rel=noopener>Terms</a></p><p><a href="https://medium.com/about?autoplay=1" rel=noopener>About</a></p><p><a href=https://knowable.fyi rel=noopener>Knowable</a></p><p>To make Medium work, we log user data. By using Medium, you agree to our
+<a href=https://policy.medium.com/medium-privacy-policy-f03bf92035c9 rel=noopener>Privacy Policy</a>, including cookie policy.</p></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/Master/Concurrence/ data-ctx="Understanding Threads in Java" data-src=/Master/Concurrence class=internal-link></a></li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://quartz.jzhao.xyz/js/graph.afdb02e537635f9a611b53a988e5645b.js></script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://quartz.jzhao.xyz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>

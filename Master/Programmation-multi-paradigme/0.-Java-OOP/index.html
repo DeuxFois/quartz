@@ -1,0 +1,395 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Encapsulation Definition Wrapping the fields (state) and methods (behaviors) together as a single unit in a way that sensitive data are hidden from the users."><title>0. Java OOP</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://quartz.jzhao.xyz//icon.png><link href=https://quartz.jzhao.xyz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://quartz.jzhao.xyz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://quartz.jzhao.xyz/js/darkmode.63d6a3e095d0bd2b935b62adec9dc11b.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://quartz.jzhao.xyz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://quartz.jzhao.xyz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://quartz.jzhao.xyz/",fetchData=Promise.all([fetch("https://quartz.jzhao.xyz/indices/linkIndex.138e8e684375e828e1fe07635a41b9e8.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://quartz.jzhao.xyz/indices/contentIndex.10367ca03749dc74c72b80b9868d2b00.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!1;drawGraph("https://quartz.jzhao.xyz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://quartz.jzhao.xyz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/quartz.jzhao.xyz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://quartz.jzhao.xyz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://quartz.jzhao.xyz/>🪴 Quartz 3.2</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>0. Java OOP</h1><p class=meta>Last updated
+Aug 2, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Master/Programmation%20multi-paradigme/0.%20Java%20OOP.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://quartz.jzhao.xyz/tags/multi-paradigme/>Multi paradigme</a></li><li><a href=https://quartz.jzhao.xyz/tags/s1/>S1</a></li></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#definition>Definition</a><ol><li><a href=#in-the-real-word>in the real word</a></li></ol></li><li><a href=#java>Java</a></li><li><a href=#why-use-encapsulation>Why use encapsulation</a></li></ol><ol><li><a href=#definition-1>Definition</a></li><li><a href=#java-1>Java</a></li><li><a href=#why-use-inheritance>Why use inheritance</a></li></ol><ol><li><a href=#definition-2>Definition</a><ol><li><a href=#in-the-real-word-1>in the real word</a></li><li><a href=#java-2>Java</a></li></ol></li><li><a href=#compile-time-polymorphism>Compile-time polymorphism</a><ol><li><a href=#method-overloading>method overloading</a></li><li><a href=#signature-of-a-method>signature of a method</a></li></ol></li><li><a href=#run-time-polymorphism>Run-time polymorphism</a><ol><li><a href=#method-overriding>method overriding</a></li><li><a href=#upcasting>upcasting</a></li><li><a href=#downcasting>downcasting</a></li><li><a href=#real-life-example-of-upcasting--downcasting>Real-life example of Upcasting & Downcasting</a></li></ol></li><li><a href=#remarks>Remarks</a></li></ol><ol><li><a href=#definition-3>Definition</a></li><li><a href=#in-the-real-word-2>in the real word</a></li><li><a href=#java-3>Java</a><ol><li><a href=#abstract-class>abstract class</a></li><li><a href=#abstract-method>abstract method</a></li></ol></li><li><a href=#remarks-1>Remarks</a></li><li><a href=#why-use-abstract-classes>Why use Abstract classes</a></li></ol><ol><li><a href=#what-is-an-interface>What is an interface</a></li><li><a href=#remarks-2>Remarks</a></li></ol></nav></details></aside><a href=#encapsulation><h1 id=encapsulation><span class=hanchor arialabel=Anchor># </span>Encapsulation</h1></a><a href=#definition><h2 id=definition><span class=hanchor arialabel=Anchor># </span>Definition</h2></a><p>Wrapping the fields (state) and methods (behaviors) together as a single unit in a way that sensitive data are hidden from the users.</p><a href=#in-the-real-word><h3 id=in-the-real-word><span class=hanchor arialabel=Anchor># </span>in the real word</h3></a><p>With an ATM, we can perform operations like cash withdrawal, money transfer, balance checks. But only the account owner can perform those operations. So, all the operations are encapsulated inside an object for that particular account owner. And the only way to access data like the balance is by using the predefined operations such as balance checks.</p><a href=#java><h2 id=java><span class=hanchor arialabel=Anchor># </span>Java</h2></a><p>Using access modifiers like <code>private</code> and <code>protected</code> for class variables (fields) and providing getters and setters to access them if necessary.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>public class Person {
+</span></span><span class=line><span class=cl>    private String name; // using private access modifier
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Getter
+</span></span><span class=line><span class=cl>    public String getName() {
+</span></span><span class=line><span class=cl>      return name;
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Setter
+</span></span><span class=line><span class=cl>    public void setName(String newName) {
+</span></span><span class=line><span class=cl>      this.name = newName;
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><a href=#why-use-encapsulation><h2 id=why-use-encapsulation><span class=hanchor arialabel=Anchor># </span>Why use encapsulation</h2></a><ol><li><strong>Data Hiding</strong> - Data inside an encapsulated class can only be accessible inside the class or through a getter or a setter method.</li><li><strong>Flexibility</strong> - We can make variables read-only or write-only by omitting the getter or setter of that variable</li><li><strong>Reusability</strong></li><li><strong>Easy to perform unit testing</strong></li></ol><a href=#inheritance><h1 id=inheritance><span class=hanchor arialabel=Anchor># </span>Inheritance</h1></a><a href=#definition-1><h2 id=definition-1><span class=hanchor arialabel=Anchor># </span>Definition</h2></a><p>A mechanism where an object of the subclass (child class), acquires all the properties (fields) and behaviors (methods) of an object of the superclass (parent class)</p><a href=#java-1><h2 id=java-1><span class=hanchor arialabel=Anchor># </span>Java</h2></a><p>By extending the child class to parent classes using <code>extends</code> or <code>implements</code> keywords.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// parent class
+</span></span><span class=line><span class=cl>class Employee {
+</span></span><span class=line><span class=cl>    float salary = 100; // property of the parent class
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// child class
+</span></span><span class=line><span class=cl>class Programmer extends Employee {
+</span></span><span class=line><span class=cl>    float bonus = 30;
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// My main class
+</span></span><span class=line><span class=cl>class MyMainClass {
+</span></span><span class=line><span class=cl>    public static void main(String[] args) {
+</span></span><span class=line><span class=cl>        Programmer myVariable = new Programmer()
+</span></span><span class=line><span class=cl>        System.out.println(&#34;My salary is &#34; + myVariable.salary );
+</span></span><span class=line><span class=cl>        System.out.println(&#34;My bonus is &#34; + myVariable.bonus );
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>The result will be</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>My salary is 100
+</span></span><span class=line><span class=cl>My bonus is 30 
+</span></span></code></pre></td></tr></table></div></div><p>Here, <code>myVariable</code> object has access to the <code>salary</code> which belongs to the parent class even though <code>myVariable</code> is an object of the child class.</p><a href=#why-use-inheritance><h2 id=why-use-inheritance><span class=hanchor arialabel=Anchor># </span>Why use inheritance</h2></a><ul><li>For code reusability</li><li>To take advantage of polymorphism</li></ul><a href=#polymorphism><h1 id=polymorphism><span class=hanchor arialabel=Anchor># </span>Polymorphism</h1></a><a href=#definition-2><h2 id=definition-2><span class=hanchor arialabel=Anchor># </span>Definition</h2></a><p>Perform a single action in different ways</p><a href=#in-the-real-word-1><h3 id=in-the-real-word-1><span class=hanchor arialabel=Anchor># </span>in the real word</h3></a><p>A man can be a father, a husband, and an employee according to the situation he is in.</p><a href=#java-2><h3 id=java-2><span class=hanchor arialabel=Anchor># </span>Java</h3></a><p>There are two types of polymorphism in java</p><ol><li><strong>Compile-time polymorphism</strong> (Static polymorphism)</li><li><strong>Run-time polymorphism</strong> (Dynamic polymorphism)</li></ol><a href=#compile-time-polymorphism><h2 id=compile-time-polymorphism><span class=hanchor arialabel=Anchor># </span>Compile-time polymorphism</h2></a><p>When <strong>method overloading</strong> is used, which method to call is resolved during the compile time by looking at the signature of the method invoke statement.</p><a href=#method-overloading><h3 id=method-overloading><span class=hanchor arialabel=Anchor># </span>method overloading</h3></a><p>A feature that allows a class to have more than one method having the <strong>same name</strong> but with different signatures.</p><a href=#signature-of-a-method><h3 id=signature-of-a-method><span class=hanchor arialabel=Anchor># </span>signature of a method</h3></a><p>The signature of a method is determined by the <strong>number of arguments</strong>, <strong>types of each argument</strong>, and the <strong>order of the arguments</strong>. The return type of the method does not affect the signature.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// A class with multiple methods with the same name
+</span></span><span class=line><span class=cl>public class Adder {
+</span></span><span class=line><span class=cl>    // method 1
+</span></span><span class=line><span class=cl>    public void add(int a, int b) {
+</span></span><span class=line><span class=cl>        System.out.println(a + b);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // method 2
+</span></span><span class=line><span class=cl>    public void add(int a, int b, int c) {
+</span></span><span class=line><span class=cl>        System.out.println(a + b + c);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // method 3
+</span></span><span class=line><span class=cl>    public void add(String a, String b) {
+</span></span><span class=line><span class=cl>        System.out.println(a + &#34; + &#34; + b);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// My main class
+</span></span><span class=line><span class=cl>class MyMainClass {
+</span></span><span class=line><span class=cl>    public static void main(String[] args) {
+</span></span><span class=line><span class=cl>        Adder adder = new Adder(); // create a Adder object
+</span></span><span class=line><span class=cl>        adder.add(5, 4); // invoke method 1
+</span></span><span class=line><span class=cl>        adder.add(5, 4, 3); // invoke method 2
+</span></span><span class=line><span class=cl>        adder.add(&#34;5&#34;, &#34;4&#34;); // invoke method 3
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>The result will be</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>9
+</span></span><span class=line><span class=cl>12
+</span></span><span class=line><span class=cl>5 + 4 
+</span></span></code></pre></td></tr></table></div></div><a href=#run-time-polymorphism><h2 id=run-time-polymorphism><span class=hanchor arialabel=Anchor># </span>Run-time polymorphism</h2></a><p>When <strong>method overriding</strong> and <strong>upcasting</strong> is used, which class’s method to call is resolved during the run-time.</p><a href=#method-overriding><h3 id=method-overriding><span class=hanchor arialabel=Anchor># </span>method overriding</h3></a><p>Providing a specific implementation in the child class (subclass) of a method that already provided by one of its parent classes (super-classes). And also, the method in the subclass should have the <strong>same signature</strong> and the <strong>same return type</strong> for it to override the superclass method.</p><a href=#upcasting><h3 id=upcasting><span class=hanchor arialabel=Anchor># </span>upcasting</h3></a><p>When the reference variable of the parent class is referring to an object of the child class, it is upcasting. In other words, casting an object of an individual type to one common type.</p><a href=#downcasting><h3 id=downcasting><span class=hanchor arialabel=Anchor># </span>downcasting</h3></a><p>When the reference variable of the child class is referring to an object of the parent class, it is downcasting. In other words, casting an object of a common type to a narrower (special) type.</p><a href=#real-life-example-of-upcasting--downcasting><h3 id=real-life-example-of-upcasting--downcasting><span class=hanchor arialabel=Anchor># </span>Real-life example of Upcasting & Downcasting</h3></a><p>Assume there are classes named, <code>Fruits</code> and <code>Apple</code>. And the <code>Apple</code> class is the child class of the <code>Fruits</code> class.</p><p>If we cast an object of the <code>Apple</code> class to <code>Fruits</code> type, it is Upcasting. If we cast an object of the <code>Fruits</code> class to <code>Apple</code> type, it is Downcasting</p><a href=#remarks><h2 id=remarks><span class=hanchor arialabel=Anchor># </span>Remarks</h2></a><ul><li>Upcasting can be done directly in Java. But Downcasting cannot. We have to do the casting <strong>explicitly</strong>.</li><li>But we have to be careful not to downcast incompatible types. Unless it will throw an error.</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>class Fruits {} // parent class
+</span></span><span class=line><span class=cl>class Apple extends Fruits {} // child class
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// My main class
+</span></span><span class=line><span class=cl>class MyMainClass {
+</span></span><span class=line><span class=cl>    public static void main(String[] args) {
+</span></span><span class=line><span class=cl>        Fruits upcastedVariable = new Apple() // upcasting (implicit casting)
+</span></span><span class=line><span class=cl>        Apple downcastedVariable = (Apple) upcastedVariable // downcasting (explicit casting)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>Here <code>upcastedVariable</code> can be downcasted into <code>Apple</code> because, even though <code>upcastedVariable</code> is <code>Fruit</code> type, it refers to an object of the <code>Apple</code> class.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>class Fruits {} // parent class
+</span></span><span class=line><span class=cl>class Apple extends Fruits {} // child class
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// My main class
+</span></span><span class=line><span class=cl>class MyMainClass {
+</span></span><span class=line><span class=cl>    public static void main(String[] args) {
+</span></span><span class=line><span class=cl>        Fruits myVariable = new Fruits()
+</span></span><span class=line><span class=cl>        Apple downcastedVariable = (Apple) myVariable // throws an error
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>But in the above example, <code>myVariable</code> is <code>Fruit</code> type as well as it refers to a <code>Fruit</code> object. Therefore when we downcast into the <code>Apple</code> type it will throw an error.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// parent class
+</span></span><span class=line><span class=cl>class Bank {
+</span></span><span class=line><span class=cl>    public float getInterestRate() {
+</span></span><span class=line><span class=cl>        return 0
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// child class - 1
+</span></span><span class=line><span class=cl>class AwesomeBank extends Bank {
+</span></span><span class=line><span class=cl>    public float getInterestRate() { // superclass&#39;s method is overridden
+</span></span><span class=line><span class=cl>        return 8.4;
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// child class - 2
+</span></span><span class=line><span class=cl>class SuperBank extends Bank {
+</span></span><span class=line><span class=cl>    public float getInterestRate() { // superclass&#39;s method is overridden
+</span></span><span class=line><span class=cl>        return 9.6;
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// child class - 3
+</span></span><span class=line><span class=cl>class GovernmentBank extends Bank {} // superclass&#39;s method is not overridden
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// My main class
+</span></span><span class=line><span class=cl>class MyMainClass {
+</span></span><span class=line><span class=cl>    public static void main(String[] args) {
+</span></span><span class=line><span class=cl>        Bank b = new Bank()
+</span></span><span class=line><span class=cl>        System.out.println(b.getInterestRate());
+</span></span><span class=line><span class=cl>        b = new AwesomeBank() // upcasting
+</span></span><span class=line><span class=cl>        System.out.println(b.getInterestRate());
+</span></span><span class=line><span class=cl>        b = new SuperBank() // upcasting
+</span></span><span class=line><span class=cl>        System.out.println(b.getInterestRate());
+</span></span><span class=line><span class=cl>        b = new GovernmentBank() // upcasting
+</span></span><span class=line><span class=cl>        System.out.println(b.getInterestRate());
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>The result will be</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>0
+</span></span><span class=line><span class=cl>8.4
+</span></span><span class=line><span class=cl>9.6
+</span></span><span class=line><span class=cl>0 
+</span></span></code></pre></td></tr></table></div></div><p>Since in <code>AwesomeBank</code> class the <code>getInterestRate()</code> method is not overridden, the method in the parent class will be called in the run-time.</p><a href=#abstraction><h1 id=abstraction><span class=hanchor arialabel=Anchor># </span>Abstraction</h1></a><a href=#definition-3><h2 id=definition-3><span class=hanchor arialabel=Anchor># </span>Definition</h2></a><p>Hiding certain details and showing only the essential information to the user. In other words, identifying only the required characteristics of an object ignoring the irrelevant details.</p><a href=#in-the-real-word-2><h2 id=in-the-real-word-2><span class=hanchor arialabel=Anchor># </span>in the real word</h2></a><p>With an ATM, we can perform operations like cash withdrawal, money transfer, balance checks, etc. But we can’t know the internal details about those operations, how they operate or likewise.</p><a href=#java-3><h2 id=java-3><span class=hanchor arialabel=Anchor># </span>Java</h2></a><p>Using either an <code>abstract class</code> or an <code>interface</code></p><a href=#abstract-class><h3 id=abstract-class><span class=hanchor arialabel=Anchor># </span>abstract class</h3></a><p>A class contains both abstract and regular methods.</p><a href=#abstract-method><h3 id=abstract-method><span class=hanchor arialabel=Anchor># </span>abstract method</h3></a><p>A method without a body (i.e. no implementation). The implementation is provided by the subclass that inherits the abstract class</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// abstract class
+</span></span><span class=line><span class=cl>abstract class Animal {
+</span></span><span class=line><span class=cl>    public abstract void animalSound(); // abstract method
+</span></span><span class=line><span class=cl>    public void sleep() {
+</span></span><span class=line><span class=cl>        System.out.println(&#34;Zzzzzz!&#34;)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><a href=#remarks-1><h2 id=remarks-1><span class=hanchor arialabel=Anchor># </span>Remarks</h2></a><ul><li><code>abstract</code> keyword is a non-access modifier, used for classes and methods.</li><li>You don’t have to implement (override) all methods of an abstract class. But you <strong>must implement all the abstract methods</strong> in it.</li><li>You cannot create objects from an abstract class</li><li>To access an abstract class you have to inherit (<code>extend</code>) it from another class</li><li>Fields in an abstract class should <strong>not have to be</strong> <code>public</code>, <code>static</code>, and <code>final</code></li><li>You can have <code>public</code>, <code>private</code> or <code>protected</code> methods</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// abstract class
+</span></span><span class=line><span class=cl>abstract class Animal {
+</span></span><span class=line><span class=cl>    public abstract void animalSound(); // abstract method
+</span></span><span class=line><span class=cl>    public void sleep() {
+</span></span><span class=line><span class=cl>        System.out.println(&#34;Zzzzzz!&#34;)
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// subclass (inherits the abstract class)
+</span></span><span class=line><span class=cl>class Pig extends Animal {
+</span></span><span class=line><span class=cl>    public void AnimalSound() { // body of the abstract method is provided here
+</span></span><span class=line><span class=cl>        System.out.println(&#34;Wee Wee!&#34;);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// My main class
+</span></span><span class=line><span class=cl>class MyMainClass {
+</span></span><span class=line><span class=cl>    public static void main(String[] args) {
+</span></span><span class=line><span class=cl>        Pig myPig = new Pig(); // create a Pig object
+</span></span><span class=line><span class=cl>        myPig.animalSound();
+</span></span><span class=line><span class=cl>        myPig.sleep();
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>The results will be</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Wee Wee!
+</span></span><span class=line><span class=cl>Zzzzzz! 
+</span></span></code></pre></td></tr></table></div></div><a href=#why-use-abstract-classes><h2 id=why-use-abstract-classes><span class=hanchor arialabel=Anchor># </span>Why use Abstract classes</h2></a><p>To have some methods to implement later. If you don’t use an abstract class, you have to implement the <code>AnimalSound()</code> method in the <code>Animal</code> class even if you inherit it from another class.</p><a href=#interface><h1 id=interface><span class=hanchor arialabel=Anchor># </span>Interface</h1></a><a href=#what-is-an-interface><h2 id=what-is-an-interface><span class=hanchor arialabel=Anchor># </span>What is an interface</h2></a><p>A completely abstract class. In other words, all the methods in an interface should not have a body.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// interface
+</span></span><span class=line><span class=cl>interface Animal {
+</span></span><span class=line><span class=cl>    public void animalSound(); // interface method
+</span></span><span class=line><span class=cl>    public void sleep(); // interface method
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><a href=#remarks-2><h2 id=remarks-2><span class=hanchor arialabel=Anchor># </span>Remarks</h2></a><ul><li>You cannot create objects from an interface.</li><li>To access an interface you have to <code>implement</code> (kinda like inherit) it from another class.</li><li>You must override all the methods in an interface from a subclass.</li><li>All the fields in an interface are <code>public</code>, <code>static</code>, and <code>final</code>.</li><li>All the methods are <code>public</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// interface
+</span></span><span class=line><span class=cl>interface Animal {
+</span></span><span class=line><span class=cl>    public void animalSound(); // interface method
+</span></span><span class=line><span class=cl>    public void sleep(); // interface method
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// subclass (implemets the abstract class)
+</span></span><span class=line><span class=cl>class Cat implements Animal {
+</span></span><span class=line><span class=cl>    public void AnimalSound() { // body of the interface method is provided here
+</span></span><span class=line><span class=cl>        System.out.println(&#34;Meow!&#34;);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>    public void sleep() { // body of the interface method is provided here
+</span></span><span class=line><span class=cl>        System.out.println(&#34;Purrrrr!&#34;);
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// My main class
+</span></span><span class=line><span class=cl>class MyMainClass {
+</span></span><span class=line><span class=cl>    public static void main(String[] args) {
+</span></span><span class=line><span class=cl>        Cat myCat = new Cat(); // create a Cat object
+</span></span><span class=line><span class=cl>        myCat.animalSound();
+</span></span><span class=line><span class=cl>        myCat.sleep();
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>The results will be</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Meow!
+</span></span><span class=line><span class=cl>Purrrrr! 
+</span></span></code></pre></td></tr></table></div></div><a href=#why-use-interfaces><h1 id=why-use-interfaces><span class=hanchor arialabel=Anchor># </span>Why use Interfaces?</h1></a><ul><li>To specify the behavior of a particular data</li><li>To achieve <strong>multiple inheritance</strong>.</li></ul><blockquote><p>Java doesn’t support multiple inheritances. ( You can only inherit from a single superclass.) However, it can be achieved using interfaces.</p></blockquote></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://quartz.jzhao.xyz/js/graph.afdb02e537635f9a611b53a988e5645b.js></script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://quartz.jzhao.xyz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>
