@@ -1,0 +1,3 @@
+[[densité de probabilité]]  
+
+[[Gaussian]]
