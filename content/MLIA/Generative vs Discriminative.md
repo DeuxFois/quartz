@@ -1,5 +1,5 @@
 Generative v.s. Discriminative Models
-[Intro](MLIA/Intro.md)
+[Apprentissage non-supervisé](Apprentissage%20non-supervisé.md)
 ## What's Generative or Discriminative model?
 
 Let's say you have input data x and you want to classify the data into labels y. A **generative model** learns the joint probability distribution $$p(x,y)$$ and a **discriminative model** learns the conditional probability distribution $$p(y|x)$$ - which you should read as "the probability of $y$ given $x$
