@@ -1,6 +1,6 @@
-name: Jacky Zhao
+name: DeuxFois
 enableToc: true
-openToc: false
+openToc: true
 enableLinkPreview: true
 enableLatex: true
 enableCodeBlockTitle: true
@@ -15,10 +15,9 @@ GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
 enableSemanticSearch: false
 operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
-  Wikilink support, backlinks, local graph, tags, and link previews.
+  That's my blog, I'm a passionate CS and Mathematical french student. I share my learning in Web, ML & IA, Database and Software Architecture
 page_title:
-  "🪴 Quartz 3.2"
+  "⛄ DeuxFoi's blog"
 links:
   - link_name: Twitter
     link: https://twitter.com/_jzhao
