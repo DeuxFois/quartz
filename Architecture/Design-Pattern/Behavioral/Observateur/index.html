@@ -1,0 +1,222 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="L’Observateur permet de mettre en place un mécanisme de souscription pour envoyer des notifications à plusieurs objets, au sujet d’événements concernant les objets qu’ils observent."><title>Observateur / Observer</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://deuxfois.github.io/quartz//icon.png><link href=https://deuxfois.github.io/quartz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://deuxfois.github.io/quartz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://deuxfois.github.io/quartz/js/darkmode.69b2c08ae0f08c3a3f86259a122e1f06.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://deuxfois.github.io/quartz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://deuxfois.github.io/quartz/",fetchData=Promise.all([fetch("https://deuxfois.github.io/quartz/indices/linkIndex.668a7938cf11b7eb01cc194bddc133e0.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://deuxfois.github.io/quartz/indices/contentIndex.396a82180f6e9cf02145bda53551401c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!0;drawGraph("https://deuxfois.github.io/quartz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:2,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://deuxfois.github.io/quartz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/deuxfois.github.io\/quartz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://deuxfois.github.io/quartz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://deuxfois.github.io/quartz/>⛄ DeuxFoi's blog</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Observateur / Observer</h1><p class=meta>Last updated
+Aug 3, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Architecture/Design-Pattern/Behavioral/Observateur.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://deuxfois.github.io/quartz/tags/behavioral/>Behavioral</a></li><li><a href=https://deuxfois.github.io/quartz/tags/design_pattern/>Design pattern</a></li></ul><aside class=mainTOC><details open><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#problème>Problème</a></li><li><a href=#solution>Solution</a></li><li><a href=#analogie>Analogie</a></li><li><a href=#structure>Structure</a></li><li><a href=#pseudo-code>Pseudo-code</a></li><li><a href=#possibilités-dapplication>Possibilités d’application</a></li><li><a href=#mise-en-œuvre>Mise en œuvre</a></li><li><a href=#avantages-et-inconvénients>Avantages et inconvénients</a></li><li><a href=#liens-avec-les-autres-patrons>Liens avec les autres patrons</a></li><li><a href=#exemples-de-code>Exemples de code</a><ol><li><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook>Soutenez notre site gratuit et obtenez l’ebook !</a></li></ol></li></ol></nav></details></aside><p>L’<strong>Observateur</strong> permet de mettre en place un mécanisme de souscription pour envoyer des notifications à plusieurs objets, au sujet d’événements concernant les objets qu’ils observent.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/observer_cd44810e58424fcf996dc6dd8ea71b07.png width=auto alt="Patron de conception observateur"></p><a href=#problème><h2 id=problème><span class=hanchor arialabel=Anchor># </span>Problème</h2></a><p>Imaginez que vous avez deux types d’objets : un <code>Client</code> et un <code>Magasin</code>. Le client s’intéresse à une marque spécifique d’un produit (disons que c’est un nouveau modèle d’iPhone) qui sera bientôt disponible dans la boutique.</p><p>Le client pourrait se rendre sur place tous les jours et vérifier la disponibilité du produit. Mais comme le produit n’est pas encore prêt, ses allées et venues seraient inutiles.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/observer-comic-1-fr_80107edbebe24cc98e769565366b00.png width=auto alt="Se rendre au magasin ou envoyer du spam"></p><p>Se rendre au magasin ou envoyer du spam.</p><p>À la place, le magasin pourrait envoyer des tonnes d’e-mails (ce qui peut être vu comme du spam) à leurs clients chaque fois qu’un nouveau produit est disponible. Cette solution économiserait bien des voyages à leurs clients. En contrepartie, le magasin risque de se mettre à dos ceux qui ne sont pas intéressés par les nouveaux produits.</p><p>Nous nous retrouvons dans une situation conflictuelle. Soit les clients perdent leur temps à venir vérifier la disponibilité des produits, soit le magasin gâche des ressources pour prévenir des clients qui ne sont pas concernés.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span>Solution</h2></a><p>L’objet que l’on veut suivre est en général appelé <em>sujet</em>, mais comme il va envoyer des notifications pour prévenir les autres objets dès qu’il est modifié, nous l’appellerons <em>diffuseur</em> (publisher). Tous les objets qui veulent suivre les modifications apportées au diffuseur sont appelés des <em>souscripteurs</em> (subscribers).</p><p>Le patron de conception Observateur vous propose d’ajouter un mécanisme de souscription à la classe diffuseur pour permettre aux objets individuels de s’inscrire ou se désinscrire de ce diffuseur. Pas d’inquiétude ! Ce n’est pas si compliqué que cela en a l’air. En réalité, ce mécanisme est composé 1) d’un tableau d’attributs qui stocke une liste de références vers les objets souscripteur et 2) de plusieurs méthodes publiques qui permettent d’ajouter ou de supprimer des souscripteurs de cette liste.</p><img width=470 height=0 src=../../_resources/solution1-fr_f7e5474286de4c84bb5d0c1fd5a26b0e.png><p>Un mécanisme de souscription qui permet aux objets individuels de s’inscrire aux notifications des événements.</p><p>Quand un événement important arrive au diffuseur, il fait le tour de ses souscripteurs et appelle la méthode de notification sur leurs objets.</p><p>Les applications peuvent comporter des dizaines de classes souscripteur différentes qui veulent être tenues au courant des événements qui affectent une même classe diffuseur. Vous n’avez sûrement pas envie de coupler le diffuseur à toutes ces classes. De plus, certaines ne seront peut-être pas connues à l’avance, dans les cas où votre classe diffuseur est censée pouvoir être utilisée par d’autres personnes.</p><p>C’est pourquoi il est crucial que tous les souscripteurs implémentent la même interface et qu’elle soit le seul moyen utilisé par le diffuseur pour communiquer avec eux. Elle doit déclarer la méthode de notification avec un ensemble de paramètres que le diffuseur peut utiliser pour envoyer des données contextuelles avec la notification.</p><img width=460 height=0 src=../../_resources/solution2-fr_3d8497b4c27a4b318d29a0ab457aadcb.png><p>Le diffuseur envoie des notifications aux souscripteurs en appelant la méthode de notification spécifique sur leurs objets.</p><p>De plus, les diffuseurs doivent tous suivre la même interface si votre application en comporte plusieurs types et que vous voulez que vos souscripteurs soient tous compatibles avec eux. Cette interface doit contenir quelques méthodes de souscription et elle doit permettre aux souscripteurs d’observer les états du diffuseur sans le coupler avec leurs classes concrètes.</p><a href=#analogie><h2 id=analogie><span class=hanchor arialabel=Anchor># </span>Analogie</h2></a><img width=600 height=0 src=../../_resources/observer-comic-2-fr_c30250ceed22477488c7a7460e0abd.png><p>Abonnement aux magazines et aux journaux.</p><p>Lorsque vous vous inscrivez à un journal ou à un magazine, vous n’avez plus besoin de vous rendre en magasin pour vérifier si le dernier numéro est sorti. À la place, le diffuseur vous envoie directement les nouveaux numéros dans votre boîte aux lettres dès qu’ils le publient, ou même parfois en avance.</p><p>Le diffuseur garde une liste de souscripteurs et connait les magazines qui les intéressent. S’ils ne souhaitent plus recevoir les nouveaux numéros, les souscripteurs peuvent quitter la liste à n’importe quel moment.</p><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span>Structure</h2></a><img width=610 height=0 src=../../_resources/structure_5a495d48b0c448cba69f66acb7002f9b.png><ol><li><p>Le <strong>Diffuseur</strong> envoie des événements intéressants à d’autres objets. Ces événements se produisent quand le diffuseur change d’état ou exécute certains comportements. Le diffuseur possède une infrastructure d’inscription qui permet aux nouveaux souscripteurs de rejoindre la liste et aux souscripteurs actuels de la quitter.</p></li><li><p>Quand un nouvel événement survient, le diffuseur parcourt la liste d’inscriptions et appelle la méthode de notification déclarée dans l’interface des souscripteurs sur chaque objet souscripteur.</p></li><li><p>L’interface <strong>Souscripteur</strong> déclare les méthodes de notification. Dans la majorité des cas, il n’y a qu’une seule méthode <code>update</code>. Elle peut prendre plusieurs paramètres pour que le diffuseur leur envoie plus de détails concernant la modification.</p></li><li><p>Les <strong>Souscripteurs Concrets</strong> exécutent certaines actions en réponse aux notifications envoyées par le diffuseur. Toutes ces classes doivent implémenter la même interface pour ne pas coupler le diffuseur avec leurs classes concrètes.</p></li><li><p>En général, les souscripteurs ont besoin de détails à propos du contexte afin d’exécuter correctement la mise à jour. C’est pour cela que les diffuseurs passent souvent des données du contexte en paramètre de la méthode de notification. Le diffuseur peut même s’envoyer lui-même en paramètre et laisser les souscripteurs récupérer directement les données nécessaires.</p></li><li><p>Le <strong>Client</strong> crée des objets diffuseur et Souscripteur séparément et inscrit les souscripteurs aux mises à jour du diffuseur.</p></li></ol><a href=#pseudo-code><h2 id=pseudo-code><span class=hanchor arialabel=Anchor># </span>Pseudo-code</h2></a><p>Dans cet exemple, le patron de conception <strong>Observateur</strong> permet à l’objet éditeur de texte d’avertir d’autres objets de service des changements de son état.</p><img width=510 height=0 src=../../_resources/example_3551f760a6ad43d593e1b20ae3c0f9eb.png><p>Envoyer des notifications aux objets au sujet d’événements qui affectent d’autres objets.</p><p>La liste des souscripteurs est compilée dynamiquement : les objets peuvent commencer ou arrêter de suivre les notifications lors du lancement de l’application, en fonction du comportement voulu.</p><p>Dans cette implémentation, la classe éditeur ne gère pas la liste des souscripteurs toute seule. Elle délègue la tâche à l’objet spécial assistant dont c’est la seule tâche. Vous pouvez moduler cet objet afin qu’il serve de centrale de distribution, transformant n’importe quel objet en diffuseur.</p><p>Tant que les classes diffuseur passent toutes par la même interface pour communiquer avec les souscripteurs, l’ajout de nouveaux souscripteurs ne nécessite aucun changement dans les classes diffuseur.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// La classe de base diffuseur contient le code pour
+</span></span><span class=line><span class=cl>// l’inscription et les méthodes de notification.
+</span></span><span class=line><span class=cl>class EventManager is
+</span></span><span class=line><span class=cl>    private field listeners: hash map of event types and listeners
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method subscribe(eventType, listener) is
+</span></span><span class=line><span class=cl>        listeners.add(eventType, listener)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method unsubscribe(eventType, listener) is
+</span></span><span class=line><span class=cl>        listeners.remove(eventType, listener)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method notify(eventType, data) is
+</span></span><span class=line><span class=cl>        foreach (listener in listeners.of(eventType)) do
+</span></span><span class=line><span class=cl>            listener.update(data)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Le diffuseur concret abrite de la logique métier dédiée à
+</span></span><span class=line><span class=cl>// certains souscripteurs. Nous pourrions dériver cette classe
+</span></span><span class=line><span class=cl>// depuis le diffuseur de base, mais ce n’est pas toujours
+</span></span><span class=line><span class=cl>// possible, car le diffuseur concret pourrait déjà être une
+</span></span><span class=line><span class=cl>// sous-classe. Dans ce cas, vous pouvez utiliser la composition
+</span></span><span class=line><span class=cl>// pour effectuer le lien avec la logique de souscription, comme
+</span></span><span class=line><span class=cl>// effectué ci-dessous :
+</span></span><span class=line><span class=cl>class Editor is
+</span></span><span class=line><span class=cl>    public field events: EventManager
+</span></span><span class=line><span class=cl>    private field file: File
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor Editor() is
+</span></span><span class=line><span class=cl>        events = new EventManager()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Les méthodes de la logique métier peuvent prévenir les
+</span></span><span class=line><span class=cl>    // souscripteurs de toute modification.
+</span></span><span class=line><span class=cl>    method openFile(path) is
+</span></span><span class=line><span class=cl>        this.file = new File(path)
+</span></span><span class=line><span class=cl>        events.notify(&#34;open&#34;, file.name)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method saveFile() is
+</span></span><span class=line><span class=cl>        file.write()
+</span></span><span class=line><span class=cl>        events.notify(&#34;save&#34;, file.name)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Voici l’interface des souscripteurs. Si votre langage de
+</span></span><span class=line><span class=cl>// programmation prend en charge les types fonctionnels, vous
+</span></span><span class=line><span class=cl>// pouvez remplacer toute la hiérarchie des souscripteurs par un
+</span></span><span class=line><span class=cl>// ensemble de fonctions.
+</span></span><span class=line><span class=cl>interface EventListener is
+</span></span><span class=line><span class=cl>    method update(filename)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Les souscripteurs concrets réagissent aux mises à jour de
+</span></span><span class=line><span class=cl>// leur diffuseur.
+</span></span><span class=line><span class=cl>class LoggingListener implements EventListener is
+</span></span><span class=line><span class=cl>    private field log: File
+</span></span><span class=line><span class=cl>    private field message: string
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor LoggingListener(log_filename, message) is
+</span></span><span class=line><span class=cl>        this.log = new File(log_filename)
+</span></span><span class=line><span class=cl>        this.message = message
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method update(filename) is
+</span></span><span class=line><span class=cl>        log.write(replace(&#39;%s&#39;,filename,message))
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>class EmailAlertsListener implements EventListener is
+</span></span><span class=line><span class=cl>    private field email: string
+</span></span><span class=line><span class=cl>    private field message: string
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor EmailAlertsListener(email, message) is
+</span></span><span class=line><span class=cl>        this.email = email
+</span></span><span class=line><span class=cl>        this.message = message
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method update(filename) is
+</span></span><span class=line><span class=cl>        system.email(email, replace(&#39;%s&#39;,filename,message))
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Une application peut configurer des diffuseurs et des
+</span></span><span class=line><span class=cl>// souscripteurs à l’exécution.
+</span></span><span class=line><span class=cl>class Application is
+</span></span><span class=line><span class=cl>    method config() is
+</span></span><span class=line><span class=cl>        editor = new Editor()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        logger = new LoggingListener(
+</span></span><span class=line><span class=cl>            &#34;/path/to/log.txt&#34;,
+</span></span><span class=line><span class=cl>            &#34;Someone  has  opened  the  file:  %s&#34;)
+</span></span><span class=line><span class=cl>        editor.events.subscribe(&#34;open&#34;, logger)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        emailAlerts = new EmailAlertsListener(
+</span></span><span class=line><span class=cl>            &#34;admin@example.com&#34;,
+</span></span><span class=line><span class=cl>            &#34;Someone  has  changed  the  file:  %s&#34;)
+</span></span><span class=line><span class=cl>        editor.events.subscribe(&#34;save&#34;, emailAlerts)
+</span></span></code></pre></td></tr></table></div></div><a href=#possibilités-dapplication><h2 id=possibilités-dapplication><span class=hanchor arialabel=Anchor># </span>Possibilités d’application</h2></a><p>Utilisez le patron de conception Observateur quand des modifications de l’état d’un objet peuvent en impacter d’autres, et que l’ensemble des objets n’est pas connu à l’avance ou qu’il change dynamiquement.</p><p>Ce problème est souvent rencontré lorsque l’on travaille sur des classes d’une interface utilisateur graphique. Par exemple, si vous créez des classes bouton personnalisées et que vous voulez que les clients puissent y ajouter du code déclenché par le clic d’un utilisateur.</p><p>L’observateur permet à tous les objets qui suivent l’interface souscripteur de s’inscrire aux notifications des événements des objets diffuseur. Vous pouvez ajouter le mécanisme de souscription à tous vos boutons et laisser les clients mettre leur code personnalisé dans des classes souscripteur personnalisées.</p><p>Utilisez ce patron quand certains objets de votre application doivent en suivre d’autres, mais seulement pendant un certain temps ou dans des cas spécifiques.</p><p>La liste d’inscription est dynamique, les souscripteurs peuvent donc rejoindre ou quitter la liste quand ils le désirent.</p><a href=#mise-en-œuvre><h2 id=mise-en-œuvre><span class=hanchor arialabel=Anchor># </span>Mise en œuvre</h2></a><ol><li><p>Passez en revue votre logique métier et découpez-la en deux parties : la fonctionnalité principale (indépendante du reste du code) prendra le rôle du diffuseur ; le reste va être transformé en classes souscripteur.</p></li><li><p>Déclarez l’interface souscripteur. Elle doit au moins contenir une méthode <code>update</code>.</p></li><li><p>Déclarez l’interface diffuseur et écrivez des méthodes qui permettent d’ajouter et de retirer des objets souscripteur de la liste. Rappelez-vous que les diffuseurs doivent manipuler les souscripteurs uniquement en passant par l’interface des souscripteurs.</p></li><li><p>Décidez où vous allez mettre la liste de souscription ainsi que l’implémentation des méthodes de souscription. En général, ce code est presque identique pour tous les types de diffuseurs. Le mieux est donc de le mettre dans une classe abstraite directement dérivée de l’interface diffuseur. Les diffuseurs concrets étendent cette classe et héritent du comportement de la souscription.</p><p>Si vous implémentez ce patron dans une hiérarchie de classes existante, pensez à la composition : mettez la logique de souscription dans un objet séparé et faites en sorte que les diffuseurs l’utilisent.</p></li><li><p>Créez les classes concrètes Diffuseur. Chaque fois que quelque chose d’important se produit chez un diffuseur, il doit prévenir ses souscripteurs.</p></li><li><p>Implémentez les méthodes de notifications (<code>update</code>) dans les classes concrètes Souscripteur. La majorité des souscripteurs va vouloir des données du contexte qui concernent l’événement en question. Vous pouvez les envoyer en paramètre de la méthode de notification.</p><p>Mais il y a une autre possibilité. Lors de la réception d’une notification, le souscripteur peut aller chercher les données directement dans la notification. Dans ce cas, le diffuseur doit s’envoyer lui-même en paramètre de la méthode <code>update</code>. On peut également lier un diffuseur à un souscripteur de manière permanente dans le constructeur, mais cette possibilité est moins flexible.</p></li><li><p>Le client doit créer tous les souscripteurs nécessaires et les enregistrer auprès des diffuseurs.</p></li></ol><a href=#avantages-et-inconvénients><h2 id=avantages-et-inconvénients><span class=hanchor arialabel=Anchor># </span>Avantages et inconvénients</h2></a><ul><li><p><em>Principe ouvert/fermé</em>. Vous pouvez ajouter de nouvelles classes souscripteur sans avoir à modifier le code du diffuseur (et inversement si vous avez une interface diffuseur).</p></li><li><p>Vous pouvez établir des relations entre les objets lors du lancement de l’application.</p></li><li><p>Les souscripteurs sont avertis dans un ordre aléatoire.</p></li></ul><a href=#liens-avec-les-autres-patrons><h2 id=liens-avec-les-autres-patrons><span class=hanchor arialabel=Anchor># </span>Liens avec les autres patrons</h2></a><ul><li><p>La
+<a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a>, la
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a>, le
+<a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a> et l’
+<a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a> proposent différentes solutions pour associer les demandeurs et les récepteurs.</p><ul><li>La <em>chaîne de responsabilité</em> envoie une demande ordonnée qui est passée tout au long d’une chaîne dynamique de récepteurs potentiels, jusqu’à ce que l’un d’entre eux décide de la traiter.</li><li>La <em>commande</em> établit des connexions unidirectionnelles entre les demandeurs et les récepteurs.</li><li>Le <em>médiateur</em> élimine les liens directs entre les demandeurs et les récepteurs, et les force à communiquer indirectement via un objet médiateur.</li><li>L’<em>observateur</em> permet aux récepteurs de s’inscrire et de se désinscrire dynamiquement à la réception des demandes.</li></ul></li><li><p>La différence entre le
+<a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a> et l’
+<a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a> est souvent très fine. Dans la majorité des cas, vous pouvez implémenter l’un ou l’autre, mais parfois vous pouvez les utiliser simultanément. Regardons comment faire.</p><p>Le but principal du <em>médiateur</em> est d’éliminer les dépendances mutuelles entre un ensemble de composants du système. À la place, ces composants peuvent devenir dépendants d’un unique objet médiateur. Le but de l’<em>observateur</em> est d’établir des connexions dynamiques à sens unique entre les objets, où certains objets peuvent être les subordonnés d’autres objets.</p><p>Il existe une implémentation populaire du <em>médiateur</em> qui repose sur l’<em>observateur</em>. L’objet médiateur joue le rôle du diffuseur et les composants agissent comme des souscripteurs qui s’inscrivent et se désinscrivent des événements du médiateur. Lorsque ce type de conception est mis en place, le <em>médiateur</em> ressemble de près à l’<em>observateur</em>.</p><p>Si vous êtes un peu perdu, rappelez-vous qu’il y a plusieurs manières d’implémenter le médiateur. Par exemple, vous pouvez associer de manière permanente tous les composants au même objet médiateur. Cette implémentation ne ressemblera pas à l’<em>observateur</em>, mais sera tout de même une instance du patron de conception médiateur.</p><p>Maintenant, imaginez un programme dont tous les composants sont devenus des diffuseurs, permettant des connexions dynamiques les uns avec les autres. Nous n’aurons pas d’objet médiateur centralisé, seulement un ensemble d’observateurs distribués.</p></li></ul><a href=#exemples-de-code><h2 id=exemples-de-code><span class=hanchor arialabel=Anchor># </span>Exemples de code</h2></a><p><a href=https://refactoring.guru/fr/design-patterns/observer/java/example rel=noopener><img width=43 height=56 src=../../_resources/java_6151b7cbd3cf48b1926f235607565ad2.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/observer/csharp/example rel=noopener><img width=43 height=56 src=../../_resources/csharp_292ebba4cc7a4d7aa8e46cee18176793.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/observer/cpp/example rel=noopener><img width=43 height=56 src=../../_resources/cpp_be87849b3a3148ab8b9a89dca2b42673.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/observer/php/example rel=noopener><img width=43 height=56 src=../../_resources/php_e9bc4d4fb943486f988f530ccf3abfc0.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/observer/python/example rel=noopener><img width=43 height=56 src=../../_resources/python_3514e806444a4260b07127e40da1cbbd.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/observer/ruby/example rel=noopener><img width=43 height=56 src=../../_resources/ruby_a8be9dad7b1941139d347ab5df4c1185.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/observer/swift/example rel=noopener><img width=43 height=56 src=../../_resources/swift_297f0b7036684941948abe0a0044f0dc.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/observer/typescript/example rel=noopener><img width=43 height=56 src=../../_resources/typescript_b9e0a01ecc83421981227f7d219bb7bf.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/observer/go/example rel=noopener><img width=43 height=56 src=../../_resources/go_65198590a21e4eb08bfcebe5757456bc.svg></a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=200 height=200 src=../../_resources/patterns-book-banner-3_2e1e682d15924113a7ff33b00aa.png></a></p><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook><h3 id=soutenez-notre-site-gratuit-et-obtenez-lebook><span class=hanchor arialabel=Anchor># </span>Soutenez notre site gratuit et obtenez l’ebook !</h3></a><ul><li>22 patrons de conception et 8 principes expliqués en profondeur.</li><li>444 pages de vulgarisation, bien structurées et faciles à lire.</li><li>225 illustrations et diagrammes clairs pour aider à la compréhension.</li><li>Une archive avec des exemples de code dans 9 langages.</li><li>Tous les appareils sont pris en charge : formats PDF/EPUB/MOBI/KFX.</li></ul><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><a href=#suivant><h4 id=suivant><span class=hanchor arialabel=Anchor># </span>Suivant</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/state rel=noopener>État</a></p><a href=#retour><h4 id=retour><span class=hanchor arialabel=Anchor># </span>Retour</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=245 height=375 src=../../_resources/web-cover-fr_468b488e20324e2595fde02d2bd27096.png></a></p><p>Cet article est tiré de notre ebook
+<strong>Plongée au cœur des
+PATRONS DE CONCEPTION</strong></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><p>Facebook</p><p>Twitter</p><ul><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li><li><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a></li></ul><p><a href=https://refactoring.guru/design-patterns/observer rel=noopener>English</a>
+<a href=https://refactoring.guru/es/design-patterns/observer rel=noopener>Español</a>
+<a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Français</a>
+<a href=https://refactoring.guru/pl/design-patterns/observer rel=noopener>Polski</a>
+<a href=https://refactoring.guru/pt-br/design-patterns/observer rel=noopener>Português-Br</a>
+<a href=https://refactoring.guru/ru/design-patterns/observer rel=noopener>Русский</a>
+<a href=https://refactoring.guru/uk/design-patterns/observer rel=noopener>Українська</a>
+<a href=https://refactoringguru.cn/design-patterns/observer rel=noopener>中文</a></p><p><a href=https://refactoring.guru/fr rel=noopener><img src=https://deuxfois.github.io/quartz//../../_resources/logo-covid-winter_483c527d4b144ecd81a3f5d8ebf4e9f8.png width=auto alt=Refactoring.Guru></a></p><p><img src=https://deuxfois.github.io/quartz//../../_resources/winter-hat_bc4768ed65be455e9ff3b3eb8d3fb61b.png width=auto alt></p><ul><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/what-is-pattern rel=noopener>Introduction</a></li><li><a href=https://refactoring.guru/fr/design-patterns/catalog rel=noopener>Catalogue</a></li><li><a href=https://refactoring.guru/fr/design-patterns/creational-patterns rel=noopener>Patrons de création</a></li><li><a href=https://refactoring.guru/fr/design-patterns/structural-patterns rel=noopener>Patrons structurels</a></li><li><a href=https://refactoring.guru/fr/design-patterns/behavioral-patterns rel=noopener>Patrons comportementaux</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a></li><li><a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a></li><li><a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a></li><li><a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/state rel=noopener>État</a></li><li><a href=https://refactoring.guru/fr/design-patterns/strategy rel=noopener>Stratégie</a></li><li><a href=https://refactoring.guru/fr/design-patterns/template-method rel=noopener>Patron de méthode</a></li><li><a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a></li></ul></li><li><a href=https://refactoring.guru/fr/design-patterns/examples rel=noopener>Exemples de code</a></li></ul></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation (commenter bientôt)</a></li></ul><p><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a>
+<a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Nous contacter</a></p><ul><li><a href=https://refactoring.guru/fr rel=noopener>Accueil</a></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a></li><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Forum</a></li><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li></ul><p>2014-2021
+<a href=https://refactoring.guru/fr rel=noopener>Refactoring.Guru</a>. Tous droits réservés.
+<img src=https://deuxfois.github.io/quartz//../../_resources/fa-building_f037e27a79aa411697579406054ac05b.svg width=auto alt="Organization address"> Khmelnitske shosse 19 / 27, Kamianets-Podilskyi, Ukraine, 32305
+Email:
+<a rel=noopener class="internal-link broken" data-src=mailto:support@refactoring.guru>support@refactoring.guru</a></p><p>Illustrations par
+<a href=http://zhart.us/ rel=noopener>Dmitry Zhart</a></p><ul><li><a href=https://refactoring.guru/fr/terms rel=noopener>Termes et conditions</a></li><li><a href=https://refactoring.guru/fr/privacy-policy rel=noopener>Politique de protection de la vie privée</a></li><li><a href=https://refactoring.guru/fr/content-usage-policy rel=noopener>Politique de l’utilisation des données</a></li></ul></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://deuxfois.github.io/quartz/js/graph.243ea0d4fc79317e06f846bd698ba136.js></script></div></div><div id=contact_buttons><footer><p>Made by DeuxFois using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://deuxfois.github.io/quartz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>

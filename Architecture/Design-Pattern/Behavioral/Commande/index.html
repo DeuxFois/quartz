@@ -1,0 +1,327 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Commande prend une action à effectuer et la transforme en un objet autonome qui contient tous les détails de cette action."><title>Commande / Command</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://deuxfois.github.io/quartz//icon.png><link href=https://deuxfois.github.io/quartz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://deuxfois.github.io/quartz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://deuxfois.github.io/quartz/js/darkmode.69b2c08ae0f08c3a3f86259a122e1f06.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://deuxfois.github.io/quartz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://deuxfois.github.io/quartz/",fetchData=Promise.all([fetch("https://deuxfois.github.io/quartz/indices/linkIndex.668a7938cf11b7eb01cc194bddc133e0.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://deuxfois.github.io/quartz/indices/contentIndex.396a82180f6e9cf02145bda53551401c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!0;drawGraph("https://deuxfois.github.io/quartz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:2,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://deuxfois.github.io/quartz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/deuxfois.github.io\/quartz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://deuxfois.github.io/quartz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://deuxfois.github.io/quartz/>⛄ DeuxFoi's blog</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Commande / Command</h1><p class=meta>Last updated
+Aug 3, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Architecture/Design-Pattern/Behavioral/Commande.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://deuxfois.github.io/quartz/tags/behavioral/>Behavioral</a></li><li><a href=https://deuxfois.github.io/quartz/tags/design_pattern/>Design pattern</a></li></ul><aside class=mainTOC><details open><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#problème>Problème</a></li><li><a href=#solution>Solution</a></li><li><a href=#analogie>Analogie</a></li><li><a href=#structure>Structure</a></li><li><a href=#pseudo-code>Pseudo-code</a></li><li><a href=#possibilités-dapplication>Possibilités d’application</a></li><li><a href=#mise-en-œuvre>Mise en œuvre</a></li><li><a href=#avantages-et-inconvénients>Avantages et inconvénients</a></li><li><a href=#liens-avec-les-autres-patrons>Liens avec les autres patrons</a></li><li><a href=#exemples-de-code>Exemples de code</a><ol><li><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook>Soutenez notre site gratuit et obtenez l’ebook !</a></li></ol></li></ol></nav></details></aside><p><strong>Commande</strong> prend une action à effectuer et la transforme en un objet autonome qui contient tous les détails de cette action. Cette transformation permet de paramétrer des méthodes avec différentes actions, planifier leur exécution, les mettre dans une file d’attente ou d’annuler des opérations effectuées.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/command-fr_787ffeb0f2814bf1b60a1647af987cf1.png width=auto alt="Patron de conception commande"></p><a href=#problème><h2 id=problème><span class=hanchor arialabel=Anchor># </span>Problème</h2></a><p>Imaginez-vous en train de développer un nouvel éditeur de texte. Vous travaillez actuellement sur la création d’une barre d’outils équipée d’un ensemble de boutons qui permettent d’effectuer diverses opérations dans l’éditeur. Vous avez créé une belle classe <code>Bouton</code> qui peut être utilisée pour les boutons de la barre d’outils ou pour les boutons génériques des différentes boîtes de dialogue.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/problem1_0a1d8f8507fd4fd38c429d2198aceebd.png width=auto alt="Problème résolu grâce au patron de conception commande"></p><p>Tous les boutons de l’application sont dérivés de la même classe.</p><p>Ces boutons ont beau se ressembler, ils sont censés effectuer des actions différentes. Où va-t-on bien pouvoir mettre le code des actions que ces différents boutons déclenchent ? Le plus simple est de créer des tonnes de sous-classes où les boutons sont utilisés. Ces sous-classes vont contenir le code exécuté lors d’un clic sur un bouton.</p><img width=400 height=0 src=../../_resources/problem2_61c5cc835bf5489aaf6313660e5ab36c.png><p>De nombreuses sous-classes de boutons. Tout semble aller pour le mieux.</p><p>Mais bientôt, vous allez remarquer que cette approche comporte de sérieux défauts. Le premier que nous allons aborder ici, est le fait que vous avez créé énormément de sous-classes. Lors de chaque modification de la classe <code>Bouton</code>, vous risquez d’ajouter de nouveaux bugs dans le code. Pour faire simple, votre GUI (interface graphique utilisateur) est devenue un peu trop dépendante du code volatile de la logique métier.</p><img width=480 height=0 src=../../_resources/problem3-fr_96602177276743e9919a2525579306f2.png><p>Plusieurs classes implémentent la même fonctionnalité.</p><p>Abordons à présent le défaut majeur. Certaines opérations, comme copier-coller du texte, doivent être appelées depuis différents endroits. Par exemple, un utilisateur peut cliquer sur un petit bouton « copier » de la barre d’outils, copier via le menu contextuel ou encore faire <code>Ctrl+C</code> sur son clavier.</p><p>À l’époque où notre application n’avait qu’une barre d’outils, cela ne posait pas de problème de mettre l’implémentation des différentes actions dans la sous-classe du bouton. Vous pouviez écrire le code de la copie du texte dans la sous-classe <code>BoutonCopier</code> sans problème. Mais lorsque vous implémentez des menus contextuels, des raccourcis ou autres fonctionnalités du même ordre, vous devez dupliquer le code de ces actions dans plusieurs classes ou rendre les menus dépendants des boutons, ce qui est encore pire.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span>Solution</h2></a><p>Un logiciel bien conçu repose souvent sur le <em>principe de séparation des préoccupations</em>, qui est en général obtenu en décomposant l’application en plusieurs couches. Le cas le plus classique consiste à avoir une couche pour la GUI et une autre pour la logique métier. La couche GUI a la responsabilité d’afficher une belle image à l’écran, de détecter les actions de l’utilisateur et de l’application, et de les répercuter à l’écran. Mais en ce qui concerne l’exécution des traitements importants comme calculer la trajectoire vers la lune ou générer les rapports annuels, la couche GUI délègue le travail à la couche métier.</p><p>Dans le code, on se retrouve avec un objet GUI qui appelle une méthode de l’objet de la logique métier et lui passe des paramètres. Ce processus est souvent décrit comme un objet envoyant une <em>demande</em> à un autre.</p><img width=470 height=0 src=../../_resources/solution1-fr_f0bfc13936a646c08478833b5d9cadc2.png><p>Les objets de la GUI peuvent accéder directement aux objets de la couche métier.</p><p>Le patron de conception commande propose de ne pas envoyer ces demandes directement depuis les objets de la GUI. À la place, vous devez extraire le détail de ces demandes (un appel vers l’objet, le nom de la méthode et la liste des paramètres) dans une classe <em>commande</em> séparée avec une unique méthode qui déclenche cette demande.</p><p>Les objets commande servent de lien entre les diverses GUI et les objets métier. À partir de maintenant, l’objet GUI ne saura plus quel objet métier reçoit la demande et comment il la traite. L’objet GUI déclenche juste la commande, et cette dernière se charge de gérer les détails.</p><img width=550 height=0 src=../../_resources/solution2-fr_b398e7a1d8f5438f8204c6a5801123f7.png><p>Accéder à la couche métier via une commande.</p><p>La prochaine étape consiste à implémenter la même interface pour toutes vos commandes. En général, elle ne possède qu’une seule méthode d’exécution et ne prend aucun paramètre. Cette interface vous permet d’utiliser diverses commandes avec le même demandeur (invoker), sans avoir à la coupler avec les classes concrètes des commandes. En bonus, vous pouvez dorénavant échanger les objets de la commande liés au demandeur, ce qui permet de modifier le comportement du demandeur lors de l’exécution.</p><p>Vous vous êtes peut-être rendu compte qu’il manquait une pièce du puzzle : les paramètres de la demande. Un objet GUI devrait les fournir à la couche métier. Mais comme la méthode d’exécution de la commande ne possède aucun paramètre, comment allons-nous nous en sortir ? En fait, la commande doit être pré configurée avec ces données ou être capable de les récupérer par elle-même.</p><img width=440 height=0 src=../../_resources/solution3-fr_605f9965c7dd444dafdd84bc897d819a.png><p>Les objets de la GUI délèguent le travail aux commandes.</p><p>Revenons à notre éditeur de texte. Après avoir mis en place le patron de conception commande, nous n’avons plus besoin de toutes ces sous-classes pour implémenter le comportement des différents clics. Vous pouvez vous contenter de mettre un seul attribut dans la classe de base <code>Bouton</code> qui conserve une référence vers un objet commande et lui permet de lancer cette commande lors d’un clic.</p><p>Vous allez implémenter plusieurs classes commande pour chaque opération possible, et allez les relier avec les boutons en fonction du comportement attendu.</p><p>Vous pouvez implémenter tous les autres éléments de la GUI comme des menus, raccourcis ou des boîtes de dialogue complètes de la même manière. Ils seront reliés à une commande qui est exécutée lorsqu’un utilisateur interagit avec l’élément de la GUI. Vous l’avez probablement deviné, les éléments qui déclenchent les mêmes actions seront reliés aux mêmes commandes afin d’éviter la duplication de code.</p><p>Les commandes forment ainsi une couche intermédiaire très pratique et réduisent le couplage entre la GUI et les couches métier. Et nous n’avons abordé qu’une infime partie des bénéfices que le patron de conception commande peut apporter.</p><a href=#analogie><h2 id=analogie><span class=hanchor arialabel=Anchor># </span>Analogie</h2></a><img width=600 height=0 src=../../_resources/command-comic-1_2ac73732d661451b97ca1fde356f3c24.png><p>Passer une commande au restaurant.</p><p>Après une longue balade en ville, vous trouvez un restaurant sympa et vous vous asseyez à une table près de la fenêtre. Un serveur aimable se rapproche et prend votre commande en l’écrivant sur un bout de papier. Il se rend dans la cuisine et colle la commande sur le mur. Au bout d’un moment, la commande arrive au chef, qui la lit et prépare le plat. Le cuisinier place le repas sur un plateau avec la commande. Le serveur découvre le plateau, vérifie la commande pour s’assurer que tout est conforme, et l’apporte à votre table.</p><p>Le bout de papier joue le rôle de la commande. Il reste dans une file d’attente jusqu’à ce que le chef soit prêt à la servir. Il peut commencer à cuisiner directement, car la commande contient toutes les informations permettant au chef de préparer le plat. C’est mieux que de perdre du temps à venir vous demander les détails de la commande.</p><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span>Structure</h2></a><img width=630 height=0 src=../../_resources/structure_a31bf8616bbd4b5c9f69145b30e62ce7.png><ol><li><p>La classe <strong>Demandeur</strong> (<em>invoker</em>) a la responsabilité de l’envoi des demandes. Elle doit inclure un attribut qui stocke la référence à un objet commande. Le demandeur déclenche la commande plutôt que de l’envoyer directement au récepteur. Gardez bien en tête que le demandeur n’est pas responsable de la création de l’objet commande. En général, il s’agit d’une commande créée auparavant dans le constructeur du client.</p></li><li><p>L’interface <strong>Commande</strong> déclare habituellement une seule méthode pour exécuter la commande.</p></li><li><p>Les <strong>Commandes Concrètes</strong> implémentent plusieurs types de demandes. Une commande concrète n’est pas censée accomplir la tâche d’elle-même. Elle transmet l’appel aux objets de la logique métier. Mais pour simplifier le code, ces classes peuvent être fusionnées.</p><p>Les paramètres nécessaires à l’exécution d’une méthode sur un objet récepteur peuvent être déclarés comme des attributs de la commande concrète. Vous pouvez rendre les objets de la commande non modifiables en autorisant uniquement l’initialisation de ces attributs dans le constructeur.</p></li><li><p>La classe <strong>Récepteur</strong> porte la logique métier. À peu près n’importe quel objet peut prendre le rôle de récepteur. La majorité des commandes se contentent de passer la demande au récepteur et ce dernier se charge du traitement.</p></li><li><p>Le <strong>Client</strong> crée et configure les objets de la commande concrète. Il doit passer tous les paramètres de la demande (dont l’instance du récepteur) dans le constructeur de la commande. Ensuite, la commande qui en résulte peut être associée avec un ou plusieurs demandeurs.</p></li></ol><a href=#pseudo-code><h2 id=pseudo-code><span class=hanchor arialabel=Anchor># </span>Pseudo-code</h2></a><p>Dans cet exemple, le patron de conception <strong>Commande</strong> aide à tracer l’historique des traitements et est en mesure d’annuler les modifications effectuées par un traitement.</p><img width=640 height=0 src=../../_resources/example_d52951cee5ac4b8fa02dbd2e96556ce0.png><p>Actions pouvant être annulées dans un éditeur de texte.</p><p>Les commandes qui modifient l’état de l’éditeur (par exemple couper et coller) font une sauvegarde de son état avant de lancer le traitement associé à la commande. Une fois que la commande a été exécutée, elle est placée dans un historique de commandes (une pile d’objets commande) avec une sauvegarde de l’état actuel de l’éditeur. Si l’utilisateur a besoin d’annuler un traitement, l’application peut prendre la commande la plus récente de l’historique, lire la sauvegarde associée à l’état de l’éditeur et la restaurer.</p><p>Le code client (éléments de la GUI, historique des commandes, etc.) n’est pas couplé avec les classes de la commande concrète, car il interagit avec les commandes via l’interface commande. Cette approche vous permet d’ajouter de nouvelles commandes dans l’application sans endommager l’existant.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// La classe de base commande définit une interface commune pour
+</span></span><span class=line><span class=cl>// toutes les commandes concrètes.
+</span></span><span class=line><span class=cl>abstract class Command is
+</span></span><span class=line><span class=cl>    protected field app: Application
+</span></span><span class=line><span class=cl>    protected field editor: Editor
+</span></span><span class=line><span class=cl>    protected field backup: text
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor Command(app: Application, editor: Editor) is
+</span></span><span class=line><span class=cl>        this.app = app
+</span></span><span class=line><span class=cl>        this.editor = editor
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Fait une sauvegarde de l’état de l’éditeur.
+</span></span><span class=line><span class=cl>    method saveBackup() is
+</span></span><span class=line><span class=cl>        backup = editor.text
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Rétablit l’état de l’éditeur.
+</span></span><span class=line><span class=cl>    method undo() is
+</span></span><span class=line><span class=cl>        editor.text = backup
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // La méthode d’exécution est abstraite pour forcer les
+</span></span><span class=line><span class=cl>    // commandes concrètes à fournir leurs propres
+</span></span><span class=line><span class=cl>    // implémentations. La méthode doit retourner un booléen qui
+</span></span><span class=line><span class=cl>    // indique si la commande a modifié l&#39;état de l’éditeur.
+</span></span><span class=line><span class=cl>    abstract method execute()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Les commandes concrètes sont écrites ici.
+</span></span><span class=line><span class=cl>class CopyCommand extends Command is
+</span></span><span class=line><span class=cl>    // La commande pour copier n’est pas sauvegardée dans
+</span></span><span class=line><span class=cl>    // l’historique, car elle ne modifie pas l&#39;état de
+</span></span><span class=line><span class=cl>    // l’éditeur.
+</span></span><span class=line><span class=cl>    method execute() is
+</span></span><span class=line><span class=cl>        app.clipboard = editor.getSelection()
+</span></span><span class=line><span class=cl>        return false
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>class CutCommand extends Command is
+</span></span><span class=line><span class=cl>    // La commande ‘couper’ change l’état de l’éditeur, elle
+</span></span><span class=line><span class=cl>    // doit donc être sauvegardée dans l’historique. Elle sera
+</span></span><span class=line><span class=cl>    // sauvegardée tant que la méthode renvoie vrai.
+</span></span><span class=line><span class=cl>    method execute() is
+</span></span><span class=line><span class=cl>        saveBackup()
+</span></span><span class=line><span class=cl>        app.clipboard = editor.getSelection()
+</span></span><span class=line><span class=cl>        editor.deleteSelection()
+</span></span><span class=line><span class=cl>        return true
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>class PasteCommand extends Command is
+</span></span><span class=line><span class=cl>    method execute() is
+</span></span><span class=line><span class=cl>        saveBackup()
+</span></span><span class=line><span class=cl>        editor.replaceSelection(app.clipboard)
+</span></span><span class=line><span class=cl>        return true
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Le traitement ‘annuler’ est aussi une commande.
+</span></span><span class=line><span class=cl>class UndoCommand extends Command is
+</span></span><span class=line><span class=cl>    method execute() is
+</span></span><span class=line><span class=cl>        app.undo()
+</span></span><span class=line><span class=cl>        return false
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// L’historique principal des commandes est juste une pile.
+</span></span><span class=line><span class=cl>class CommandHistory is
+</span></span><span class=line><span class=cl>    private field history: array of Command
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Dernier entré...
+</span></span><span class=line><span class=cl>    method push(c: Command) is
+</span></span><span class=line><span class=cl>        // Pousse la commande à la fin du tableau de
+</span></span><span class=line><span class=cl>        // l’historique.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // ...premier sorti.
+</span></span><span class=line><span class=cl>    method pop():Command is
+</span></span><span class=line><span class=cl>        // Récupère la commande la plus récente de l’historique.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// La classe éditeur possède des fonctionnalités de traitement
+</span></span><span class=line><span class=cl>// de texte. Elle joue le rôle du récepteur : toutes les
+</span></span><span class=line><span class=cl>// commandes finissent par déléguer l’exécution aux méthodes de
+</span></span><span class=line><span class=cl>// l’éditeur.
+</span></span><span class=line><span class=cl>class Editor is
+</span></span><span class=line><span class=cl>    field text: string
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method getSelection() is
+</span></span><span class=line><span class=cl>        // Retourne le texte sélectionné.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method deleteSelection() is
+</span></span><span class=line><span class=cl>        // Supprime le texte sélectionné.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method replaceSelection(text) is
+</span></span><span class=line><span class=cl>        // Insère le contenu du presse-papiers à la position
+</span></span><span class=line><span class=cl>        // actuelle.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// La classe application configure les relations de l’objet.
+</span></span><span class=line><span class=cl>// Elle agit comme un demandeur : lorsque quelque chose doit
+</span></span><span class=line><span class=cl>// être fait, elle crée un objet commande et lance son
+</span></span><span class=line><span class=cl>// traitement.
+</span></span><span class=line><span class=cl>class Application is
+</span></span><span class=line><span class=cl>    field clipboard: string
+</span></span><span class=line><span class=cl>    field editors: array of Editors
+</span></span><span class=line><span class=cl>    field activeEditor: Editor
+</span></span><span class=line><span class=cl>    field history: CommandHistory
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Le code qui assigne les commandes à l’objet UI pourrait
+</span></span><span class=line><span class=cl>    // ressembler à ceci.
+</span></span><span class=line><span class=cl>    method createUI() is
+</span></span><span class=line><span class=cl>        // ...
+</span></span><span class=line><span class=cl>        copy = function() { executeCommand(
+</span></span><span class=line><span class=cl>            new CopyCommand(this, activeEditor)) }
+</span></span><span class=line><span class=cl>        copyButton.setCommand(copy)
+</span></span><span class=line><span class=cl>        shortcuts.onKeyPress(&#34;Ctrl+C&#34;, copy)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        cut = function() { executeCommand(
+</span></span><span class=line><span class=cl>            new CutCommand(this, activeEditor)) }
+</span></span><span class=line><span class=cl>        cutButton.setCommand(cut)
+</span></span><span class=line><span class=cl>        shortcuts.onKeyPress(&#34;Ctrl+X&#34;, cut)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        paste = function() { executeCommand(
+</span></span><span class=line><span class=cl>            new PasteCommand(this, activeEditor)) }
+</span></span><span class=line><span class=cl>        pasteButton.setCommand(paste)
+</span></span><span class=line><span class=cl>        shortcuts.onKeyPress(&#34;Ctrl+V&#34;, paste)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        undo = function() { executeCommand(
+</span></span><span class=line><span class=cl>            new UndoCommand(this, activeEditor)) }
+</span></span><span class=line><span class=cl>        undoButton.setCommand(undo)
+</span></span><span class=line><span class=cl>        shortcuts.onKeyPress(&#34;Ctrl+Z&#34;, undo)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Lance une commande et vérifie si elle doit être ajoutée à
+</span></span><span class=line><span class=cl>    // l’historique.
+</span></span><span class=line><span class=cl>    method executeCommand(command) is
+</span></span><span class=line><span class=cl>        if (command.execute)
+</span></span><span class=line><span class=cl>            history.push(command)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Prend la commande la plus récente dans l’historique et
+</span></span><span class=line><span class=cl>    // lance sa méthode ‘annuler’. Vous remarquerez que nous ne
+</span></span><span class=line><span class=cl>    // connaissons pas la classe de la commande. Nous n’avons
+</span></span><span class=line><span class=cl>    // pas besoin de la connaître puisque la commande sait
+</span></span><span class=line><span class=cl>    // comment annuler sa propre action.
+</span></span><span class=line><span class=cl>    method undo() is
+</span></span><span class=line><span class=cl>        command = history.pop()
+</span></span><span class=line><span class=cl>        if (command != null)
+</span></span><span class=line><span class=cl>            command.undo()
+</span></span></code></pre></td></tr></table></div></div><a href=#possibilités-dapplication><h2 id=possibilités-dapplication><span class=hanchor arialabel=Anchor># </span>Possibilités d’application</h2></a><p>Utilisez le patron de conception commande lorsque vous voulez paramétrer des objets avec des traitements.</p><p>Le patron de conception commande peut transformer l’appel d’une méthode en un objet autonome. Cette approche permet des utilisations très intéressantes : vous pouvez passer des commandes dans les paramètres d’une méthode, les stocker à l’intérieur d’objets, modifier les liens des commandes à l’exécution, etc.</p><p>Voici un exemple : vous développez un composant de GUI (un menu contextuel par exemple) et vous voulez que vos utilisateurs puissent configurer des éléments de menu qui déclenchent des traitements lorsqu’un utilisateur final clique dessus.</p><p>Utilisez ce patron si vous voulez mettre des traitements dans une file d’attente, programmer leur déclenchement, ou les exécuter à distance.</p><p>Comme pour tous les objets, une commande peut être sérialisée, ce qui veut dire qu’on la convertit en une chaîne de caractères qui peut facilement être écrite dans un fichier ou dans une base de données. La chaîne de caractère pourra ensuite être restaurée et utilisée par l’objet de la commande originale. Vous pouvez ainsi différer et planifier l’exécution de la commande. Mais ce n’est pas tout ! De la même manière, vous pouvez mettre une commande dans une file d’attente, l’historiser ou l’envoyer par le réseau.</p><p>Utilisez le patron de conception commande quand vous voulez implémenter des opérations réversibles.</p><p>Parmi les nombreuses techniques qui permettent d’implémenter la fonctionnalité annuler/rétablir, le patron de conception commande est probablement le plus populaire.</p><p>Pour pouvoir annuler des traitements, vous devez mettre en place un historique des actions effectuées. L’historique des commandes est une pile qui contient tous les objets des commandes exécutées avec l’état de l’application correspondant.</p><p>Cette méthode possède deux défauts. Premièrement, l’état d’une application n’est pas facile à sauvegarder, car une partie peut être privée. Ce problème peut être résolu grâce à l’intervention du patron de conception
+<a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a>.</p><p>Deuxièmement, la sauvegarde de l’état risque de consommer beaucoup de RAM. Par conséquent, vous pouvez utiliser une autre alternative : plutôt que de rétablir l’état précédent, la commande effectue l’inverse de la modification, ce qui est malheureusement parfois impossible ou difficile à mettre en place.</p><a href=#mise-en-œuvre><h2 id=mise-en-œuvre><span class=hanchor arialabel=Anchor># </span>Mise en œuvre</h2></a><ol><li><p>Déclarez l’interface commande avec une seule méthode d’exécution.</p></li><li><p>Commencez à récupérer les demandes et à les mettre dans les classes concrètes Commande qui implémentent l’interface commande. Chaque classe doit comporter un ensemble d’attributs qui permettent de stocker les paramètres des demandes, avec une référence à l’objet initial du récepteur. Ces valeurs doivent toutes être initialisées dans le constructeur de la commande.</p></li><li><p>Identifiez les classes qui vont jouer le rôle de <em>Demandeurs</em>. Créez les attributs de ces classes qui vont stocker les commandes. Les demandeurs doivent uniquement communiquer avec leurs commandes via l’interface commande. En général, ils ne créent pas les objets commande, c’est le code client qui s’en charge.</p></li><li><p>Plutôt que d’envoyer la demande directement au récepteur, modifiez les demandeurs afin qu’ils exécutent la commande.</p></li><li><p>Le client doit initialiser les objets dans l’ordre suivant :</p><ul><li>Créer les récepteurs.</li><li>Créer les commandes et les associer avec les récepteurs si besoin.</li><li>Créer les demandeurs et les associer avec les commandes.</li></ul></li></ol><a href=#avantages-et-inconvénients><h2 id=avantages-et-inconvénients><span class=hanchor arialabel=Anchor># </span>Avantages et inconvénients</h2></a><ul><li><p><em>Principe de responsabilité unique</em>. Vous pouvez découpler les classes qui appellent des traitements, de celles qui les exécutent.</p></li><li><p><em>Principe ouvert/fermé</em>. Vous pouvez ajouter de nouvelles commandes dans le programme sans endommager le code client existant.</p></li><li><p>Vous pouvez mettre en place une fonctionnalité annuler-rétablir.</p></li><li><p>Vous pouvez différer l’exécution de vos traitements.</p></li><li><p>Vous pouvez assembler plusieurs commandes simples en une seule plus complexe.</p></li><li><p>Le code peut devenir plus compliqué, car vous créez une nouvelle couche entre les demandeurs et les récepteurs.</p></li></ul><a href=#liens-avec-les-autres-patrons><h2 id=liens-avec-les-autres-patrons><span class=hanchor arialabel=Anchor># </span>Liens avec les autres patrons</h2></a><ul><li><p>La
+<a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a>, la
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a>, le
+<a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a> et l’
+<a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a> proposent différentes solutions pour associer les demandeurs et les récepteurs.</p><ul><li>La <em>chaîne de responsabilité</em> envoie une demande ordonnée qui est passée tout au long d’une chaîne dynamique de récepteurs potentiels, jusqu’à ce que l’un d’entre eux décide de la traiter.</li><li>La <em>commande</em> établit des connexions unidirectionnelles entre les demandeurs et les récepteurs.</li><li>Le <em>médiateur</em> élimine les liens directs entre les demandeurs et les récepteurs, et les force à communiquer indirectement via un objet médiateur.</li><li>L’<em>observateur</em> permet aux récepteurs de s’inscrire et de se désinscrire dynamiquement à la réception des demandes.</li></ul></li><li><p>Les handlers dans la
+<a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de Responsabilité</a> peuvent être implémentés comme des
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commandes</a>. Dans ce cas, vous pouvez lancer beaucoup de traitements différents sur le même objet contexte, représenté par une demande.</p><p>Vous pouvez cependant utiliser une autre approche dans laquelle la demande en elle-même est un objet <em>commande</em>. Vous pouvez ainsi exécuter le même traitement dans une série de différents contextes connectés par une chaîne.</p></li><li><p>Vous pouvez utiliser la
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a> et le
+<a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a> ensemble pour implémenter la fonctionnalité « annuler ». Dans ce cas, les commandes ont la responsabilité d’exécuter les divers traitements sur un objet cible. Les mémentos sauvegardent l’état de cet objet juste avant le lancement de la commande.</p></li><li><p>La
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a> et la
+<a href=https://refactoring.guru/fr/design-patterns/strategy rel=noopener>Stratégie</a> peuvent se ressembler, car vous les utilisez toutes les deux pour paramétrer un objet avec une action. Cependant, ces patrons ont des intentions très différentes.</p><ul><li><p>Vous pouvez utiliser la <em>commande</em> pour convertir un traitement en un objet. Les paramètres du traitement deviennent des attributs de cet objet. La conversion vous permet de différer le lancement du traitement, le mettre dans une file d’attente, stocker l’historique des commandes, envoyer les commandes à des services distants, etc.</p></li><li><p>La <em>stratégie</em> quant à elle, décrit généralement différentes manières de faire la même chose et vous laisse permuter entre ces algorithmes à l’intérieur d’une unique classe contexte.</p></li></ul></li><li><p>Le
+<a href=https://refactoring.guru/fr/design-patterns/prototype rel=noopener>Prototype</a> se révèle utile lorsque vous voulez sauvegarder des copies de
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commandes</a> dans l’historique.</p></li><li><p>Vous pouvez traiter le
+<a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a> comme une version plus puissante du patron de conception
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a>. Ses objets peuvent lancer des traitements sur divers objets dans différentes classes.</p></li></ul><a href=#exemples-de-code><h2 id=exemples-de-code><span class=hanchor arialabel=Anchor># </span>Exemples de code</h2></a><p><a href=https://refactoring.guru/fr/design-patterns/command/java/example rel=noopener><img width=43 height=56 src=../../_resources/java_9dde852adff34fa4a10abd21826c9e9a.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/command/csharp/example rel=noopener><img width=43 height=56 src=../../_resources/csharp_4a431deef84845d7bb92c28c0e4e8f44.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/command/cpp/example rel=noopener><img width=43 height=56 src=../../_resources/cpp_23110627b7bc4a1f971ed7921a374376.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/command/php/example rel=noopener><img width=43 height=56 src=../../_resources/php_8f6e35dab074422d90dfca2f3a3649f8.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/command/python/example rel=noopener><img width=43 height=56 src=../../_resources/python_7c6111689cc442b2ab75afd599f6bd46.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/command/ruby/example rel=noopener><img width=43 height=56 src=../../_resources/ruby_793212824ac74f4397cf08fcf74f28f0.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/command/swift/example rel=noopener><img width=43 height=56 src=../../_resources/swift_6a6f040c76a542729b27db1390d3c1d5.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/command/typescript/example rel=noopener><img width=43 height=56 src=../../_resources/typescript_ecb8e29d27aa408e9a018e02fa1f4f54.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/command/go/example rel=noopener><img width=43 height=56 src=../../_resources/go_076a877ae3734eec84f2229d11cf7892.svg></a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=200 height=200 src=../../_resources/patterns-book-banner-3_30b19b0f23f74abbafdb4404cb3.png></a></p><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook><h3 id=soutenez-notre-site-gratuit-et-obtenez-lebook><span class=hanchor arialabel=Anchor># </span>Soutenez notre site gratuit et obtenez l’ebook !</h3></a><ul><li>22 patrons de conception et 8 principes expliqués en profondeur.</li><li>444 pages de vulgarisation, bien structurées et faciles à lire.</li><li>225 illustrations et diagrammes clairs pour aider à la compréhension.</li><li>Une archive avec des exemples de code dans 9 langages.</li><li>Tous les appareils sont pris en charge : formats PDF/EPUB/MOBI/KFX.</li></ul><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><a href=#suivant><h4 id=suivant><span class=hanchor arialabel=Anchor># </span>Suivant</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a></p><a href=#retour><h4 id=retour><span class=hanchor arialabel=Anchor># </span>Retour</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=245 height=375 src=../../_resources/web-cover-fr_3f4a8916710b4671a528035f3c803611.png></a></p><p>Cet article est tiré de notre ebook
+<strong>Plongée au cœur des
+PATRONS DE CONCEPTION</strong></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><p>Facebook</p><p>Twitter</p><ul><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li><li><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a></li></ul><p><a href=https://refactoring.guru/design-patterns/command rel=noopener>English</a>
+<a href=https://refactoring.guru/es/design-patterns/command rel=noopener>Español</a>
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Français</a>
+<a href=https://refactoring.guru/pl/design-patterns/command rel=noopener>Polski</a>
+<a href=https://refactoring.guru/pt-br/design-patterns/command rel=noopener>Português-Br</a>
+<a href=https://refactoring.guru/ru/design-patterns/command rel=noopener>Русский</a>
+<a href=https://refactoring.guru/uk/design-patterns/command rel=noopener>Українська</a>
+<a href=https://refactoringguru.cn/design-patterns/command rel=noopener>中文</a></p><p><a href=https://refactoring.guru/fr rel=noopener><img src=https://deuxfois.github.io/quartz//../../_resources/logo-covid-winter_04757fa9b0e641afad98e62c6cdde892.png width=auto alt=Refactoring.Guru></a></p><p><img src=https://deuxfois.github.io/quartz//../../_resources/winter-hat_16151f0b6383437e8823a655796eb20e.png width=auto alt></p><ul><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/what-is-pattern rel=noopener>Introduction</a></li><li><a href=https://refactoring.guru/fr/design-patterns/catalog rel=noopener>Catalogue</a></li><li><a href=https://refactoring.guru/fr/design-patterns/creational-patterns rel=noopener>Patrons de création</a></li><li><a href=https://refactoring.guru/fr/design-patterns/structural-patterns rel=noopener>Patrons structurels</a></li><li><a href=https://refactoring.guru/fr/design-patterns/behavioral-patterns rel=noopener>Patrons comportementaux</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a></li><li><a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a></li><li><a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a></li><li><a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/state rel=noopener>État</a></li><li><a href=https://refactoring.guru/fr/design-patterns/strategy rel=noopener>Stratégie</a></li><li><a href=https://refactoring.guru/fr/design-patterns/template-method rel=noopener>Patron de méthode</a></li><li><a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a></li></ul></li><li><a href=https://refactoring.guru/fr/design-patterns/examples rel=noopener>Exemples de code</a></li></ul></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation (commenter bientôt)</a></li></ul><p><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a>
+<a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Nous contacter</a></p><ul><li><a href=https://refactoring.guru/fr rel=noopener>Accueil</a></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a></li><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Forum</a></li><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li></ul><p>2014-2021
+<a href=https://refactoring.guru/fr rel=noopener>Refactoring.Guru</a>. Tous droits réservés.
+<img src=https://deuxfois.github.io/quartz//../../_resources/fa-building_cf28be56a9eb4af29104ab20662cfc63.svg width=auto alt="Organization address"> Khmelnitske shosse 19 / 27, Kamianets-Podilskyi, Ukraine, 32305
+Email:
+<a rel=noopener class="internal-link broken" data-src=mailto:support@refactoring.guru>support@refactoring.guru</a></p><p>Illustrations par
+<a href=http://zhart.us/ rel=noopener>Dmitry Zhart</a></p><ul><li><a href=https://refactoring.guru/fr/terms rel=noopener>Termes et conditions</a></li><li><a href=https://refactoring.guru/fr/privacy-policy rel=noopener>Politique de protection de la vie privée</a></li><li><a href=https://refactoring.guru/fr/content-usage-policy rel=noopener>Politique de l’utilisation des données</a></li></ul></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://deuxfois.github.io/quartz/js/graph.243ea0d4fc79317e06f846bd698ba136.js></script></div></div><div id=contact_buttons><footer><p>Made by DeuxFois using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://deuxfois.github.io/quartz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>

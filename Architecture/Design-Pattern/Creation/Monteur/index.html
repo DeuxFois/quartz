@@ -1,0 +1,374 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Monteur permet de construire des objets complexes étape par étape. Il permet de produire différentes variations ou représentations d’un objet en utilisant le même code de construction."><title>Monteur / Builder</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://deuxfois.github.io/quartz//icon.png><link href=https://deuxfois.github.io/quartz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://deuxfois.github.io/quartz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://deuxfois.github.io/quartz/js/darkmode.69b2c08ae0f08c3a3f86259a122e1f06.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://deuxfois.github.io/quartz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://deuxfois.github.io/quartz/",fetchData=Promise.all([fetch("https://deuxfois.github.io/quartz/indices/linkIndex.668a7938cf11b7eb01cc194bddc133e0.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://deuxfois.github.io/quartz/indices/contentIndex.396a82180f6e9cf02145bda53551401c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!0;drawGraph("https://deuxfois.github.io/quartz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:2,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://deuxfois.github.io/quartz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/deuxfois.github.io\/quartz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://deuxfois.github.io/quartz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://deuxfois.github.io/quartz/>⛄ DeuxFoi's blog</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Monteur / Builder</h1><p class=meta>Last updated
+Aug 3, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Architecture/Design-Pattern/Creation/Monteur.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://deuxfois.github.io/quartz/tags/cr%C3%A9ation/>Création</a></li><li><a href=https://deuxfois.github.io/quartz/tags/design_pattern/>Design pattern</a></li></ul><aside class=mainTOC><details open><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#problème>Problème</a></li><li><a href=#solution>Solution</a><ol><li></li></ol></li><li><a href=#structure>Structure</a></li><li><a href=#pseudo-code>Pseudo-code</a></li><li><a href=#possibilités-dapplication>Possibilités d’application</a></li><li><a href=#mise-en-œuvre>Mise en œuvre</a></li><li><a href=#avantages-et-inconvénients>Avantages et inconvénients</a></li><li><a href=#liens-avec-les-autres-patrons>Liens avec les autres patrons</a></li><li><a href=#exemples-de-code>Exemples de code</a><ol><li><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook>Soutenez notre site gratuit et obtenez l’ebook !</a></li></ol></li></ol></nav></details></aside><p><strong>Monteur</strong> permet de construire des objets complexes étape par étape. Il permet de produire différentes variations ou représentations d’un objet en utilisant le même code de construction.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/builder-fr_10d1ceb31d404af3ae224e04d7fda26d.png width=auto alt="Patron de conception monteur"></p><a href=#problème><h2 id=problème><span class=hanchor arialabel=Anchor># </span>Problème</h2></a><p>Imaginez un objet complexe qui nécessite une initialisation fastidieuse, composée de plusieurs parties avec de nombreux champs et objets imbriqués. Le code d’initialisation va se retrouver dans un constructeur, enterré sous une pile monstrueuse de paramètres, ou encore pire : réparti un peu partout dans le code client.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/problem1_f320e715ef8046dabe552ca09d117bd0.png width=auto alt="Créer de nombreuses sous-classes entraîne un autre problème"></p><p>Créer une sous-classe pour chaque configuration possible d’un objet risque de rendre le programme trop complexe.</p><p>Réfléchissons à la manière de modéliser un objet <code>Maison</code>. Pour fabriquer une maison de base, vous devez construire quatre murs et un sol, installer une porte, poser quelques fenêtres et bâtir un toit. Mais comment procéder si vous voulez une plus grande maison avec plus de lumière, un peu de terrain et autres commodités (un système de chauffage, de la plomberie et des câbles électriques) ?</p><p>La solution la plus simple est d’étendre la classe de base <code>Maison</code> et de créer un ensemble de sous-classes pour couvrir toutes les combinaisons de paramètres. Mais au bout d’un certain temps, vous allez vous retrouver avec un nombre considérable de sous-classes. Le moindre paramètre supplémentaire comme le style du porche par exemple, va encore plus développer la hiérarchie.</p><p>Voici une autre approche qui n’implique pas de générer des sous-classes : vous pouvez créer un constructeur géant dans la classe de base <code>Maison</code> avec tous les paramètres contrôlant l’objet maison. Cette solution élimine le besoin de sous-classes, mais entraîne un autre problème.</p><img width=600 height=0 src=../../_resources/problem2_b38c713d6e9f48d0bb8bda43b205cb0c.png class=jop-noMdConv><p>Un constructeur qui possède de nombreux paramètres a ses inconvénients : ces derniers ne sont pas toujours tous utilisés.</p><p>Dans la majorité des cas, la plupart des paramètres resteront inutilisés, rendant
+<a href=https://refactoring.guru/fr/smells/long-parameter-list rel=noopener>l’appel au constructeur assez hideux</a>. Par exemple, le paramètre recensant les piscines se révèle inutile neuf fois sur dix, car peu de maisons en sont équipées.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span>Solution</h2></a><p>Le patron de conception monteur propose d’extraire le code du constructeur d’objet de sa classe et de le déplacer dans des objets distincts appelés <em>monteurs</em>.</p><img width=410 height=0 src=../../_resources/solution1_716647eda6ae425687c46e111b7a7325.png class=jop-noMdConv><p>Le patron de conception monteur permet de construire des objets complexes étape par étape. Le monteur empêche les autres objets d’accéder au produit pendant sa construction.</p><p>Il organise la construction de l’objet à l’aide d’une série d’étapes (<code>construireMurs</code>, <code>construirePorte</code>, etc.). Pour créer un objet, vous allez effectuer une séquence d’étapes dans un objet monteur. Le gros avantage, c’est que vous n’avez pas besoin d’appeler toutes les étapes, mais seulement celles nécessaires à la création de la configuration particulière d’un objet.</p><p>Certaines étapes de la construction peuvent demander des implémentations variables en fonction des différentes représentations du produit. Par exemple, les murs d’une cabane peuvent être en bois, mais ceux d’un château seront en pierre.</p><p>Dans ce cas, vous pouvez créer plusieurs monteurs qui implémentent le même ensemble d’étapes de construction, mais d’une manière différente. Vous pouvez ensuite utiliser ces monteurs dans le processus de construction (c’est-à-dire une succession d’appels ordonnés des étapes) pour créer différents types d’objets.</p><img width=600 height=0 src=../../_resources/builder-comic-1-fr_d7817eed29244d6081d463e024f8d16.png class=jop-noMdConv><p>Ces monteurs exécutent la même tâche, mais de manière différente.</p><p>Prenons un autre exemple : un premier monteur qui fabrique tout à partir de bois et de verre, un deuxième qui utilise de la pierre et du fer et un troisième qui se sert d’or et de diamants. En appelant les mêmes étapes, vous pouvez construire une maison avec le premier, un petit château avec le deuxième et un palais grâce au troisième. Mais tout ceci ne peut fonctionner que si le code client qui appelle les étapes de la construction peut interagir avec les monteurs via une interface commune.</p><a href=#directeur-director><h4 id=directeur-director><span class=hanchor arialabel=Anchor># </span>Directeur (Director)</h4></a><p>Vous pouvez aller encore plus loin en prenant tous les appels aux étapes utilisées pour construire un produit, et en les mettant dans une classe séparée que l’on nomme <em>directeur</em>. La classe directeur va définir l’ordre d’exécution des différentes étapes et le monteur fournit les implémentations de ces étapes.</p><img width=343 height=0 src=../../_resources/builder-comic-2-fr_fe469a9751ad4dd58ac757b843c0f58.png class=jop-noMdConv><p>Le directeur connait les étapes à suivre pour construire un produit fonctionnel.</p><p>La classe directeur n’est pas obligatoire. Vous pouvez toujours appeler les étapes de construction dans un ordre spécifique depuis le code client. Cependant, la classe directeur se révèle idéale pour y placer les routines de construction et pouvoir les réutiliser ensuite dans votre programme.</p><p>De plus, le directeur cache au client les détails de la construction du produit. Le client doit juste associer un monteur avec un directeur, lancer la construction via le directeur, puis récupérer le résultat auprès du monteur.</p><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span>Structure</h2></a><img width=460 height=0 src=../../_resources/structure_9a9475c8558c45eeaf8daf13b6eab4d3.png class=jop-noMdConv><ol><li><p>L’interface du <strong>Monteur</strong> déclare les étapes communes de la construction du produit entre tous les monteurs.</p></li><li><p>Les <strong>Monteurs Concrets</strong> fournissent différentes implémentations des étapes de la construction. Ils peuvent créer des produits qui ne reprennent pas l’interface commune.</p></li><li><p>Les <strong>Produits</strong> sont les résultats retournés. Les produits construits par les différents monteurs ne sont pas obligés d’appartenir à la même hiérarchie de classes ni d’avoir la même interface.</p></li><li><p>Le <strong>Directeur</strong> indique l’ordonnancement des étapes de construction et offre la possibilité de créer et de réutiliser des configurations spécifiques pour les produits.</p></li><li><p>Le <strong>Client</strong> doit associer l’un des monteurs au directeur. En général cette association n’est réalisée qu’une seule fois, grâce aux paramètres du constructeur du directeur. Pour toute construction ultérieure, le directeur utilise l’objet monteur. En guise d’alternative, le client peut passer l’objet monteur à la méthode de production du directeur. Dans ce cas, vous pouvez utiliser un monteur différent chaque fois que vous lancez une production avec le directeur.</p></li></ol><a href=#pseudo-code><h2 id=pseudo-code><span class=hanchor arialabel=Anchor># </span>Pseudo-code</h2></a><p>Voici un exemple qui montre comment un <strong>Monteur</strong> peut réutiliser le même code de construction d’objet pour assembler différents types de produits comme des voitures, et créer leurs manuels respectifs.</p><img width=500 height=0 src=../../_resources/example-fr_699f945931364654b111784029a1a2fc.png class=jop-noMdConv><p>Un exemple de construction de voitures étape par étape et le manuel d’utilisation qui correspond à leur modèle.</p><p>Une voiture est un objet complexe. Elle peut être fabriquée de cent manières différentes. Plutôt que d’encombrer la classe <code>Voiture</code> avec un énorme constructeur, nous avons extrait le code dans une classe monteur séparée pour la voiture. Cette classe est composée d’un ensemble de méthodes pour configurer les différentes parties d’une voiture.</p><p>Si le code client veut assembler un modèle spécial de voiture bénéficiant d’un réglage de précision, il peut s’adresser directement au monteur. Il peut également déléguer l’assemblage à la classe directeur qui connait le processus de fabrication à indiquer au monteur pour les modèles de voitures les plus populaires.</p><p>Ce qui suit va peut-être vous choquer, mais chaque voiture doit posséder son propre manuel (franchement, qui les lit ?). Le manuel décrit toutes les fonctionnalités de la voiture et les détails vont varier selon les modèles. Il semble donc approprié de réutiliser un processus de construction existant pour les voitures et leurs manuels. Bien entendu, la création d’un manuel et d’une voiture sont deux procédés complètement différents et nous devons concevoir des monteurs spécialisés pour les manuels. Cette classe va implémenter les mêmes méthodes de construction que sa cousine assembleuse de voitures, mais au lieu de fabriquer des pièces de voitures, elle se contente de les décrire. Nous pouvons construire une voiture ou un manuel en passant ces monteurs au même objet directeur.</p><p>L’étape finale consiste à récupérer l’objet qui en résulte. Même si une voiture en métal et un manuel en papier sont directement liés, ce sont deux choses complètement différentes. Nous ne pouvons pas insérer une méthode pour récupérer les résultats dans le directeur sans le coupler aux classes concrètes du produit. Par conséquent, c’est le monteur qui effectue le travail qui nous donne ensuite le résultat.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-mysql data-lang=mysql><span class=line><span class=cl><span class=o>//</span><span class=w> </span><span class=n>L</span><span class=err>’</span><span class=n>utilisation</span><span class=w> </span><span class=n>du</span><span class=w> </span><span class=n>patron</span><span class=w> </span><span class=n>de</span><span class=w> </span><span class=n>conception</span><span class=w> </span><span class=n>monteur</span><span class=w> </span><span class=n>n</span><span class=err>’</span><span class=n>est</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=o>//</span><span class=w> </span><span class=n>conseillée</span><span class=w> </span><span class=n>que</span><span class=w> </span><span class=n>si</span><span class=w> </span><span class=n>vos</span><span class=w> </span><span class=n>produits</span><span class=w> </span><span class=n>sont</span><span class=w> </span><span class=n>complexes</span><span class=w> </span><span class=n>et</span><span class=w> </span><span class=n>nécessitent</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=o>//</span><span class=w> </span><span class=n>une</span><span class=w> </span><span class=n>configuration</span><span class=w> </span><span class=err>é</span><span class=n>tendue</span><span class=p>.</span><span class=w> </span><span class=n>Bien</span><span class=w> </span><span class=n>qu</span><span class=err>’</span><span class=n>ils</span><span class=w> </span><span class=n>n</span><span class=err>’</span><span class=n>aient</span><span class=w> </span><span class=n>pas</span><span class=w> </span><span class=n>la</span><span class=w> </span><span class=n>même</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=o>//</span><span class=w> </span><span class=n>interface</span><span class=p>,</span><span class=w> </span><span class=n>les</span><span class=w> </span><span class=n>deux</span><span class=w> </span><span class=n>produits</span><span class=w> </span><span class=n>suivants</span><span class=w> </span><span class=n>sont</span><span class=w> </span><span class=n>liés</span><span class=p>.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>class</span><span class=w> </span><span class=n>Car</span><span class=w> </span><span class=k>is</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=o>//</span><span class=w> </span><span class=n>Une</span><span class=w> </span><span class=n>voiture</span><span class=w> </span><span class=n>est</span><span class=w> </span><span class=err>é</span><span class=n>quipée</span><span class=w> </span><span class=n>d</span><span class=err>’</span><span class=n>un</span><span class=w> </span><span class=n>GPS</span><span class=p>,</span><span class=w> </span><span class=n>d</span><span class=err>’</span><span class=n>un</span><span class=w> </span><span class=n>ordinateur</span><span class=w> </span><span class=n>de</span><span class=w> </span><span class=n>bord</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=o>//</span><span class=w> </span><span class=n>et</span><span class=w> </span><span class=n>d</span><span class=s1>&#39;un certain nombre de sièges. Les différents modèles
+</span></span></span><span class=line><span class=cl><span class=s1>    // de voitures (sport, SUV, cabriolet) ont différentes
+</span></span></span><span class=line><span class=cl><span class=s1>    // fonctionnalités installées ou activées.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>class Manual is
+</span></span></span><span class=line><span class=cl><span class=s1>    // Chaque voiture doit avoir un manuel d’utilisation qui
+</span></span></span><span class=line><span class=cl><span class=s1>    // correspond à sa configuration et décrit toutes ses
+</span></span></span><span class=line><span class=cl><span class=s1>    // fonctionnalités.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>// L’interface du monteur contient des méthodes spécialisées
+</span></span></span><span class=line><span class=cl><span class=s1>// pour créer les différentes parties des objets du produit.
+</span></span></span><span class=line><span class=cl><span class=s1>interface Builder is
+</span></span></span><span class=line><span class=cl><span class=s1>    method reset()
+</span></span></span><span class=line><span class=cl><span class=s1>    method setSeats(...)
+</span></span></span><span class=line><span class=cl><span class=s1>    method setEngine(...)
+</span></span></span><span class=line><span class=cl><span class=s1>    method setTripComputer(...)
+</span></span></span><span class=line><span class=cl><span class=s1>    method setGPS(...)
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>// Les classes concrètes du monteur suivent l’interface monteur
+</span></span></span><span class=line><span class=cl><span class=s1>// et procurent des implémentations spécifiques pour les étapes
+</span></span></span><span class=line><span class=cl><span class=s1>// de la fabrication. Votre programme peut contenir plusieurs
+</span></span></span><span class=line><span class=cl><span class=s1>// variantes de monteurs, chacune avec sa propre implémentation.
+</span></span></span><span class=line><span class=cl><span class=s1>class CarBuilder implements Builder is
+</span></span></span><span class=line><span class=cl><span class=s1>    private field car:Car
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    // Une instance monteur fraichement créée doit contenir un
+</span></span></span><span class=line><span class=cl><span class=s1>    // objet produit vide qu’elle va ensuite assembler.
+</span></span></span><span class=line><span class=cl><span class=s1>    constructor CarBuilder() is
+</span></span></span><span class=line><span class=cl><span class=s1>        this.reset()
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    // La méthode reset nettoie l’objet qui est construit.
+</span></span></span><span class=line><span class=cl><span class=s1>    method reset() is
+</span></span></span><span class=line><span class=cl><span class=s1>        this.car = new Car()
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    // Toutes les étapes de la fabrication manipulent la même
+</span></span></span><span class=line><span class=cl><span class=s1>    // instance du produit.
+</span></span></span><span class=line><span class=cl><span class=s1>    method setSeats(...) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Configure le nombre de sièges dans la voiture.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method setEngine(...) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Installe un moteur donné.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method setTripComputer(...) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Installe un ordinateur de bord.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method setGPS(...) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Installe un système de géolocalisation.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    // Les monteurs concrets sont censés fournir leurs propres
+</span></span></span><span class=line><span class=cl><span class=s1>    // méthodes pour récupérer les résultats. Ce fonctionnement
+</span></span></span><span class=line><span class=cl><span class=s1>    // permet aux différents types de monteurs de créer des
+</span></span></span><span class=line><span class=cl><span class=s1>    // produits entièrement différents qui ne suivent pas la
+</span></span></span><span class=line><span class=cl><span class=s1>    // même interface. Par conséquent, les méthodes ne peuvent
+</span></span></span><span class=line><span class=cl><span class=s1>    // pas être déclarées dans l’interface du monteur (en tout
+</span></span></span><span class=line><span class=cl><span class=s1>    // cas pas dans un langage de programmation doté d’un
+</span></span></span><span class=line><span class=cl><span class=s1>    // système de typage statique).
+</span></span></span><span class=line><span class=cl><span class=s1>    //
+</span></span></span><span class=line><span class=cl><span class=s1>    // En général, après avoir retourné le résultat final au
+</span></span></span><span class=line><span class=cl><span class=s1>    // client, une instance de monteur doit être prête à lancer
+</span></span></span><span class=line><span class=cl><span class=s1>    // la fabrication d’un autre produit. C’est pour cette
+</span></span></span><span class=line><span class=cl><span class=s1>    // raison que l’on appelle généralement la méthode reset à
+</span></span></span><span class=line><span class=cl><span class=s1>    // la fin du corps de la méthode `getProduct`. Mais ce
+</span></span></span><span class=line><span class=cl><span class=s1>    // comportement n’est pas obligatoire et votre monteur peut
+</span></span></span><span class=line><span class=cl><span class=s1>    // attendre que le code client lance un appel explicite à un
+</span></span></span><span class=line><span class=cl><span class=s1>    // reset pour vous débarrasser du résultat précédent.
+</span></span></span><span class=line><span class=cl><span class=s1>    method getProduct():Car is
+</span></span></span><span class=line><span class=cl><span class=s1>        product = this.car
+</span></span></span><span class=line><span class=cl><span class=s1>        this.reset()
+</span></span></span><span class=line><span class=cl><span class=s1>        return product
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>// Contrairement aux autres patrons de création, le monteur vous
+</span></span></span><span class=line><span class=cl><span class=s1>// permet de fabriquer des produits qui ne suivent pas la même
+</span></span></span><span class=line><span class=cl><span class=s1>// interface.
+</span></span></span><span class=line><span class=cl><span class=s1>class CarManualBuilder implements Builder is
+</span></span></span><span class=line><span class=cl><span class=s1>    private field manual:Manual
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    constructor CarManualBuilder() is
+</span></span></span><span class=line><span class=cl><span class=s1>        this.reset()
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method reset() is
+</span></span></span><span class=line><span class=cl><span class=s1>        this.manual = new Manual()
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method setSeats(...) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Fonctionnalités des sièges dans le manuel.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method setEngine(...) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Ajoute les informations concernant le moteur.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method setTripComputer(...) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Ajoute les instructions concernant l’ordinateur de
+</span></span></span><span class=line><span class=cl><span class=s1>        // bord.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method setGPS(...) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Ajoute les instructions concernant le GPS.
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method getProduct():Manual is
+</span></span></span><span class=line><span class=cl><span class=s1>        // Retourne le manuel et remet à zéro le monteur
+</span></span></span><span class=line><span class=cl><span class=s1>        // (reset).
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>// Le directeur a pour seule responsabilité l’ordonnancement des
+</span></span></span><span class=line><span class=cl><span class=s1>// étapes de la fabrication. Il se révèle utile lorsque vous
+</span></span></span><span class=line><span class=cl><span class=s1>// fabriquez des produits avec un ordre précis ou dans une
+</span></span></span><span class=line><span class=cl><span class=s1>// configuration particulière. À proprement parler, la classe
+</span></span></span><span class=line><span class=cl><span class=s1>// Directeur n’est pas obligatoire, car le client peut manipuler
+</span></span></span><span class=line><span class=cl><span class=s1>// les monteurs directement.
+</span></span></span><span class=line><span class=cl><span class=s1>class Director is
+</span></span></span><span class=line><span class=cl><span class=s1>    private field builder:Builder
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    // Le directeur manipule n’importe quelle instance de
+</span></span></span><span class=line><span class=cl><span class=s1>    // monteur que le code client lui envoie. Ainsi, le code
+</span></span></span><span class=line><span class=cl><span class=s1>    // client peut modifier le type final du produit qui vient
+</span></span></span><span class=line><span class=cl><span class=s1>    // d’être assemblé.
+</span></span></span><span class=line><span class=cl><span class=s1>    method setBuilder(builder:Builder)
+</span></span></span><span class=line><span class=cl><span class=s1>        this.builder = builder
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    // Le directeur peut fabriquer plusieurs variantes de
+</span></span></span><span class=line><span class=cl><span class=s1>    // produits en utilisant les mêmes étapes de fabrication.
+</span></span></span><span class=line><span class=cl><span class=s1>    method constructSportsCar(builder: Builder) is
+</span></span></span><span class=line><span class=cl><span class=s1>        builder.reset()
+</span></span></span><span class=line><span class=cl><span class=s1>        builder.setSeats(2)
+</span></span></span><span class=line><span class=cl><span class=s1>        builder.setEngine(new SportEngine())
+</span></span></span><span class=line><span class=cl><span class=s1>        builder.setTripComputer(true)
+</span></span></span><span class=line><span class=cl><span class=s1>        builder.setGPS(true)
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method constructSUV(builder: Builder) is
+</span></span></span><span class=line><span class=cl><span class=s1>        // ...
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>// Le code client crée un objet monteur, le passe au directeur
+</span></span></span><span class=line><span class=cl><span class=s1>// et lance le processus de fabrication. Le résultat final est
+</span></span></span><span class=line><span class=cl><span class=s1>// récupéré dans l’objet monteur.
+</span></span></span><span class=line><span class=cl><span class=s1>class Application is
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>    method makeCar() is
+</span></span></span><span class=line><span class=cl><span class=s1>        director = new Director()
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>        CarBuilder builder = new CarBuilder()
+</span></span></span><span class=line><span class=cl><span class=s1>        director.constructSportsCar(builder)
+</span></span></span><span class=line><span class=cl><span class=s1>        Car car = builder.getProduct()
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>        CarManualBuilder builder = new CarManualBuilder()
+</span></span></span><span class=line><span class=cl><span class=s1>        director.constructSportsCar(builder)
+</span></span></span><span class=line><span class=cl><span class=s1>
+</span></span></span><span class=line><span class=cl><span class=s1>        // Le produit final est souvent récupéré depuis un objet
+</span></span></span><span class=line><span class=cl><span class=s1>        // monteur, car le directeur est indépendant des
+</span></span></span><span class=line><span class=cl><span class=s1>        // monteurs et des produits concrets et il ne les voit
+</span></span></span><span class=line><span class=cl><span class=s1>        // donc pas.
+</span></span></span><span class=line><span class=cl><span class=s1>        Manual manual = builder.getProduct()
+</span></span></span></code></pre></td></tr></table></div></div><a href=#possibilités-dapplication><h2 id=possibilités-dapplication><span class=hanchor arialabel=Anchor># </span>Possibilités d’application</h2></a><p>Utilisez le patron de conception monteur afin de vous débarrasser d’un « constructeur télescopique ».</p><p>Prenons un constructeur avec dix paramètres facultatifs. Faire un appel à cette monstruosité n’est pas très pratique : vous surchargez le constructeur avec plusieurs petites versions, mais avec moins de paramètres. Ces constructeurs font toujours référence au constructeur principal en donnant des valeurs par défaut aux paramètres optionnels.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>class Pizza {
+</span></span><span class=line><span class=cl>    Pizza(int size) { ... }
+</span></span><span class=line><span class=cl>    Pizza(int size, boolean cheese) { ... }
+</span></span><span class=line><span class=cl>    Pizza(int size, boolean cheese, boolean pepperoni) { ... }
+</span></span><span class=line><span class=cl>    // ...
+</span></span></code></pre></td></tr></table></div></div><p>Cette monstruosité ne peut être créée que dans certains langages qui permettent la surcharge tels que le C# ou le Java.</p><p>Le monteur vous permet de créer des objets étape par étape, en utilisant uniquement celles qui sont nécessaires. Après avoir implémenté le patron, vous n’avez plus besoin d’entasser les paramètres dans vos constructeurs.</p><p>Utilisez le monteur pour rendre votre code capable de créer différentes représentations de produits (par exemple des maisons en pierre et en bois).</p><p>Le monteur est utile lorsque les étapes de la construction des différentes représentations du produit se ressemblent (seuls quelques détails diffèrent).</p><p>L’interface de base du monteur définit toutes les étapes possibles de la construction. Les monteurs concrets implémentent les étapes pour construire les représentations particulières du produit. Le directeur quant à lui s’occupe de gérer l’ordonnancement des différentes étapes de construction.</p><p>Utilisez le monteur afin de construire une arborescence
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>composite</a> ou d’autres objets complexes.</p><p>Le monteur vous permet de construire des produits étape par étape. Vous pouvez déléguer l’exécution de certaines étapes sans endommager le produit final. Vous pouvez même appeler les étapes de manière récursive, ce qui est très pratique dans le cas de la construction d’un objet composite.</p><p>Le monteur ne met pas à disposition le produit tant que les étapes de la construction ne sont pas terminées. Par conséquent, le code client ne récupèrera jamais un résultat incomplet.</p><a href=#mise-en-œuvre><h2 id=mise-en-œuvre><span class=hanchor arialabel=Anchor># </span>Mise en œuvre</h2></a><ol><li><p>Assurez-vous de définir clairement les étapes communes de la construction pour toutes les représentations de produits disponibles, sinon vous ne pourrez pas mettre en place le patron.</p></li><li><p>Déclarez ces étapes dans l’interface du monteur.</p></li><li><p>Pour chaque représentation du produit, créez une classe concrète monteur puis implémentez ses étapes de construction.</p><p>N’oubliez pas de mettre en place une méthode pour récupérer le résultat de la construction. Cette méthode ne peut pas être déclarée dans l’interface du monteur, car les différents monteurs peuvent fabriquer des produits qui n’ont pas forcément une interface commune. Nous ne pouvons pas connaitre à l’avance le type de retour d’une telle méthode. En revanche, si vos produits appartiennent à une hiérarchie unique, la méthode qui récupère le résultat peut être ajoutée à l’interface de base sans problème.</p></li><li><p>Réfléchissez à la création d’une classe directeur. Elle peut encapsuler différents processus de construction d’un produit en utilisant le même objet monteur.</p></li><li><p>Le code client crée les objets monteur et directeur. Le client doit passer un objet monteur au directeur avant le début de la construction. En général, il ne le fait qu’une seule fois, via les paramètres du constructeur du directeur. Le directeur utilise l’objet monteur pour toute construction ultérieure. Nous pourrions également passer le monteur directement à la méthode de construction du directeur.</p></li><li><p>Le résultat de la construction peut être obtenu directement à partir du directeur, si tous les produits sont branchés sur la même interface. Sinon, le client doit aller directement chercher le résultat auprès du monteur.</p></li></ol><a href=#avantages-et-inconvénients><h2 id=avantages-et-inconvénients><span class=hanchor arialabel=Anchor># </span>Avantages et inconvénients</h2></a><ul><li><p>Vous pouvez construire les objets étape par étape et les déléguer ou les exécuter récursivement.</p></li><li><p>Vous pouvez réutiliser le même code de construction lorsque vous construisez différentes représentations des produits.</p></li><li><p><em>Principe de responsabilité unique</em>. Vous pouvez découpler le code complexe de la construction et la logique métier du produit.</p></li><li><p>Le monteur nécessite de créer beaucoup nouvelles classes, ce qui accroit la complexité générale du code.</p></li></ul><a href=#liens-avec-les-autres-patrons><h2 id=liens-avec-les-autres-patrons><span class=hanchor arialabel=Anchor># </span>Liens avec les autres patrons</h2></a><ul><li><p>La
+<a href=https://refactoring.guru/fr/design-patterns/factory-method rel=noopener>Fabrique</a> est souvent utilisée dès le début de la conception (moins compliquée et plus personnalisée grâce aux sous-classes) et évolue vers la
+<a href=https://refactoring.guru/fr/design-patterns/abstract-factory rel=noopener>Fabrique abstraite</a>, le
+<a href=https://refactoring.guru/fr/design-patterns/prototype rel=noopener>Prototype</a>, ou le
+<a href=https://refactoring.guru/fr/design-patterns/builder rel=noopener>Monteur</a> (ce dernier étant plus flexible, mais plus compliqué).</p></li><li><p>Le
+<a href=https://refactoring.guru/fr/design-patterns/builder rel=noopener>Monteur</a> se concentre sur la construction d’objets complexes étape par étape. La
+<a href=https://refactoring.guru/fr/design-patterns/abstract-factory rel=noopener>Fabrique abstraite</a> se spécialise dans la création de familles d’objets associés. La <em>fabrique abstraite</em> retourne le produit immédiatement, alors que le <em>monteur</em> vous permet de lancer des étapes supplémentaires avant de récupérer le produit.</p></li><li><p>Vous pouvez utiliser le
+<a href=https://refactoring.guru/fr/design-patterns/builder rel=noopener>Monteur</a> lorsque vous créez des arbres
+<a href=https://refactoring.guru/fr/design-patterns/composite rel=noopener>Composites</a> complexes, car vous pouvez programmer les étapes de la construction récursivement.</p></li><li><p>Vous pouvez combiner le
+<a href=https://refactoring.guru/fr/design-patterns/builder rel=noopener>Monteur</a> avec le
+<a href=https://refactoring.guru/fr/design-patterns/bridge rel=noopener>Pont</a> : la classe directeur joue le rôle de l’abstraction, et les différents <em>monteurs</em> prennent le rôle des implémentations.</p></li><li><p>Les
+<a href=https://refactoring.guru/fr/design-patterns/abstract-factory rel=noopener>Fabriques abstraites</a>,
+<a href=https://refactoring.guru/fr/design-patterns/builder rel=noopener>Monteurs</a> et
+<a href=https://refactoring.guru/fr/design-patterns/prototype rel=noopener>Prototypes</a> peuvent tous être implémentés comme des
+<a href=https://refactoring.guru/fr/design-patterns/singleton rel=noopener>Singletons</a>.</p></li></ul><a href=#exemples-de-code><h2 id=exemples-de-code><span class=hanchor arialabel=Anchor># </span>Exemples de code</h2></a><p><a href=https://refactoring.guru/fr/design-patterns/builder/java/example rel=noopener><img width=43 height=56 src=../../_resources/java_0f47e41057bb416f98ac991ccca739a3.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/builder/csharp/example rel=noopener><img width=43 height=56 src=../../_resources/csharp_3ffe9aca15794347b14c5182c8823c9c.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/builder/cpp/example rel=noopener><img width=43 height=56 src=../../_resources/cpp_2f7c9eea44b146d494964d53541ef647.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/builder/php/example rel=noopener><img width=43 height=56 src=../../_resources/php_0a993845178545afacd302d7d4c2e1cd.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/builder/python/example rel=noopener><img width=43 height=56 src=../../_resources/python_950ae2abcde84b73b9285e3a8ba901b0.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/builder/ruby/example rel=noopener><img width=43 height=56 src=../../_resources/ruby_500743e86143432880da5a96c180da2b.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/builder/swift/example rel=noopener><img width=43 height=56 src=../../_resources/swift_435bdd3372354fa6aa84d2ec3dfbeb7a.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/builder/typescript/example rel=noopener><img width=43 height=56 src=../../_resources/typescript_d734ace797204596b8111300818f6ef4.svg class=jop-noMdConv></a>
+<a href=https://refactoring.guru/fr/design-patterns/builder/go/example rel=noopener><img width=43 height=56 src=../../_resources/go_56d708ad4eac48aaa2cc604add11e5dc.svg class=jop-noMdConv></a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=200 height=200 src=../../_resources/patterns-book-banner-3_327d266b6c234d24a7ced48c2a5.png class=jop-noMdConv></a></p><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook><h3 id=soutenez-notre-site-gratuit-et-obtenez-lebook><span class=hanchor arialabel=Anchor># </span>Soutenez notre site gratuit et obtenez l’ebook !</h3></a><ul><li>22 patrons de conception et 8 principes expliqués en profondeur.</li><li>444 pages de vulgarisation, bien structurées et faciles à lire.</li><li>225 illustrations et diagrammes clairs pour aider à la compréhension.</li><li>Une archive avec des exemples de code dans 9 langages.</li><li>Tous les appareils sont pris en charge : formats PDF/EPUB/MOBI/KFX.</li></ul><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><a href=#suivant><h4 id=suivant><span class=hanchor arialabel=Anchor># </span>Suivant</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/prototype rel=noopener>Prototype</a></p><a href=#retour><h4 id=retour><span class=hanchor arialabel=Anchor># </span>Retour</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/factory-comparison rel=noopener>Comparaison des fabriques</a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=245 height=375 src=../../_resources/web-cover-fr_b73e9ceda0934a518f4e61197c52c87a.png class=jop-noMdConv></a></p><p>Cet article est tiré de notre ebook
+<strong>Plongée au cœur des
+PATRONS DE CONCEPTION</strong></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><p>Facebook</p><p>Twitter</p><ul><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li><li><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a></li></ul><p><a href=https://refactoring.guru/design-patterns/builder rel=noopener>English</a>
+<a href=https://refactoring.guru/es/design-patterns/builder rel=noopener>Español</a>
+<a href=https://refactoring.guru/fr/design-patterns/builder rel=noopener>Français</a>
+<a href=https://refactoring.guru/pl/design-patterns/builder rel=noopener>Polski</a>
+<a href=https://refactoring.guru/pt-br/design-patterns/builder rel=noopener>Português-Br</a>
+<a href=https://refactoring.guru/ru/design-patterns/builder rel=noopener>Русский</a>
+<a href=https://refactoring.guru/uk/design-patterns/builder rel=noopener>Українська</a>
+<a href=https://refactoringguru.cn/design-patterns/builder rel=noopener>中文</a></p><p><a href=https://refactoring.guru/fr rel=noopener><img src=https://deuxfois.github.io/quartz//../../_resources/logo-covid-winter_284aa320ea0e42a89c326a0cd6478238.png width=auto alt=Refactoring.Guru></a></p><p><img src=https://deuxfois.github.io/quartz//../../_resources/winter-hat_2d47179d59484ad29bc8a628bee27e7a.png width=auto alt></p><ul><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/what-is-pattern rel=noopener>Introduction</a></li><li><a href=https://refactoring.guru/fr/design-patterns/catalog rel=noopener>Catalogue</a></li><li><a href=https://refactoring.guru/fr/design-patterns/creational-patterns rel=noopener>Patrons de création</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/factory-method rel=noopener>Fabrique</a></li><li><a href=https://refactoring.guru/fr/design-patterns/abstract-factory rel=noopener>Fabrique abstraite</a></li><li><a href=https://refactoring.guru/fr/design-patterns/builder rel=noopener>Monteur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/prototype rel=noopener>Prototype</a></li><li><a href=https://refactoring.guru/fr/design-patterns/singleton rel=noopener>Singleton</a></li></ul></li><li><a href=https://refactoring.guru/fr/design-patterns/structural-patterns rel=noopener>Patrons structurels</a></li><li><a href=https://refactoring.guru/fr/design-patterns/behavioral-patterns rel=noopener>Patrons comportementaux</a></li><li><a href=https://refactoring.guru/fr/design-patterns/examples rel=noopener>Exemples de code</a></li></ul></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation (commenter bientôt)</a></li></ul><p><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a>
+<a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Nous contacter</a></p><ul><li><a href=https://refactoring.guru/fr rel=noopener>Accueil</a></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a></li><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Forum</a></li><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li></ul><p>2014-2021
+<a href=https://refactoring.guru/fr rel=noopener>Refactoring.Guru</a>. Tous droits réservés.
+<img src=https://deuxfois.github.io/quartz//../../_resources/fa-building_ecc8c93279f142c49407d91ef3e63e50.svg width=auto alt="Organization address"> Khmelnitske shosse 19 / 27, Kamianets-Podilskyi, Ukraine, 32305
+Email:
+<a rel=noopener class="internal-link broken" data-src=mailto:support@refactoring.guru>support@refactoring.guru</a></p><p>Illustrations par
+<a href=http://zhart.us/ rel=noopener>Dmitry Zhart</a></p><ul><li><a href=https://refactoring.guru/fr/terms rel=noopener>Termes et conditions</a></li><li><a href=https://refactoring.guru/fr/privacy-policy rel=noopener>Politique de protection de la vie privée</a></li><li><a href=https://refactoring.guru/fr/content-usage-policy rel=noopener>Politique de l’utilisation des données</a></li></ul></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://deuxfois.github.io/quartz/js/graph.243ea0d4fc79317e06f846bd698ba136.js></script></div></div><div id=contact_buttons><footer><p>Made by DeuxFois using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://deuxfois.github.io/quartz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>

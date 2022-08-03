@@ -1,0 +1,194 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Patron de Méthode permet de mettre le squelette d’un algorithme dans la classe mère, mais laisse les sous-classes redéfinir certaines étapes de l’algorithme sans changer sa structure."><title>Patron de méthode / Template Method</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://deuxfois.github.io/quartz//icon.png><link href=https://deuxfois.github.io/quartz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://deuxfois.github.io/quartz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://deuxfois.github.io/quartz/js/darkmode.69b2c08ae0f08c3a3f86259a122e1f06.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://deuxfois.github.io/quartz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://deuxfois.github.io/quartz/",fetchData=Promise.all([fetch("https://deuxfois.github.io/quartz/indices/linkIndex.668a7938cf11b7eb01cc194bddc133e0.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://deuxfois.github.io/quartz/indices/contentIndex.396a82180f6e9cf02145bda53551401c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!0;drawGraph("https://deuxfois.github.io/quartz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:2,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://deuxfois.github.io/quartz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/deuxfois.github.io\/quartz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://deuxfois.github.io/quartz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://deuxfois.github.io/quartz/>⛄ DeuxFoi's blog</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Patron de méthode / Template Method</h1><p class=meta>Last updated
+Aug 3, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Architecture/Design-Pattern/Behavioral/Patron_de_methode.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://deuxfois.github.io/quartz/tags/behavioral/>Behavioral</a></li><li><a href=https://deuxfois.github.io/quartz/tags/design_pattern/>Design pattern</a></li></ul><aside class=mainTOC><details open><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#problème>Problème</a></li><li><a href=#solution>Solution</a></li><li><a href=#analogie>Analogie</a></li><li><a href=#structure>Structure</a></li><li><a href=#pseudo-code>Pseudo-code</a></li><li><a href=#possibilités-dapplication>Possibilités d’application</a></li><li><a href=#mise-en-œuvre>Mise en œuvre</a></li><li><a href=#avantages-et-inconvénients>Avantages et inconvénients</a></li><li><a href=#liens-avec-les-autres-patrons>Liens avec les autres patrons</a></li><li><a href=#exemples-de-code>Exemples de code</a><ol><li><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook>Soutenez notre site gratuit et obtenez l’ebook !</a></li></ol></li></ol></nav></details></aside><p><strong>Patron de Méthode</strong> permet de mettre le squelette d’un algorithme dans la classe mère, mais laisse les sous-classes redéfinir certaines étapes de l’algorithme sans changer sa structure.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/template-method_b69262f94731486b9b8ad05c2ad3b94c.png width=auto alt="Patron de conception patron de méthode"></p><a href=#problème><h2 id=problème><span class=hanchor arialabel=Anchor># </span>Problème</h2></a><p>Imaginez que vous êtes en train de créer une application de data mining (exploration de données) qui analyse les documents d’une entreprise. Les utilisateurs alimentent l’application avec différents formats (PDF, DOC, CSV) et celle-ci tente de récupérer les données utiles dans un format uniforme.</p><p>La première version de l’application ne fonctionnait qu’avec les fichiers DOC. Dans la version suivante, les fichiers CSV étaient acceptés. Un mois plus tard, vous lui avez « appris » à récupérer les données des fichiers PDF.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/problem_6670b65736b8415586597473be4cd39d.png width=auto alt="Les classes de data mining contiennent beaucoup de code dupliqué"></p><p>Les classes de data mining contiennent beaucoup de code dupliqué.</p><p>Au bout d’un moment, vous remarquez que ces trois classes comportent beaucoup de code similaire. Bien que le code qui gère les différents formats de données soit complètement différent d’une classe à l’autre, celui qui traite et analyse les données est presque identique. Ne serait-ce pas super de se débarrasser de tout ce code dupliqué tout en laissant la structure de l’algorithme intact ?</p><p>Un autre problème se pose avec le code client qui utilise ces classes. Il y a de gros blocs conditionnels qui choisissent un comportement en fonction de la classe de l’objet traité. Si ces trois classes avaient une interface commune (ou une classe de base), vous pourriez enlever toutes les conditions du code client et utiliser le polymorphisme lorsque vous appelez les méthodes sur un objet à traiter.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span>Solution</h2></a><p>Le patron de méthode vous propose de découper un algorithme en une série d’étapes, de transformer ces étapes en méthodes et de mettre l’ensemble des appels à ces méthodes dans une seule méthode socle, le <em>patron de méthode</em>. Les étapes peuvent être <code>abstraites</code> ou avoir une implémentation par défaut. Pour utiliser l’algorithme, le client doit fournir sa propre sous-classe, implémenter toutes les étapes abstraites et redéfinir certaines d’entre elles si besoin (mais pas la méthode socle elle-même).</p><p>Mettons ceci en application dans notre logiciel de data mining. Nous pouvons créer une classe de base pour les trois algorithmes d’analyse syntaxique (parsing). Cette classe définit une méthode socle, composée d’une série d’appels à plusieurs étapes qui traitent les documents.</p><img width=600 height=0 src=../../_resources/solution-fr_607cb7fa61f24fd78b5331b5bc71ebf3.png><p>La méthode socle scinde l’algorithme en plusieurs étapes, permettant aux sous-classes de les redéfinir, mais on ne redéfinit pas la méthode socle elle-même.</p><p>En premier lieu, nous pouvons déclarer toutes les étapes <code>abstraites</code> afin de forcer les sous-classes à définir leur propre implémentation pour ces méthodes. Dans notre cas, les sous-classes ont déjà les implémentations nécessaires. Nous devons donc uniquement ajuster les signatures des méthodes en les faisant correspondre à celles de la classe mère.</p><p>À présent, voyons ce que l’on peut faire pour se débarrasser du code dupliqué. Il semblerait que le code pour ouvrir/fermer les fichiers et récupérer/parser les données est différent pour chaque format de données, il n’y a donc aucune raison de toucher à ces méthodes. En revanche, les autres étapes (analyser les données brutes et établir les rapports) se ressemblent de près et leur implémentation peut donc être déplacée dans la classe de base, où les sous-classes se partagent le code.</p><p>Comme vous pouvez le voir, nous avons deux types d’étapes :</p><ul><li>les <em>opérations abstraites</em> qui doivent être implémentées dans chaque sous-classe.</li><li>les <em>opérations facultatives</em> qui possèdent déjà une implémentation par défaut, mais peuvent être redéfinies si besoin.</li></ul><p>Toutefois, un autre type d’étape existe : les <em>crochets</em> (hooks). Un crochet est une étape facultative dont le corps de méthode est laissé vide. Un patron de méthode peut fonctionner même si un crochet n’est pas redéfini. En général, les crochets sont placés avant ou après les étapes cruciales des algorithmes et procurent aux sous-classes des points d’extension supplémentaires.</p><a href=#analogie><h2 id=analogie><span class=hanchor arialabel=Anchor># </span>Analogie</h2></a><img width=590 height=0 src=../../_resources/live-example_cbe119a3086644f38bd0d442e8e55b25.png><p>Un plan architectural typique peut être légèrement remanié pour mieux répondre aux besoins d’un client.</p><p>Le patron de méthode peut être utilisé pour construire des maisons en série. Le plan architectural pour construire une maison standard peut être doté de plusieurs points d’extensions qui permettent à un propriétaire potentiel d’ajuster certains détails dans la maison.</p><p>Chaque étape de construction (poser les fondations, poser la charpente, monter les murs, installer la plomberie pour l’eau et les câbles pour l’électricité, etc.) peut être légèrement modifiée pour différencier un peu la maison des autres.</p><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span>Structure</h2></a><img width=340 height=0 src=../../_resources/structure_c023936c9a544ad499dec4c7354b5d01.png><ol><li><p>La <strong>Classe Abstraite</strong> déclare des méthodes (qui représentent les étapes d’un algorithme) et la méthode patronDeMéthode qui appelle toutes ces méthodes dans un ordre spécifique. Les étapes peuvent être déclarées abstraites ou posséder une implémentation par défaut.</p></li><li><p>Les <strong>Classes Concrètes</strong> peuvent redéfinir toutes les étapes, mais pas patronDeMéthode.</p></li></ol><a href=#pseudo-code><h2 id=pseudo-code><span class=hanchor arialabel=Anchor># </span>Pseudo-code</h2></a><p>Dans cet exemple, le patron de conception <strong>Patron de Méthode</strong> fournit un squelette pour les branches de l’IA (intelligence artificielle) d’un jeu vidéo de stratégie simple.</p><img width=430 height=0 src=../../_resources/example_0b7f81a0eab240d192fa73be34d75645.png><p>Les classes d’IA dans un jeu vidéo simple.</p><p>Toutes les races du jeu ont à peu près les mêmes unités et bâtiments. Vous pouvez donc réutiliser la même structure d’IA pour les différentes races, tout en personnalisant certains détails. Grâce à cette approche, vous pouvez redéfinir l’IA des orcs pour la rendre plus agressive, obtenir des humains plus défensifs, et faire en sorte que les monstres ne puissent pas construire de bâtiments. Pour ajouter une autre race au jeu, vous devez simplement créer une nouvelle sous-classe d’IA et redéfinir les méthodes par défaut déclarées dans la classe de base de l’IA.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// La classe abstraite définit un patron de méthode qui contient
+</span></span><span class=line><span class=cl>// le squelette d’un algorithme. Ce dernier est généralement
+</span></span><span class=line><span class=cl>// composé d’appels à des opérations primitives abstraites. Les
+</span></span><span class=line><span class=cl>// sous-classes concrètes implémentent ces opérations, mais ne
+</span></span><span class=line><span class=cl>// touchent pas au patron de méthode.
+</span></span><span class=line><span class=cl>class GameAI is
+</span></span><span class=line><span class=cl>    // Le patron de méthode définit le squelette d’un
+</span></span><span class=line><span class=cl>    // algorithme.
+</span></span><span class=line><span class=cl>    method turn() is
+</span></span><span class=line><span class=cl>        collectResources()
+</span></span><span class=line><span class=cl>        buildStructures()
+</span></span><span class=line><span class=cl>        buildUnits()
+</span></span><span class=line><span class=cl>        attack()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Certaines étapes peuvent être implémentées directement
+</span></span><span class=line><span class=cl>    // dans une classe de base.
+</span></span><span class=line><span class=cl>    method collectResources() is
+</span></span><span class=line><span class=cl>        foreach (s in this.builtStructures) do
+</span></span><span class=line><span class=cl>            s.collect()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Et certaines peuvent être abstraites.
+</span></span><span class=line><span class=cl>    abstract method buildStructures()
+</span></span><span class=line><span class=cl>    abstract method buildUnits()
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Une classe peut avoir plusieurs patrons de méthode.
+</span></span><span class=line><span class=cl>    method attack() is
+</span></span><span class=line><span class=cl>        enemy = closestEnemy()
+</span></span><span class=line><span class=cl>        if (enemy == null)
+</span></span><span class=line><span class=cl>            sendScouts(map.center)
+</span></span><span class=line><span class=cl>        else
+</span></span><span class=line><span class=cl>            sendWarriors(enemy.position)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    abstract method sendScouts(position)
+</span></span><span class=line><span class=cl>    abstract method sendWarriors(position)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Les classes concrètes doivent implémenter toutes les
+</span></span><span class=line><span class=cl>// opérations abstraites de la classe de base, mais elles ne
+</span></span><span class=line><span class=cl>// doivent pas redéfinir le patron de méthode.
+</span></span><span class=line><span class=cl>class OrcsAI extends GameAI is
+</span></span><span class=line><span class=cl>    method buildStructures() is
+</span></span><span class=line><span class=cl>        if (there are some resources) then
+</span></span><span class=line><span class=cl>            // Construit des fermes, des casernes, puis une
+</span></span><span class=line><span class=cl>            // forteresse.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method buildUnits() is
+</span></span><span class=line><span class=cl>        if (there are plenty of resources) then
+</span></span><span class=line><span class=cl>            if (there are no scouts)
+</span></span><span class=line><span class=cl>                // Construit un ouvrier et l’ajoute au groupe
+</span></span><span class=line><span class=cl>                // d’éclaireurs.
+</span></span><span class=line><span class=cl>            else
+</span></span><span class=line><span class=cl>                // Construit un combattant et l’ajoute au groupe
+</span></span><span class=line><span class=cl>                // des guerriers.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method sendScouts(position) is
+</span></span><span class=line><span class=cl>        if (scouts.length &gt; 0) then
+</span></span><span class=line><span class=cl>            // Envoie les éclaireurs à la position.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method sendWarriors(position) is
+</span></span><span class=line><span class=cl>        if (warriors.length &gt; 5) then
+</span></span><span class=line><span class=cl>            // Envoie les guerriers à la position.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Les sous-classes peuvent redéfinir certaines opérations avec
+</span></span><span class=line><span class=cl>// une implémentation par défaut.
+</span></span><span class=line><span class=cl>class MonstersAI extends GameAI is
+</span></span><span class=line><span class=cl>    method collectResources() is
+</span></span><span class=line><span class=cl>        // Les monstres ne récoltent pas de ressources.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method buildStructures() is
+</span></span><span class=line><span class=cl>        // Les monstres ne fabriquent pas de bâtiments.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method buildUnits() is
+</span></span><span class=line><span class=cl>        // Les monstres ne construisent pas d&#39;unités.
+</span></span></code></pre></td></tr></table></div></div><a href=#possibilités-dapplication><h2 id=possibilités-dapplication><span class=hanchor arialabel=Anchor># </span>Possibilités d’application</h2></a><p>Utilisez le patron de méthode si vous voulez que vos clients puissent étendre des étapes spécifiques d’un algorithme, mais pas l’algorithme entier ou sa structure.</p><p>Le patron de méthode vous permet de transformer un algorithme monolithique en une série d’étapes individuelles qui peuvent être facilement étendues par des sous-classes, tout en gardant intacte la structure établie dans une classe mère.</p><p>Utilisez ce patron si vous avez plusieurs classes qui contiennent des algorithmes presque identiques, avec seulement quelques différences mineures. Par conséquent, vous risqueriez de devoir retoucher toutes les classes lorsque vous modifiez l’algorithme.</p><p>Lorsque vous transformez un tel algorithme en un patron de méthode, vous pouvez également remonter les étapes dotées d’implémentations similaires dans la classe mère, afin d’éviter la duplication de code. Vous pouvez laisser le reste du code dans les sous-classes.</p><a href=#mise-en-œuvre><h2 id=mise-en-œuvre><span class=hanchor arialabel=Anchor># </span>Mise en œuvre</h2></a><ol><li><p>Analysez l’algorithme ciblé pour voir si vous pouvez le décomposer en étapes. Déterminez les étapes communes à toutes les sous-classes et celles qui sont uniques.</p></li><li><p>Créez une classe de base abstraite et déclarez le patron de méthode et un ensemble de méthodes abstraites pour représenter les opérations de l’algorithme. Faites une ébauche de la structure de l’algorithme dans ce patron de méthode en appelant les opérations correspondantes. Rendez ce patron <code>final</code> pour empêcher les sous-classes de la redéfinir.</p></li><li><p>Cela ne pose aucun problème si toutes les opérations sont abstraites, mais une implémentation par défaut bénéficierait à certaines opérations. Les sous-classes n’ont pas besoin d’implémenter ces méthodes.</p></li><li><p>Pensez à ajouter des crochets entre les étapes cruciales de votre algorithme.</p></li><li><p>Pour chaque variante de l’algorithme, créez une nouvelle sous-classe. Elle <em>doit</em> implémenter toutes les opérations abstraites, mais <em>peut</em> également redéfinir les opérations facultatives.</p></li></ol><a href=#avantages-et-inconvénients><h2 id=avantages-et-inconvénients><span class=hanchor arialabel=Anchor># </span>Avantages et inconvénients</h2></a><ul><li><p>Vous permettez aux clients de redéfinir certaines parties d’un grand algorithme. Elles sont ainsi moins affectées par les modifications apportées aux autres parties de l’algorithme.</p></li><li><p>Vous pouvez remonter le code dupliqué dans la classe mère.</p></li><li><p>Certains clients peuvent être limités à cause du squelette de l’algorithme.</p></li><li><p>Vous ne respectez pas le <em>Principe de substitution de Liskov</em>, si vous supprimez l’implémentation d’une étape par défaut dans une sous-classe.</p></li><li><p>Plus vous avez d’étapes, plus le patron de méthode devient difficile à maintenir.</p></li></ul><a href=#liens-avec-les-autres-patrons><h2 id=liens-avec-les-autres-patrons><span class=hanchor arialabel=Anchor># </span>Liens avec les autres patrons</h2></a><ul><li><p>La
+<a href=https://refactoring.guru/fr/design-patterns/factory-method rel=noopener>Fabrique</a> est une spécialisation du
+<a href=https://refactoring.guru/fr/design-patterns/template-method rel=noopener>Patron de méthode</a>. Une <em>fabrique</em> peut aussi faire office d’étape dans un grand <em>patron de méthode</em>.</p></li><li><p>Le
+<a href=https://refactoring.guru/fr/design-patterns/template-method rel=noopener>Patron de méthode</a> est basé sur l’héritage : il vous laisse modifier certaines parties d’un algorithme en les étendant dans les sous-classes. La
+<a href=https://refactoring.guru/fr/design-patterns/strategy rel=noopener>Stratégie</a> est basée sur la composition : vous pouvez modifier certaines parties du comportement de l’objet en lui fournissant différentes stratégies qui correspondent à ce comportement. Le <em>patron de méthode</em> agit au niveau de la classe, il est donc statique. La <em>stratégie</em> agit au niveau de l’objet et vous laisse permuter les comportements à l’exécution.</p></li></ul><a href=#exemples-de-code><h2 id=exemples-de-code><span class=hanchor arialabel=Anchor># </span>Exemples de code</h2></a><p><a href=https://refactoring.guru/fr/design-patterns/template-method/java/example rel=noopener><img width=43 height=56 src=../../_resources/java_9aaa4c2e3ccc4b699f62a3670f7c250c.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method/csharp/example rel=noopener><img width=43 height=56 src=../../_resources/csharp_5e4dcb193c364f6c8dc7bda670ba13e3.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method/cpp/example rel=noopener><img width=43 height=56 src=../../_resources/cpp_d2dbb1f82cdc489185f3eb0aac85c6f9.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method/php/example rel=noopener><img width=43 height=56 src=../../_resources/php_478bbb4e306d412cbedc242da92146b2.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method/python/example rel=noopener><img width=43 height=56 src=../../_resources/python_7c8201aaa5ab480586871511009e1aaf.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method/ruby/example rel=noopener><img width=43 height=56 src=../../_resources/ruby_94ffc034621748abb6963cda8992d566.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method/swift/example rel=noopener><img width=43 height=56 src=../../_resources/swift_4dc78ba3db184f39b74c2eab1d5ffdf2.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method/typescript/example rel=noopener><img width=43 height=56 src=../../_resources/typescript_fde7d6ee001c4e5d8a0621199fb0a23b.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method/go/example rel=noopener><img width=43 height=56 src=../../_resources/go_6181061eef244e298b461e0c83c82544.svg></a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=200 height=200 src=../../_resources/patterns-book-banner-3_751def784d3742ae96793690326.png></a></p><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook><h3 id=soutenez-notre-site-gratuit-et-obtenez-lebook><span class=hanchor arialabel=Anchor># </span>Soutenez notre site gratuit et obtenez l’ebook !</h3></a><ul><li>22 patrons de conception et 8 principes expliqués en profondeur.</li><li>444 pages de vulgarisation, bien structurées et faciles à lire.</li><li>225 illustrations et diagrammes clairs pour aider à la compréhension.</li><li>Une archive avec des exemples de code dans 9 langages.</li><li>Tous les appareils sont pris en charge : formats PDF/EPUB/MOBI/KFX.</li></ul><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><a href=#suivant><h4 id=suivant><span class=hanchor arialabel=Anchor># </span>Suivant</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a></p><a href=#retour><h4 id=retour><span class=hanchor arialabel=Anchor># </span>Retour</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/strategy rel=noopener>Stratégie</a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=245 height=375 src=../../_resources/web-cover-fr_d6f958870a4148b88a932eddd32657d8.png></a></p><p>Cet article est tiré de notre ebook
+<strong>Plongée au cœur des
+PATRONS DE CONCEPTION</strong></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><p>Facebook</p><p>Twitter</p><ul><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li><li><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a></li></ul><p><a href=https://refactoring.guru/design-patterns/template-method rel=noopener>English</a>
+<a href=https://refactoring.guru/es/design-patterns/template-method rel=noopener>Español</a>
+<a href=https://refactoring.guru/fr/design-patterns/template-method rel=noopener>Français</a>
+<a href=https://refactoring.guru/pl/design-patterns/template-method rel=noopener>Polski</a>
+<a href=https://refactoring.guru/pt-br/design-patterns/template-method rel=noopener>Português-Br</a>
+<a href=https://refactoring.guru/ru/design-patterns/template-method rel=noopener>Русский</a>
+<a href=https://refactoring.guru/uk/design-patterns/template-method rel=noopener>Українська</a>
+<a href=https://refactoringguru.cn/design-patterns/template-method rel=noopener>中文</a></p><p><a href=https://refactoring.guru/fr rel=noopener><img src=https://deuxfois.github.io/quartz//../../_resources/logo-covid-winter_1e7e0d1c04304ed98cc2c8cdc8387fa0.png width=auto alt=Refactoring.Guru></a></p><p><img src=https://deuxfois.github.io/quartz//../../_resources/winter-hat_8240bf2ec4974f00b06fcbf1deb727d3.png width=auto alt></p><ul><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/what-is-pattern rel=noopener>Introduction</a></li><li><a href=https://refactoring.guru/fr/design-patterns/catalog rel=noopener>Catalogue</a></li><li><a href=https://refactoring.guru/fr/design-patterns/creational-patterns rel=noopener>Patrons de création</a></li><li><a href=https://refactoring.guru/fr/design-patterns/structural-patterns rel=noopener>Patrons structurels</a></li><li><a href=https://refactoring.guru/fr/design-patterns/behavioral-patterns rel=noopener>Patrons comportementaux</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a></li><li><a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a></li><li><a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a></li><li><a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/state rel=noopener>État</a></li><li><a href=https://refactoring.guru/fr/design-patterns/strategy rel=noopener>Stratégie</a></li><li><a href=https://refactoring.guru/fr/design-patterns/template-method rel=noopener>Patron de méthode</a></li><li><a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a></li></ul></li><li><a href=https://refactoring.guru/fr/design-patterns/examples rel=noopener>Exemples de code</a></li></ul></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation (commenter bientôt)</a></li></ul><p><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a>
+<a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Nous contacter</a></p><ul><li><a href=https://refactoring.guru/fr rel=noopener>Accueil</a></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a></li><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Forum</a></li><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li></ul><p>2014-2021
+<a href=https://refactoring.guru/fr rel=noopener>Refactoring.Guru</a>. Tous droits réservés.
+<img src=https://deuxfois.github.io/quartz//../../_resources/fa-building_448d9b061b40475ea98fc157d7462b8f.svg width=auto alt="Organization address"> Khmelnitske shosse 19 / 27, Kamianets-Podilskyi, Ukraine, 32305
+Email:
+<a rel=noopener class="internal-link broken" data-src=mailto:support@refactoring.guru>support@refactoring.guru</a></p><p>Illustrations par
+<a href=http://zhart.us/ rel=noopener>Dmitry Zhart</a></p><ul><li><a href=https://refactoring.guru/fr/terms rel=noopener>Termes et conditions</a></li><li><a href=https://refactoring.guru/fr/privacy-policy rel=noopener>Politique de protection de la vie privée</a></li><li><a href=https://refactoring.guru/fr/content-usage-policy rel=noopener>Politique de l’utilisation des données</a></li></ul></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://deuxfois.github.io/quartz/js/graph.243ea0d4fc79317e06f846bd698ba136.js></script></div></div><div id=contact_buttons><footer><p>Made by DeuxFois using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://deuxfois.github.io/quartz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>

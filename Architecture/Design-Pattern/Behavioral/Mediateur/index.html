@@ -1,0 +1,221 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Médiateur diminue les dépendances chaotiques entre les objets. Il restreint les communications directes entre les objets et les force à collaborer uniquement via un objet médiateur."><title>Médiateur / Mediator</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://deuxfois.github.io/quartz//icon.png><link href=https://deuxfois.github.io/quartz/styles.b54f56dc7e7fdf6be9a4427dc6b0509b.min.css rel=stylesheet><link href=https://deuxfois.github.io/quartz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://deuxfois.github.io/quartz/js/darkmode.69b2c08ae0f08c3a3f86259a122e1f06.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/util.39f53d45cb9520bdaf946bd063598b19.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://deuxfois.github.io/quartz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://deuxfois.github.io/quartz/",fetchData=Promise.all([fetch("https://deuxfois.github.io/quartz/indices/linkIndex.668a7938cf11b7eb01cc194bddc133e0.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://deuxfois.github.io/quartz/indices/contentIndex.396a82180f6e9cf02145bda53551401c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!0;drawGraph("https://deuxfois.github.io/quartz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:2,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://deuxfois.github.io/quartz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/deuxfois.github.io\/quartz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://deuxfois.github.io/quartz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://deuxfois.github.io/quartz/>⛄ DeuxFoi's blog</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Médiateur / Mediator</h1><p class=meta>Last updated
+Aug 3, 2022
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Architecture/Design-Pattern/Behavioral/Mediateur.md rel=noopener>Edit Source</a></p><ul class=tags><li><a href=https://deuxfois.github.io/quartz/tags/behavioral/>Behavioral</a></li><li><a href=https://deuxfois.github.io/quartz/tags/design_pattern/>Design pattern</a></li></ul><aside class=mainTOC><details open><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#problème>Problème</a></li><li><a href=#solution>Solution</a></li><li><a href=#analogie>Analogie</a></li><li><a href=#structure>Structure</a></li><li><a href=#pseudo-code>Pseudo-code</a></li><li><a href=#possibilités-dapplication>Possibilités d’application</a></li><li><a href=#mise-en-œuvre>Mise en œuvre</a></li><li><a href=#avantages-et-inconvénients>Avantages et inconvénients</a></li><li><a href=#liens-avec-les-autres-patrons>Liens avec les autres patrons</a></li><li><a href=#exemples-de-code>Exemples de code</a><ol><li><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook>Soutenez notre site gratuit et obtenez l’ebook !</a></li></ol></li></ol></nav></details></aside><p><strong>Médiateur</strong> diminue les dépendances chaotiques entre les objets. Il restreint les communications directes entre les objets et les force à collaborer uniquement via un objet médiateur.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/mediator_439dcb260c8b446ab7602c447fc50598.png width=auto alt="Patron de conception médiateur"></p><a href=#problème><h2 id=problème><span class=hanchor arialabel=Anchor># </span>Problème</h2></a><p>Prenons une boîte de dialogue qui crée et modifie des profils client. Elle comporte plusieurs contrôles de formulaires comme des champs de texte, des cases à cocher, des boutons, etc.</p><p><img src=https://deuxfois.github.io/quartz//../../_resources/problem1-fr_ca25d340de5d4f0b92ba3a5677f497fa.png width=auto alt="Liens chaotiques entre éléments de l’interface utilisateur"></p><p>Les dépendances entre les éléments de l’interface utilisateur peuvent devenir chaotiques avec l’évolution de l’application.</p><p>Certains éléments du formulaire peuvent interagir. Par exemple, en cochant la case « J’ai un chien », vous allez révéler un champ de texte caché qui vous permet d’écrire le nom du chien. Vous pourriez également avoir un bouton Envoyer qui doit valider les valeurs de tous les champs avant de sauvegarder les données.</p><img width=360 height=0 src=../../_resources/problem2_fb154012ed2c446d86e92ac310e9ab19.png><p>Les éléments peuvent avoir beaucoup de liens. De plus, la modification de certains éléments peut influer sur d’autres.</p><p>En écrivant directement la logique dans le code des éléments du formulaire, vous rendez les classes de ces éléments bien plus difficiles à réutiliser dans l’application. Par exemple, vous ne pourrez pas utiliser la classe de la case à cocher dans un autre formulaire, car elle est couplée avec le champ de texte du chien. Vous êtes par conséquent obligé d’utiliser toutes les classes du formulaire du profil si vous voulez vous servir de l’une d’entre elles.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span>Solution</h2></a><p>Le patron de conception médiateur vous propose de mettre fin à toutes les communications directes entre les composants et de rendre ces derniers indépendants les uns des autres. À la place, ces composants collaborent indirectement en utilisant un objet spécial médiateur qui redirige les appels vers les composants appropriés. Ainsi, les composants ne reposent que sur une seule classe médiateur plutôt que d’être couplés à de nombreux collègues.</p><p>Dans notre exemple qui porte sur l’édition du formulaire d’un profil, la classe dialogue peut prendre le rôle du médiateur. Elle connait déjà probablement tous ses sous-éléments, vous n’avez donc pas besoin d’y ajouter des dépendances.</p><img width=600 height=0 src=../../_resources/solution1-fr_e669a3897c6c4bb0b1c7783ed570c7b9.png><p>Les éléments de l’UI doivent communiquer directement avec l’objet médiateur.</p><p>Le changement le plus important intervient sur les éléments du formulaire. Prenons le bouton Envoyer. Avant, chaque fois qu’un utilisateur appuyait sur ce bouton, ce dernier devait valider les valeurs des éléments individuels du formulaire. À présent, il se contente d’informer la classe dialogue lorsqu’un clic a lieu. Après avoir reçu cette notification, la classe dialogue effectue la validation ou délègue la tâche aux différents éléments. Le bouton n’est ainsi couplé qu’avec la classe dialogue, au lieu d’être relié à un paquet d’éléments.</p><p>Vous pouvez pousser le vice plus loin et diminuer encore plus cette dépendance en extrayant l’interface commune pour toutes ces boîtes de dialogue. L’interface devrait déclarer la méthode de notification que tous les éléments du formulaire utilisent pour prévenir la classe dialogue des événements qui les affectent. Notre bouton Envoyer devrait dorénavant pouvoir manipuler n’importe quelle boîte de dialogue qui implémente cette interface.</p><p>Ainsi, le patron de conception médiateur vous permet d’encapsuler une toile complexe de relations entre divers objets à l’intérieur d’un simple objet médiateur. Moins une classe a de dépendances et plus il est facile de la modifier, de l’étendre ou de la réutiliser.</p><a href=#analogie><h2 id=analogie><span class=hanchor arialabel=Anchor># </span>Analogie</h2></a><img width=370 height=0 src=../../_resources/live-example_9641ac6b666747688150ebec224d7c5b.png><p>Les pilotes d’avion ne communiquent pas directement ensemble pour déterminer qui sera le prochain à atterrir. Toute communication passe par la tour de contrôle.</p><p>Les pilotes qui vont décoller ou atterrir sur la piste ne communiquent pas ensemble directement. Ils s’adressent à un contrôleur aérien qui est assis dans une grande tour près de la piste d’atterrissage. Sans lui, les pilotes seraient obligés de savoir si d’autres avions sont à proximité et décider des priorités d’atterrissage avec un ensemble de pilotes. Les accidents d’avion augmenteraient probablement beaucoup.</p><p>La tour n’a pas besoin de contrôler la totalité d’un vol. Elle n’est là que pour faire respecter des contraintes au départ et à l’arrivée, pour faire en sorte que les pilotes n’aient pas trop de paramètres à gérer.</p><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span>Structure</h2></a><img width=520 height=0 src=../../_resources/structure_01f0779cbc9d4706a80fbad61db44928.png><ol><li><p>Les classes <strong>Composant</strong> contiennent de la logique métier. Chaque composant possède une référence vers un médiateur, déclaré avec le type de l’interface médiateur. Le composant ne connait pas la classe du médiateur, vous pouvez ainsi réutiliser les mêmes composants dans d’autres programmes en les liant à un autre médiateur.</p></li><li><p>L’interface <strong>Médiateur</strong> déclare des méthodes pour communiquer avec les composants et n’est généralement dotée que d’une seule méthode de notification. Les composants peuvent passer n’importe quel contexte en paramètre de cette méthode (ce qui inclut leurs propres objets), mais en évitant de provoquer un couplage entre un composant récepteur et la classe du demandeur.</p></li><li><p>Les <strong>Médiateurs Concrets</strong> encapsulent les relations entre les divers composants. Les médiateurs concrets gardent souvent des références vers les composants qu’ils gèrent et s’occupent même parfois de leur cycle de vie.</p></li><li><p>Les composants ne doivent pas avoir de visibilité sur les autres composants. S’il arrive quelque chose d’important à un composant, il doit seulement en prévenir le médiateur. Quand ce dernier reçoit la notification, il doit pouvoir facilement identifier le demandeur, ce qui peut suffire pour déterminer le composant qui doit être déclenché en retour.</p><p>De son point de vue, le composant ne voit qu’une boîte noire. Le demandeur ne sait pas qui va se charger de sa demande, et le récepteur ignore qui l’a envoyée.</p></li></ol><a href=#pseudo-code><h2 id=pseudo-code><span class=hanchor arialabel=Anchor># </span>Pseudo-code</h2></a><p>Dans cet exemple, le <strong>Médiateur</strong> vous aide à éliminer les dépendances mutuelles entre différentes classes de l’UI (boutons, cases à cocher et libellés de texte).</p><img width=560 height=0 src=../../_resources/example_3ba810927e5d4f9f8964a3839812443b.png><p>Structure des classes des boîtes de dialogue de l’UI.</p><p>Un élément déclenché par un utilisateur ne communique pas directement avec les autres éléments, même si c’est l’impression qui s’en dégage. À la place, l’élément n’a besoin que de prévenir son médiateur qu’un événement a eu lieu, en lui donnant les informations contextuelles avec la notification.</p><p>Dans cet exemple, la boîte de dialogue d’identification prend le rôle du médiateur. Elle sait comment les éléments concrets sont censés collaborer et facilite leur communication indirecte. Lorsque la boîte de dialogue reçoit une notification d’événement, elle sait quel élément est concerné et redirige l’appel en conséquence.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// L’interface médiateur déclare une méthode qui permet aux
+</span></span><span class=line><span class=cl>// composants d’avertir le médiateur au sujet de divers
+</span></span><span class=line><span class=cl>// événements. Le médiateur peut réagir à ces événements et
+</span></span><span class=line><span class=cl>// passer les appels aux autres composants.
+</span></span><span class=line><span class=cl>interface Mediator is
+</span></span><span class=line><span class=cl>    method notify(sender: Component, event: string)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// La classe concrète Médiateur. Les interconnexions entre les
+</span></span><span class=line><span class=cl>// composants individuels ont été démêlées et transférées dans
+</span></span><span class=line><span class=cl>// le médiateur.
+</span></span><span class=line><span class=cl>class AuthenticationDialog implements Mediator is
+</span></span><span class=line><span class=cl>    private field title: string
+</span></span><span class=line><span class=cl>    private field loginOrRegisterChkBx: Checkbox
+</span></span><span class=line><span class=cl>    private field loginUsername, loginPassword: Textbox
+</span></span><span class=line><span class=cl>    private field registrationUsername, registrationPassword,
+</span></span><span class=line><span class=cl>                  registrationEmail: Textbox
+</span></span><span class=line><span class=cl>    private field okBtn, cancelBtn: Button
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor AuthenticationDialog() is
+</span></span><span class=line><span class=cl>        // Crée les composants et passe le médiateur actuel dans
+</span></span><span class=line><span class=cl>        // leurs constructeurs pour établir les liens.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    // Le médiateur est averti si un composant est affecté par
+</span></span><span class=line><span class=cl>    // quoi que ce soit. Lorsqu’un médiateur reçoit une
+</span></span><span class=line><span class=cl>    // notification, il peut lancer un traitement ou envoyer la
+</span></span><span class=line><span class=cl>    // demande à un autre composant.
+</span></span><span class=line><span class=cl>    method notify(sender, event) is
+</span></span><span class=line><span class=cl>        if (sender == loginOrRegisterChkBx and event == &#34;check&#34;)
+</span></span><span class=line><span class=cl>            if (loginOrRegisterChkBx.checked)
+</span></span><span class=line><span class=cl>                title = &#34;Log  in&#34;
+</span></span><span class=line><span class=cl>                // 1. Affiche les composants du formulaire
+</span></span><span class=line><span class=cl>                // d’identification.
+</span></span><span class=line><span class=cl>                // 2. Cache les composants du formulaire
+</span></span><span class=line><span class=cl>                // d’inscription.
+</span></span><span class=line><span class=cl>            else
+</span></span><span class=line><span class=cl>                title = &#34;Register&#34;
+</span></span><span class=line><span class=cl>                // 1. Affiche les composants du formulaire
+</span></span><span class=line><span class=cl>                // d’inscription.
+</span></span><span class=line><span class=cl>                // 2. Cache les composants du formulaire
+</span></span><span class=line><span class=cl>                // d’identification.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        if (sender == okBtn &amp;&amp; event == &#34;click&#34;)
+</span></span><span class=line><span class=cl>            if (loginOrRegister.checked)
+</span></span><span class=line><span class=cl>                // Essaye de trouver un utilisateur à l’aide de
+</span></span><span class=line><span class=cl>                // ses identifiants.
+</span></span><span class=line><span class=cl>                if (!found)
+</span></span><span class=line><span class=cl>                    // Montre un message d’erreur au-dessus du
+</span></span><span class=line><span class=cl>                    // champ identifiant.
+</span></span><span class=line><span class=cl>            else
+</span></span><span class=line><span class=cl>                // 1. Crée un compte utilisateur en utilisant
+</span></span><span class=line><span class=cl>                // les données saisies dans les champs
+</span></span><span class=line><span class=cl>                // d’inscription.
+</span></span><span class=line><span class=cl>                // 2. Connecte cet utilisateur.
+</span></span><span class=line><span class=cl>                // ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Les composants communiquent avec un médiateur en utilisant
+</span></span><span class=line><span class=cl>// son interface. Grâce à cela, vous pouvez utiliser les mêmes
+</span></span><span class=line><span class=cl>// composants dans d’autres contextes en les associant avec
+</span></span><span class=line><span class=cl>// d’autres objets médiateur.
+</span></span><span class=line><span class=cl>class Component is
+</span></span><span class=line><span class=cl>    field dialog: Mediator
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    constructor Component(dialog) is
+</span></span><span class=line><span class=cl>        this.dialog = dialog
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method click() is
+</span></span><span class=line><span class=cl>        dialog.notify(this, &#34;click&#34;)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    method keypress() is
+</span></span><span class=line><span class=cl>        dialog.notify(this, &#34;keypress&#34;)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Les composants concrets ne communiquent pas ensemble. Leur
+</span></span><span class=line><span class=cl>// unique canal de communication leur sert à envoyer des
+</span></span><span class=line><span class=cl>// notifications au médiateur.
+</span></span><span class=line><span class=cl>class Button extends Component is
+</span></span><span class=line><span class=cl>    // ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>class Textbox extends Component is
+</span></span><span class=line><span class=cl>    // ...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>class Checkbox extends Component is
+</span></span><span class=line><span class=cl>    method check() is
+</span></span><span class=line><span class=cl>        dialog.notify(this, &#34;check&#34;)
+</span></span><span class=line><span class=cl>    // ...
+</span></span></code></pre></td></tr></table></div></div><a href=#possibilités-dapplication><h2 id=possibilités-dapplication><span class=hanchor arialabel=Anchor># </span>Possibilités d’application</h2></a><p>Utilisez ce patron si vous rencontrez des difficultés pour modifier certaines classes trop fortement couplées avec d’autres.</p><p>Le médiateur vous permet d’extraire toutes les relations entre les classes dans une classe séparée, en isolant les modifications appliquées à un composant spécifique du reste des composants.</p><p>Utilisez ce patron quand vous ne pouvez pas réutiliser un composant ailleurs, car il est trop dépendant des autres composants.</p><p>Après avoir mis en place le médiateur, les composants individuels n’ont plus de visibilité sur les autres composants. Ils peuvent toujours communiquer ensemble mais indirectement, via un objet médiateur. Pour réutiliser un composant dans une application différente, vous n’avez besoin que de lui fournir une classe médiateur.</p><p>Utilisez le médiateur lorsque vous créez des tonnes de sous-classes pour les composants, juste pour pouvoir bénéficier de leur comportement de base dans différents contextes.</p><p>Toutes les relations entre composants se trouvent à l’intérieur d’un médiateur. De nouvelles classes médiateur peuvent donc facilement définir de nouveaux moyens de collaboration pour ces composants sans avoir à les modifier.</p><a href=#mise-en-œuvre><h2 id=mise-en-œuvre><span class=hanchor arialabel=Anchor># </span>Mise en œuvre</h2></a><ol><li><p>Identifiez des classes qui sont fortement couplées et qui pourraient bénéficier de plus d’indépendance (pour une maintenance plus aisée ou pour faciliter la réutilisation de ces classes).</p></li><li><p>Déclarez l’interface médiateur et écrivez le protocole de communication voulu entre les médiateurs et les différents composants. Dans la plupart des cas, une seule méthode est suffisante pour recevoir les notifications des composants.</p><p>Cette interface est cruciale si vous voulez pouvoir réutiliser les classes des composants dans différents contextes. Tant que le composant communique avec le médiateur en passant par l’interface générique, vous pouvez relier le composant avec une implémentation différente du médiateur.</p></li><li><p>Implémentez la classe concrète du médiateur. Faites en sorte que cette classe garde des références vers tous les composants qu’elle gère. Elle en tirera de gros bénéfices.</p></li><li><p>Vous pouvez encore aller plus loin en rendant le médiateur responsable de la création et de la destruction des objets composant. Le médiateur ressemblera ainsi à une
+<a href=https://refactoring.guru/fr/design-patterns/abstract-factory rel=noopener>fabrique</a> ou à une
+<a href=https://refactoring.guru/fr/design-patterns/facade rel=noopener>façade</a>.</p></li><li><p>Les composants doivent avoir une référence vers l’objet médiateur. La connexion est souvent établie dans le constructeur du composant, dans lequel un objet médiateur est passé en paramètre.</p></li><li><p>Modifiez le code des composants afin qu’ils appellent la méthode de notification du médiateur plutôt que des méthodes écrites dans d’autres composants. Mettez tout le code qui appelle les autres composants dans la classe médiateur, puis appelez-le lorsque le médiateur reçoit des notifications de ce composant.</p></li></ol><a href=#avantages-et-inconvénients><h2 id=avantages-et-inconvénients><span class=hanchor arialabel=Anchor># </span>Avantages et inconvénients</h2></a><ul><li><p><em>Principe de responsabilité unique</em>. Vous pouvez mettre les communications entre les différents composants au même endroit, rendant le code plus facile à comprendre et à maintenir.</p></li><li><p><em>Principe ouvert/fermé</em>. Vous pouvez ajouter de nouveaux médiateurs sans avoir à modifier les composants déjà en place.</p></li><li><p>Vous diminuez le couplage entre les différents composants d’un programme.</p></li><li><p>Vous pouvez réutiliser les composants individuels plus facilement.</p></li><li><p>Avec le temps, un médiateur peut évoluer en
+<a href=https://refactoring.guru/fr/antipatterns/god-object rel=noopener>Objet Omniscient</a>.</p></li></ul><a href=#liens-avec-les-autres-patrons><h2 id=liens-avec-les-autres-patrons><span class=hanchor arialabel=Anchor># </span>Liens avec les autres patrons</h2></a><ul><li><p>La
+<a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a>, la
+<a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a>, le
+<a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a> et l’
+<a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a> proposent différentes solutions pour associer les demandeurs et les récepteurs.</p><ul><li>La <em>chaîne de responsabilité</em> envoie une demande ordonnée qui est passée tout au long d’une chaîne dynamique de récepteurs potentiels, jusqu’à ce que l’un d’entre eux décide de la traiter.</li><li>La <em>commande</em> établit des connexions unidirectionnelles entre les demandeurs et les récepteurs.</li><li>Le <em>médiateur</em> élimine les liens directs entre les demandeurs et les récepteurs, et les force à communiquer indirectement via un objet médiateur.</li><li>L’<em>observateur</em> permet aux récepteurs de s’inscrire et de se désinscrire dynamiquement à la réception des demandes.</li></ul></li><li><p>La
+<a href=https://refactoring.guru/fr/design-patterns/facade rel=noopener>Façade</a> et le
+<a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a> ont des rôles similaires : ils essayent de faire collaborer des classes étroitement liées.</p><ul><li>La <em>façade</em> définit une interface simplifiée pour un sous-système d’objets, mais elle n’ajoute pas de nouvelles fonctionnalités. Le sous-système est conscient de l’existence de la façade. Les objets situés à l’intérieur du sous-système peuvent communiquer directement.</li><li>Le <em>médiateur</em> centralise la communication entre les composants du système. Les composants ne voient que l’objet médiateur et ne communiquent pas directement.</li></ul></li><li><p>La différence entre le
+<a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a> et l’
+<a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a> est souvent très fine. Dans la majorité des cas, vous pouvez implémenter l’un ou l’autre, mais parfois vous pouvez les utiliser simultanément. Regardons comment faire.</p><p>Le but principal du <em>médiateur</em> est d’éliminer les dépendances mutuelles entre un ensemble de composants du système. À la place, ces composants peuvent devenir dépendants d’un unique objet médiateur. Le but de l’<em>observateur</em> est d’établir des connexions dynamiques à sens unique entre les objets, où certains objets peuvent être les subordonnés d’autres objets.</p><p>Il existe une implémentation populaire du <em>médiateur</em> qui repose sur l’<em>observateur</em>. L’objet médiateur joue le rôle du diffuseur et les composants agissent comme des souscripteurs qui s’inscrivent et se désinscrivent des événements du médiateur. Lorsque ce type de conception est mis en place, le <em>médiateur</em> ressemble de près à l’<em>observateur</em>.</p><p>Si vous êtes un peu perdu, rappelez-vous qu’il y a plusieurs manières d’implémenter le médiateur. Par exemple, vous pouvez associer de manière permanente tous les composants au même objet médiateur. Cette implémentation ne ressemblera pas à l’<em>observateur</em>, mais sera tout de même une instance du patron de conception médiateur.</p><p>Maintenant, imaginez un programme dont tous les composants sont devenus des diffuseurs, permettant des connexions dynamiques les uns avec les autres. Nous n’aurons pas d’objet médiateur centralisé, seulement un ensemble d’observateurs distribués.</p></li></ul><a href=#exemples-de-code><h2 id=exemples-de-code><span class=hanchor arialabel=Anchor># </span>Exemples de code</h2></a><p><a href=https://refactoring.guru/fr/design-patterns/mediator/java/example rel=noopener><img width=43 height=56 src=../../_resources/java_48593603ce014b40a9fcce2b1a6a4f19.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator/csharp/example rel=noopener><img width=43 height=56 src=../../_resources/csharp_de1bfccd8e6f41d8b949760accc460d3.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator/cpp/example rel=noopener><img width=43 height=56 src=../../_resources/cpp_1598bf3540e34d2c87f5f869d57762f7.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator/php/example rel=noopener><img width=43 height=56 src=../../_resources/php_b24f90df19c848b991d05559151ef163.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator/python/example rel=noopener><img width=43 height=56 src=../../_resources/python_c75d74cbe1c64ae1aa8899b5f2906d7d.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator/ruby/example rel=noopener><img width=43 height=56 src=../../_resources/ruby_976fc074c6f94ec8a742a4498b4dc02d.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator/swift/example rel=noopener><img width=43 height=56 src=../../_resources/swift_e44d8b6c28c046caa7d9a354a78b1d72.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator/typescript/example rel=noopener><img width=43 height=56 src=../../_resources/typescript_864db6cc9e8c401ebae6865d606f1cbb.svg></a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator/go/example rel=noopener><img width=43 height=56 src=../../_resources/go_062ad75dfd424a52ade66c4af740b5ba.svg></a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=200 height=200 src=../../_resources/patterns-book-banner-3_27d0684a40f6495fbf596613451.png></a></p><a href=#soutenez-notre-site-gratuit-et-obtenez-lebook><h3 id=soutenez-notre-site-gratuit-et-obtenez-lebook><span class=hanchor arialabel=Anchor># </span>Soutenez notre site gratuit et obtenez l’ebook !</h3></a><ul><li>22 patrons de conception et 8 principes expliqués en profondeur.</li><li>444 pages de vulgarisation, bien structurées et faciles à lire.</li><li>225 illustrations et diagrammes clairs pour aider à la compréhension.</li><li>Une archive avec des exemples de code dans 9 langages.</li><li>Tous les appareils sont pris en charge : formats PDF/EPUB/MOBI/KFX.</li></ul><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><a href=#suivant><h4 id=suivant><span class=hanchor arialabel=Anchor># </span>Suivant</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a></p><a href=#retour><h4 id=retour><span class=hanchor arialabel=Anchor># </span>Retour</h4></a><p><a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener><img width=245 height=375 src=../../_resources/web-cover-fr_9955f58440e541408b66399a05cb111a.png></a></p><p>Cet article est tiré de notre ebook
+<strong>Plongée au cœur des
+PATRONS DE CONCEPTION</strong></p><p><a href=https://refactoring.guru/fr/design-patterns/book rel=noopener>En savoir plus…</a></p><p>Facebook</p><p>Twitter</p><ul><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li><li><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a></li></ul><p><a href=https://refactoring.guru/design-patterns/mediator rel=noopener>English</a>
+<a href=https://refactoring.guru/es/design-patterns/mediator rel=noopener>Español</a>
+<a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Français</a>
+<a href=https://refactoring.guru/pl/design-patterns/mediator rel=noopener>Polski</a>
+<a href=https://refactoring.guru/pt-br/design-patterns/mediator rel=noopener>Português-Br</a>
+<a href=https://refactoring.guru/ru/design-patterns/mediator rel=noopener>Русский</a>
+<a href=https://refactoring.guru/uk/design-patterns/mediator rel=noopener>Українська</a>
+<a href=https://refactoringguru.cn/design-patterns/mediator rel=noopener>中文</a></p><p><a href=https://refactoring.guru/fr rel=noopener><img src=https://deuxfois.github.io/quartz//../../_resources/logo-covid-winter_d8c8406bb2d24c958a8bad22c8fef870.png width=auto alt=Refactoring.Guru></a></p><p><img src=https://deuxfois.github.io/quartz//../../_resources/winter-hat_77dbcf600a7b4c408ff655115196342f.png width=auto alt></p><ul><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/what-is-pattern rel=noopener>Introduction</a></li><li><a href=https://refactoring.guru/fr/design-patterns/catalog rel=noopener>Catalogue</a></li><li><a href=https://refactoring.guru/fr/design-patterns/creational-patterns rel=noopener>Patrons de création</a></li><li><a href=https://refactoring.guru/fr/design-patterns/structural-patterns rel=noopener>Patrons structurels</a></li><li><a href=https://refactoring.guru/fr/design-patterns/behavioral-patterns rel=noopener>Patrons comportementaux</a><ul><li><a href=https://refactoring.guru/fr/design-patterns/chain-of-responsibility rel=noopener>Chaîne de responsabilité</a></li><li><a href=https://refactoring.guru/fr/design-patterns/command rel=noopener>Commande</a></li><li><a href=https://refactoring.guru/fr/design-patterns/iterator rel=noopener>Itérateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/mediator rel=noopener>Médiateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/memento rel=noopener>Mémento</a></li><li><a href=https://refactoring.guru/fr/design-patterns/observer rel=noopener>Observateur</a></li><li><a href=https://refactoring.guru/fr/design-patterns/state rel=noopener>État</a></li><li><a href=https://refactoring.guru/fr/design-patterns/strategy rel=noopener>Stratégie</a></li><li><a href=https://refactoring.guru/fr/design-patterns/template-method rel=noopener>Patron de méthode</a></li><li><a href=https://refactoring.guru/fr/design-patterns/visitor rel=noopener>Visiteur</a></li></ul></li><li><a href=https://refactoring.guru/fr/design-patterns/examples rel=noopener>Exemples de code</a></li></ul></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation (commenter bientôt)</a></li></ul><p><a href=https://refactoring.guru/fr/login rel=noopener>Connexion</a>
+<a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Nous contacter</a></p><ul><li><a href=https://refactoring.guru/fr rel=noopener>Accueil</a></li><li><a href=https://refactoring.guru/fr/refactoring rel=noopener>Refactorisation</a></li><li><a href=https://refactoring.guru/fr/design-patterns rel=noopener>Patrons de conception</a></li><li><a href=https://refactoring.guru/fr/store rel=noopener>Contenu premium</a></li><li><a href="https://feedback.refactoring.guru/?lang=en" rel=noopener>Forum</a></li><li><a href="https://feedback.refactoring.guru/?lang=en&show_feedback_form_private=true" rel=noopener>Nous contacter</a></li></ul><p>2014-2021
+<a href=https://refactoring.guru/fr rel=noopener>Refactoring.Guru</a>. Tous droits réservés.
+<img src=https://deuxfois.github.io/quartz//../../_resources/fa-building_fb5da57192134c2ab0bc7d74b7d210df.svg width=auto alt="Organization address"> Khmelnitske shosse 19 / 27, Kamianets-Podilskyi, Ukraine, 32305
+Email:
+<a rel=noopener class="internal-link broken" data-src=mailto:support@refactoring.guru>support@refactoring.guru</a></p><p>Illustrations par
+<a href=http://zhart.us/ rel=noopener>Dmitry Zhart</a></p><ul><li><a href=https://refactoring.guru/fr/terms rel=noopener>Termes et conditions</a></li><li><a href=https://refactoring.guru/fr/privacy-policy rel=noopener>Politique de protection de la vie privée</a></li><li><a href=https://refactoring.guru/fr/content-usage-policy rel=noopener>Politique de l’utilisation des données</a></li></ul></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://deuxfois.github.io/quartz/js/graph.243ea0d4fc79317e06f846bd698ba136.js></script></div></div><div id=contact_buttons><footer><p>Made by DeuxFois using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://deuxfois.github.io/quartz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>
