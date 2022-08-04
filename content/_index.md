@@ -20,7 +20,7 @@ I chose databases.
 I like to learn about fetching, store and interpret datas. So i use a lot of database. But for creating a database, I prefer NoSQL because the proof of viability   
 Database
 
-## [Software architecture](Architecture/Design_Pattern/Sommaire.md)
+## Software architecture
 I like programming, and i'm starting to create big project and thinking about the architecture of my software. I didn't learn this in my studies, as I chose mathematics and computer science, but I am interested in creating many modules in a software, from back to front.  
 
 

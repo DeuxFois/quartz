@@ -17,16 +17,6 @@ Organiser les objets en des groupes présentant une certaine similarité
 Estimer la loi de probabilité des données  d’apprentissage
 > estimer la loi d’un bruit
 
-<br/>
-
-### Reduction de dimension
-Diminuer la dimensionnalité des données pour pouvoir mieux les interpréter/visualiser  
-[Introduction](MLIA/Dimensionality-Reduction/Introduction.md)    
-[Covariances-Correlation](Covariances-Correlation.md)
-- [ACP](ACP.md)  
-
-
-> interpréter/visualiser
 
 <br/>
 <br/>
