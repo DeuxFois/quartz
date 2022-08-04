@@ -1,31 +1,28 @@
----
-title: 🥔 DeuxFois
----
-Hi ✌ Welcome on my second brain !  
-I'm a passionate CS french student.  
-I began to save my notes with markdown, that is often called "second brain", for better understanding of studied concepts and for fastly remember notion (but i use obsidian for that, not notion lol)  
+
+Hi ✌ Welcome to my second brain !  
+I'm an passionate french CS student.  
+I started to save my notes with markdown in 2021, to better understand the studied concepts and to remember quickly the notions (but i use obsidian for that, not notion lol)  
+<br />
 So, there is the topics
 
-# web
-I like web developpement, it's modern, graphical and often fast for creating beautifull applications with live preview.  
-I have the feeling that React is the most appreciated framework, and it's pretty cool, easy to apprehend and fast to code.  
-[Web and Net](WebNet.md)
-# ML and IA
-I studied machine learning at my first year in Masted and i completed my learning by following Stanford CS221.  
-I think it's important to have a well understanding og mathematical concept behind Machine learning's alrgorithms, because It's a rapidly evolving field and future algorithms will surely be based on same mathematical and statistical domains.  
-[ML and IA](Datas.md)
+## [Web and Network](Web-and-Network.md)
+I like web developpement, it's modern, graphical and often fast to create beautiful applications with live preview.  
+I feel like React is the most popular framework, and it's pretty cool, easy to learn and fast to work with.
 
-# Database
-In my first year of Master i had to write a paper of 15 pages of a chosen subject from a list.
-So i chose Databases.
+## [ML and AI](Datas.md)
+I studied machine learning at my first year of my Master's degree and completed my learning by taking the Stanford CS221 course on youtube.  
+I think it's important to have a well understanding of the mathematical concept behind machine learning algorithms, because it is a rapidly evolving field and future algorithms will surely be based on the same mathematical and statistical areas.
+
+
+## Database
+In the first year of my Master's degree, I had to write a 15-page paper on a topic chosen from a list.
+I chose databases.  
 I like to learn about fetching, store and interpret datas. So i use a lot of database. But for creating a database, I prefer NoSQL because the proof of viability   
 Database
 
-# Programming Architecture
+## [Software architecture](Architecture/Design_Pattern/Sommaire.md)
+I like programming, and i'm starting to create big project and thinking about the architecture of my software. I didn't learn this in my studies, as I chose mathematics and computer science, but I am interested in creating many modules in a software, from back to front.  
 
-I love programming, and i start to create big project and think about the architecture of my software. I haven't learn that in my studies, because i chose Mathematical and Computer Science, but i'm interested about creating many modules in a software.  
-[Design Pattern](Architecture/Design_Pattern/Sommaire.md)
 
-# Master
-In last, there is some note of my Master. I moved Machine Learning and Artificial Inteligence in a whole part and i don't write markdown notes in some courses, like bigdata where we have paper support.  
-[Master](Master.md)
+## [Master](Master.md)
+Finally, here are some notes from my master's degree. I moved machine learning and artificial intelligence into a whole section and didn't write markdown notes in some courses, like bigdata where we have paper support.
