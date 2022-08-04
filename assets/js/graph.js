@@ -12,7 +12,7 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
 
   const container = document.getElementById("graph-container")
   const { index, links, content } = await fetchData
-
+  
   // Use .pathname to remove hashes / searchParams / text fragments
   const cleanUrl = window.location.origin + window.location.pathname
 
@@ -229,7 +229,7 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
     .attr("dx", 0)
     .attr("dy", (d) => nodeRadius(d) + 8 + "px")
     .attr("text-anchor", "middle")
-    .text((d) => content[d.id]?.title || d.id.replace("-", " "))
+    .text((d) => links[d.id]?.text || d.id.replace("-", " ").split('/').pop())
     .style('opacity', (opacityScale - 1) / 3.75)
     .style("pointer-events", "none")
     .style('font-size', fontSize+'em')
