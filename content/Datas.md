@@ -1,12 +1,12 @@
-[Generative vs Discriminative](MLIA/Generative%20vs%20Discriminative.md)  
+[Generative-Discriminative](Generative-Discriminative.md)  
 
-[[supervised learning]]
+[[Supervised-Learning]]
 
 
-[unsupervised learning](unsupervised%20learning.md)  
+[Unsupervised-Learning](Unsupervised-Learning.md)  
 
-[[Stats]] 
+[[Statistic]] 
 
-[[Dimensionality reduction]]  
+[[Dimensionality-reduction]]  
 
-[[MLIA/Dimensionality reduction/Introduction]]
+[[MLIA/Dimensionality-Reduction/Introduction]]
