@@ -3,25 +3,25 @@
 It is the interconnection of multiple devices, generally termed as Hosts connected using multiple paths for the purpose of sending/receiving data or media.  
 For this purpose, we need a **protocol**, a set of rules or algorithms which define the way how two entities can communicate across the network.
 
-###  [HTTP](Network-Web/HTTP.md)
+###  [HTTP](Web-Network/HTTP.md)
 ##### TCP
 ##### UDP 
 ##### Websocket
 # Web 
 
-### [MDN](Network-Web/MDN.md)
+### [MDN](Web-Network/MDN.md)
 
 
-###  [HTML](Network-Web/HTML.md)
+###  [HTML](Web-Network/HTML.md)
 
 
-###  [Modern Javascript](Modern-Javascript.md)
+###  [Modern Javascript](Web-Network/Modern-Javascript.md)
 
 
-###  [Node](Network-Web/Node.md)
+###  [Node](Web-Network/Node.md)
 
 
-###  [CSS](Network-Web/CSS.md)
+###  [CSS](Web-Network/CSS.md)
 
 
 

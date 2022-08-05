@@ -1,16 +1,16 @@
 # HTTP Messages
 
-HTTP messages are how data is exchanged between a server and a client. There are two types of messages: [HTTP-Request](HTTP-Request.md) sent by the client to trigger an action on the server, and [HTPP-Response](HTPP-Response.md), the answer from the server.
+HTTP messages are how data is exchanged between a server and a client. There are two types of messages: [HTTP-Request](Web-Network/Network/HTTP-Request.md) sent by the client to trigger an action on the server, and [HTPP-Response](Web-Network/Network/HTPP-Response.md), the answer from the server.
 
 Web developers, or webmasters, rarely craft these textual HTTP messages themselves: software, a Web browser, proxy, or Web server, perform this action. They provide HTTP messages through config files (for proxies or servers), APIs (for browsers), or other interfaces.
 
 **The 2 main point are :**  
-[Methods](Methods.md)  
-[Status Codes](Status%20Codes.md)
+[Methods](Web-Network/Network/Methods.md)  
+[Status Codes](Web-Network/Network/Status%20Codes.md)
 
 See also :  
-[HTTP 2](HTTP-2.md)  
-[HTTP3](HTTP-3.md)  
+[HTTP 2](Web-Network/Network/HTTP-2.md)  
+[HTTP3](Web-Network/Network/HTTP-3.md)  
 
 ![From a user-, script-, or server- generated event, an HTTP/1.x msg is generated, and if HTTP/2 is in use, it is binary framed into an HTTP/2 stream, then sent.](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages/httpmsg2.png)
 

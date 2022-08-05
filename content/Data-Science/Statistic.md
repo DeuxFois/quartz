@@ -1,3 +1,3 @@
-[[Probability-Density]]  
+[[Data-Science/Statistic/Probability-Density]]  
 
-[[Gaussian]]
+[[Data-Science/Statistic/Gaussian]]

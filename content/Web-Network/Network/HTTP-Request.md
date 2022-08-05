@@ -5,7 +5,7 @@
 
 HTTP requests are messages sent by the client to initiate an action on the server. Their _start-line_ contain three elements:
 
-1.  An [HTTP Methods](Methods.md),
+1.  An [HTTP Methods](Web-Network/Network/Methods.md),
 2.  The _request target_, usually a URL , or the absolute path of the protocol, port, and domain are usually characterized by the request context. The format of this request target varies between different HTTP methods. It can be
     -   An absolute path, ultimately followed by a `'?'` and query string. This is the most common form, known as the _origin form_, and is used with `GET`, `POST`, `HEAD`, and `OPTIONS` methods.
         -   `POST / HTTP/1.1`

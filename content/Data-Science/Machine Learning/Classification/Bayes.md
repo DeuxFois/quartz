@@ -23,7 +23,7 @@ $$
 
 i.e., given the label, all features are independent.
 
-### la probabilité $\mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)$ suit une loi normale (gaussienne) [Gaussian](Gaussian.md)
+### la probabilité $\mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)$ suit une loi normale (gaussienne) [Gaussian](Data-Science/Statistic/Gaussian.md)
 $$
 \mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right) \sim \mathcal{N}\left(\mu_{y}^{j}, \sigma_{y}^{j^{2}}\right)
 $$

@@ -1,5 +1,5 @@
 [[Data-Science/Dimensionality-Reduction/Introduction]]  
 
-[[Covariances-Correlation]]  
+[[Data-Science/Dimensionality-Reduction/Covariances-Correlation]]  
 
-[[ACP]]
+[[Data-Science/Dimensionality-Reduction/ACP]]

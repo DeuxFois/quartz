@@ -5,7 +5,7 @@
 The start line of an HTTP response, called the _status line_, contains the following information:
 
 1.  The _protocol version_, usually `HTTP/1.1`.
-2.  A [Status Codes](Status%20Codes.md), indicating success or failure of the request. Common status codes are [`200`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200), [`404`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404), or [`302`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302)
+2.  A [Status Codes](Web-Network/Network/Status%20Codes.md), indicating success or failure of the request. Common status codes are [`200`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200), [`404`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404), or [`302`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302)
 3.  A _status text_. A brief, purely informational, textual description of the status code to help a human understand the HTTP message.
 
 A typical status line looks like: `HTTP/1.1 404 Not Found`.

@@ -5,11 +5,11 @@ I started to save my notes with markdown in 2021, to better understand the studi
 <br />
 So, there is the topics
 
-## [Web and Network](Web-Network.md)
+## [Web and Network](web-network.md)
 I like web developpement, it's modern, graphical and often fast to create beautiful applications with live preview.  
 I feel like React is the most popular framework, and it's pretty cool, easy to learn and fast to work with.
 
-## [ML and AI](Datas-Science.md)
+## [ML and AI](data-science.md)
 I studied machine learning at my first year of my Master's degree and completed my learning by taking the Stanford CS221 course on youtube.  
 I think it's important to have a well understanding of the mathematical concept behind machine learning algorithms, because it is a rapidly evolving field and future algorithms will surely be based on the same mathematical and statistical areas.
 
@@ -24,5 +24,5 @@ Database
 I like programming, and i'm starting to create big project and thinking about the architecture of my software. I didn't learn this in my studies, as I chose mathematics and computer science, but I am interested in creating many modules in a software, from back to front.  
 
 
-## [Master](Master.md)
+## [master](master.md)
 Finally, here are some notes from my master's degree. I moved machine learning and artificial intelligence into a whole section and didn't write markdown notes in some courses, like bigdata where we have paper support.
