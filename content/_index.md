@@ -5,11 +5,11 @@ I started to save my notes with markdown in 2021, to better understand the studi
 <br />
 So, there is the topics
 
-## [Web and Network](Web-and-Network.md)
+## [Web and Network](Web-Network.md)
 I like web developpement, it's modern, graphical and often fast to create beautiful applications with live preview.  
 I feel like React is the most popular framework, and it's pretty cool, easy to learn and fast to work with.
 
-## [ML and AI](Datas.md)
+## [ML and AI](Datas-Science.md)
 I studied machine learning at my first year of my Master's degree and completed my learning by taking the Stanford CS221 course on youtube.  
 I think it's important to have a well understanding of the mathematical concept behind machine learning algorithms, because it is a rapidly evolving field and future algorithms will surely be based on the same mathematical and statistical areas.
 
