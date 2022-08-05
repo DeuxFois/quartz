@@ -1,0 +1,761 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Notions Destructuring objects and arrays Destructuring is a convenient way of creating new variables by extracting some values from data stored in objects or arrays."><title>⛄ DeuxFoi's blog</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://deuxfois.github.io/quartz//icon.png><link href=https://deuxfois.github.io/quartz/styles.da7a3ca770847058ce864d29d347c0e4.min.css rel=stylesheet><link href=https://deuxfois.github.io/quartz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://deuxfois.github.io/quartz/js/darkmode.69b2c08ae0f08c3a3f86259a122e1f06.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/util.9825137f5e7825e8553c68ce39ac9e44.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://deuxfois.github.io/quartz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://deuxfois.github.io/quartz/",fetchData=Promise.all([fetch("https://deuxfois.github.io/quartz/indices/linkIndex.13d5bcf4db0689c94c8c515722489cd9.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://deuxfois.github.io/quartz/indices/contentIndex.53ae5f837e133ccb442ebe29beb74316.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!0;drawGraph("https://deuxfois.github.io/quartz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:2,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://deuxfois.github.io/quartz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/deuxfois.github.io\/quartz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://deuxfois.github.io/quartz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://deuxfois.github.io/quartz/>⛄ DeuxFoi's blog</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><a href=https://deuxfois.github.io/quartz/ class=back-button>↩</a><div class=navigation-menu><a href=/>home</a>
+<span style=color:var(--gray)>/</span>
+<a href=https://deuxfois.github.io/quartz/Web-Network>Web-Network</a>
+<span style=color:var(--gray)>/</span>
+<a href=https://deuxfois.github.io/quartz/Web-Network/Modern-Javascript>Modern-Javascript</a>
+<span style=color:var(--gray)>/</span></div><article><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#destructuring-objects-and-arrays>Destructuring objects and arrays</a><ol><li><a href=#explanation-with-sample-code>Explanation with sample code</a></li><li><a href=#useful-resources>Useful resources</a></li></ol></li><li><a href=#array-methods---map--filter--reduce--find>Array methods - map / filter / reduce / find</a><ol><li></li></ol></li><li><a href=#spread-operator->Spread operator “…”</a><ol><li><a href=#sample-code-1>Sample code</a></li><li><a href=#explanation>Explanation</a></li><li><a href=#external-resources>External resources</a></li></ol></li><li><a href=#promises>Promises</a><ol><li><a href=#sample-code-2>Sample code</a></li><li><a href=#explanation-1>Explanation</a></li><li><a href=#external-resources-1>External Resources</a></li></ol></li><li><a href=#imports--exports>Imports / Exports</a><ol><li></li><li><a href=#external-resources-2>External resources</a></li></ol></li><li><a href=#async-await>Async Await</a><ol><li><a href=#sample-code-3>Sample code</a></li><li><a href=#explanation-with-sample-code-2>Explanation with sample code</a></li><li><a href=#external-resources-3>External resources</a></li></ol></li><li><a href=#truthy--falsy>Truthy / Falsy</a><ol><li><a href=#external-resources-4>External resources</a></li></ol></li><li><a href=#anamorphisms-and-catamorphisms>Anamorphisms and Catamorphisms</a><ol><li><a href=#anamorphisms>Anamorphisms</a></li><li><a href=#catamorphisms>Catamorphisms</a></li><li><a href=#external-resources-5>External resources</a></li></ol></li><li><a href=#generators>Generators</a><ol><li><a href=#external-resources-6>External resources</a></li></ol></li><li><a href=#static-methods>Static Methods</a><ol><li><a href=#short-explanation>Short explanation</a></li><li><a href=#sample-code-4>Sample code</a></li><li><a href=#detailed-explanation>Detailed explanation</a></li><li><a href=#external-resources-7>External resources</a></li></ol></li></ol></nav></details></aside><a href=#notions><h1 id=notions><span class=hanchor arialabel=Anchor># </span>Notions</h1></a><a href=#destructuring-objects-and-arrays><h2 id=destructuring-objects-and-arrays><span class=hanchor arialabel=Anchor># </span>Destructuring objects and arrays</h2></a><p><em>Destructuring</em> is a convenient way of creating new variables by extracting some values from data stored in objects or arrays.</p><p>To name a few use cases, <em>destructuring</em> can be used to destructure function parameters or <em>this.props</em> in React projects for instance.</p><a href=#explanation-with-sample-code><h3 id=explanation-with-sample-code><span class=hanchor arialabel=Anchor># </span>Explanation with sample code</h3></a><ul><li>Object</li></ul><p>Let’s consider the following object for all the samples:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>person</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>firstName</span><span class=o>:</span> <span class=s2>&#34;Nick&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>lastName</span><span class=o>:</span> <span class=s2>&#34;Anderson&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>age</span><span class=o>:</span> <span class=mi>35</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>sex</span><span class=o>:</span> <span class=s2>&#34;M&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>Without destructuring</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>nickname</span> <span class=o>=</span> <span class=nx>person</span><span class=p>.</span><span class=nx>firstName</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>age</span> <span class=o>=</span> <span class=nx>person</span><span class=p>.</span><span class=nx>age</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>city</span> <span class=o>=</span> <span class=nx>person</span><span class=p>.</span><span class=nx>city</span> <span class=o>||</span> <span class=s2>&#34;Paris&#34;</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>With destructuring, all in one line:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>firstName</span><span class=o>:</span> <span class=nx>nickname</span><span class=p>,</span> <span class=nx>age</span><span class=p>,</span> <span class=nx>city</span> <span class=o>=</span> <span class=s2>&#34;Paris&#34;</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>person</span><span class=p>;</span> <span class=c1>// That&#39;s it !
+</span></span></span></code></pre></td></tr></table></div></div><br><p>Destructuring is even more pleasant to use with arrow functions :</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>joinFirstLastName</span> <span class=o>=</span> <span class=p>({</span> <span class=nx>firstName</span><span class=p>,</span> <span class=nx>lastName</span> <span class=p>})</span> <span class=p>=&gt;</span> <span class=nx>firstName</span> <span class=o>+</span> <span class=s1>&#39;-&#39;</span> <span class=o>+</span> <span class=nx>lastName</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>joinFirstLastName</span><span class=p>(</span><span class=nx>person</span><span class=p>);</span> <span class=c1>// &#34;Nick-Anderson&#34;
+</span></span></span></code></pre></td></tr></table></div></div><ul><li>Array</li></ul><p>Let’s consider the following array:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>myArray</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;a&#34;</span><span class=p>,</span> <span class=s2>&#34;b&#34;</span><span class=p>,</span> <span class=s2>&#34;c&#34;</span><span class=p>];</span>
+</span></span></code></pre></td></tr></table></div></div><p>Without destructuring</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>x</span> <span class=o>=</span> <span class=nx>myArray</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>y</span> <span class=o>=</span> <span class=nx>myArray</span><span class=p>[</span><span class=mi>1</span><span class=p>];</span>
+</span></span></code></pre></td></tr></table></div></div><p>With destructuring</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=p>[</span><span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>]</span> <span class=o>=</span> <span class=nx>myArray</span><span class=p>;</span> <span class=c1>// That&#39;s it !
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>)</span> <span class=c1>// &#34;a&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>y</span><span class=p>)</span> <span class=c1>// &#34;b&#34;
+</span></span></span></code></pre></td></tr></table></div></div><a href=#useful-resources><h3 id=useful-resources><span class=hanchor arialabel=Anchor># </span>Useful resources</h3></a><ul><li><a href=http://es6-features.org/#ArrayMatching rel=noopener>ES6 Features - Destructuring Assignment</a></li><li><a href=http://wesbos.com/destructuring-objects/ rel=noopener>Destructuring Objects - WesBos</a></li><li><a href=http://exploringjs.com/es6/ch_destructuring.html rel=noopener>ExploringJS - Destructuring</a></li></ul><a href=#array-methods---map--filter--reduce--find><h2 id=array-methods---map--filter--reduce--find><span class=hanchor arialabel=Anchor># </span>Array methods - map / filter / reduce / find</h2></a><p><em>Map</em>, <em>filter</em>, <em>reduce</em> and <em>find</em> are array methods that are coming from a programming paradigm named
+<a href=https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0 rel=noopener><em>functional programming</em></a>.</p><p>To sum it up:</p><ul><li><strong>Array.prototype.map()</strong> does something on each elements</li><li><strong>Array.prototype.filter()</strong> decides element by element if it should keep it</li><li><strong>Array.prototype.reduce()</strong> aggregates the elements into a single value</li><li><strong>Array.prototype.find()</strong> returns the first element that satisfies the provided condition.</li></ul><p>I recommend to use them as much as possible in following the principles of functional programming because they are composable, concise and elegant.</p><p>With those four methods, you can avoid the use of <em>for</em> and <em>forEach</em> loops in most situations. When you are tempted to do a <em>for</em> loop, try to do it with <em>map</em>, <em>filter</em>, <em>reduce</em> and <em>find</em> composed. You might struggle to do it at first because it requires you to learn a new way of thinking, but once you’ve got it things get easier.</p><a href=#sample-code><h4 id=sample-code><span class=hanchor arialabel=Anchor># </span>Sample code</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>numbers</span> <span class=o>=</span> <span class=p>[</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>6</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>doubledNumbers</span> <span class=o>=</span> <span class=nx>numbers</span><span class=p>.</span><span class=nx>map</span><span class=p>(</span><span class=nx>n</span> <span class=p>=&gt;</span> <span class=nx>n</span> <span class=o>*</span> <span class=mi>2</span><span class=p>);</span> <span class=c1>// [0, 2, 4, 6, 8, 10, 12]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>evenNumbers</span> <span class=o>=</span> <span class=nx>numbers</span><span class=p>.</span><span class=nx>filter</span><span class=p>(</span><span class=nx>n</span> <span class=p>=&gt;</span> <span class=nx>n</span> <span class=o>%</span> <span class=mi>2</span> <span class=o>===</span> <span class=mi>0</span><span class=p>);</span> <span class=c1>// [0, 2, 4, 6]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>sum</span> <span class=o>=</span> <span class=nx>numbers</span><span class=p>.</span><span class=nx>reduce</span><span class=p>((</span><span class=nx>prev</span><span class=p>,</span> <span class=nx>next</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>prev</span> <span class=o>+</span> <span class=nx>next</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span> <span class=c1>// 21
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>greaterThanFour</span> <span class=o>=</span> <span class=nx>numbers</span><span class=p>.</span><span class=nx>find</span><span class=p>((</span><span class=nx>n</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>n</span><span class=o>&gt;</span><span class=mi>4</span><span class=p>);</span> <span class=c1>// 5
+</span></span></span></code></pre></td></tr></table></div></div><p>Compute total grade sum for students with grades 10 or above by composing map, filter and reduce:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>students</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Nick&#34;</span><span class=p>,</span> <span class=nx>grade</span><span class=o>:</span> <span class=mi>10</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;John&#34;</span><span class=p>,</span> <span class=nx>grade</span><span class=o>:</span> <span class=mi>15</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Julia&#34;</span><span class=p>,</span> <span class=nx>grade</span><span class=o>:</span> <span class=mi>19</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Nathalie&#34;</span><span class=p>,</span> <span class=nx>grade</span><span class=o>:</span> <span class=mi>9</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>aboveTenSum</span> <span class=o>=</span> <span class=nx>students</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>map</span><span class=p>(</span><span class=nx>student</span> <span class=p>=&gt;</span> <span class=nx>student</span><span class=p>.</span><span class=nx>grade</span><span class=p>)</span> <span class=c1>// we map the students array to an array of their grades
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>.</span><span class=nx>filter</span><span class=p>(</span><span class=nx>grade</span> <span class=p>=&gt;</span> <span class=nx>grade</span> <span class=o>&gt;=</span> <span class=mi>10</span><span class=p>)</span> <span class=c1>// we filter the grades array to keep those 10 or above
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>.</span><span class=nx>reduce</span><span class=p>((</span><span class=nx>prev</span><span class=p>,</span> <span class=nx>next</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>prev</span> <span class=o>+</span> <span class=nx>next</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span> <span class=c1>// we sum all the grades 10 or above one by one
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>aboveTenSum</span><span class=p>)</span> <span class=c1>// 44 -- 10 (Nick) + 15 (John) + 19 (Julia), Nathalie below 10 is ignored
+</span></span></span></code></pre></td></tr></table></div></div><a href=#spread-operator-><h2 id=spread-operator-><span class=hanchor arialabel=Anchor># </span>Spread operator “…”</h2></a><p>The spread operator <code>...</code> has been introduced with ES2015 and is used to expand elements of an iterable (like an array) into places where multiple elements can fit.</p><a href=#sample-code-1><h3 id=sample-code-1><span class=hanchor arialabel=Anchor># </span>Sample code</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>arr1</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;a&#34;</span><span class=p>,</span> <span class=s2>&#34;b&#34;</span><span class=p>,</span> <span class=s2>&#34;c&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>arr2</span> <span class=o>=</span> <span class=p>[...</span><span class=nx>arr1</span><span class=p>,</span> <span class=s2>&#34;d&#34;</span><span class=p>,</span> <span class=s2>&#34;e&#34;</span><span class=p>,</span> <span class=s2>&#34;f&#34;</span><span class=p>];</span> <span class=c1>// [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;, &#34;e&#34;, &#34;f&#34;]
+</span></span></span></code></pre></td></tr></table></div></div><a href=#explanation><h3 id=explanation><span class=hanchor arialabel=Anchor># </span>Explanation</h3></a><a href=#in-iterables-like-arrays><h4 id=in-iterables-like-arrays><span class=hanchor arialabel=Anchor># </span>In iterables (like arrays)</h4></a><p>If we have the two following arrays:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>arr1</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;a&#34;</span><span class=p>,</span> <span class=s2>&#34;b&#34;</span><span class=p>,</span> <span class=s2>&#34;c&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>arr2</span> <span class=o>=</span> <span class=p>[</span><span class=nx>arr1</span><span class=p>,</span> <span class=s2>&#34;d&#34;</span><span class=p>,</span> <span class=s2>&#34;e&#34;</span><span class=p>,</span> <span class=s2>&#34;f&#34;</span><span class=p>];</span> <span class=c1>// [[&#34;a&#34;, &#34;b&#34;, &#34;c&#34;], &#34;d&#34;, &#34;e&#34;, &#34;f&#34;]
+</span></span></span></code></pre></td></tr></table></div></div><p><em>arr2</em> the first element is an array because <em>arr1</em> is injected as is into <em>arr2</em>. But what we want is <em>arr2</em> to be an array of letters. To do so, we can <em>spread</em> the elements of <em>arr1</em> into <em>arr2</em>.</p><p>With spread operator</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>arr1</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;a&#34;</span><span class=p>,</span> <span class=s2>&#34;b&#34;</span><span class=p>,</span> <span class=s2>&#34;c&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>arr2</span> <span class=o>=</span> <span class=p>[...</span><span class=nx>arr1</span><span class=p>,</span> <span class=s2>&#34;d&#34;</span><span class=p>,</span> <span class=s2>&#34;e&#34;</span><span class=p>,</span> <span class=s2>&#34;f&#34;</span><span class=p>];</span> <span class=c1>// [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;, &#34;e&#34;, &#34;f&#34;]
+</span></span></span></code></pre></td></tr></table></div></div><a href=#function-rest-parameter><h4 id=function-rest-parameter><span class=hanchor arialabel=Anchor># </span>Function rest parameter</h4></a><p>In function parameters, we can use the rest operator to inject parameters into an array we can loop in. There is already an <strong>arguments</strong> object bound to every function that is equal to an array of all the parameters passed into the function.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>myFunc</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>arguments</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>arguments</span><span class=p>[</span><span class=nx>i</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>myFunc</span><span class=p>(</span><span class=s2>&#34;Nick&#34;</span><span class=p>,</span> <span class=s2>&#34;Anderson&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>12</span><span class=p>,</span> <span class=mi>6</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// &#34;Nick&#34;
+</span></span></span><span class=line><span class=cl><span class=c1>// &#34;Anderson&#34;
+</span></span></span><span class=line><span class=cl><span class=c1>// 10
+</span></span></span><span class=line><span class=cl><span class=c1>// 12
+</span></span></span><span class=line><span class=cl><span class=c1>// 6
+</span></span></span></code></pre></td></tr></table></div></div><p>But let’s say that we want this function to create a new student with its grades and with its average grade. Wouldn’t it be more convenient to extract the first two parameters into two separate variables, and then have all the grades in an array we can iterate over?</p><p>That’s exactly what the rest operator allows us to do!</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>createStudent</span><span class=p>(</span><span class=nx>firstName</span><span class=p>,</span> <span class=nx>lastName</span><span class=p>,</span> <span class=p>...</span><span class=nx>grades</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// firstName = &#34;Nick&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// lastName = &#34;Anderson&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// [10, 12, 6] -- &#34;...&#34; takes all other parameters passed and creates a &#34;grades&#34; array variable that contains them
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>avgGrade</span> <span class=o>=</span> <span class=nx>grades</span><span class=p>.</span><span class=nx>reduce</span><span class=p>((</span><span class=nx>acc</span><span class=p>,</span> <span class=nx>curr</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>acc</span> <span class=o>+</span> <span class=nx>curr</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span> <span class=o>/</span> <span class=nx>grades</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=c1>// computes average grade from grades
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>firstName</span><span class=o>:</span> <span class=nx>firstName</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>lastName</span><span class=o>:</span> <span class=nx>lastName</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>grades</span><span class=o>:</span> <span class=nx>grades</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>avgGrade</span><span class=o>:</span> <span class=nx>avgGrade</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>student</span> <span class=o>=</span> <span class=nx>createStudent</span><span class=p>(</span><span class=s2>&#34;Nick&#34;</span><span class=p>,</span> <span class=s2>&#34;Anderson&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>12</span><span class=p>,</span> <span class=mi>6</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>student</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// {
+</span></span></span><span class=line><span class=cl><span class=c1>//   firstName: &#34;Nick&#34;,
+</span></span></span><span class=line><span class=cl><span class=c1>//   lastName: &#34;Anderson&#34;,
+</span></span></span><span class=line><span class=cl><span class=c1>//   grades: [10, 12, 6],
+</span></span></span><span class=line><span class=cl><span class=c1>//   avgGrade: 9,33
+</span></span></span><span class=line><span class=cl><span class=c1>// }
+</span></span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>Note:</strong> createStudent function is bad because we don’t check if grades.length exists or is different from 0. But it’s easier to read this way, so I didn’t handle this case.</p></blockquote><a href=#object-properties-spreading><h4 id=object-properties-spreading><span class=hanchor arialabel=Anchor># </span>Object properties spreading</h4></a><p>For this one, I recommend you read previous explanations about the rest operator on iterables and function parameters.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>myObj</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>x</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span> <span class=nx>y</span><span class=o>:</span> <span class=mi>2</span><span class=p>,</span> <span class=nx>a</span><span class=o>:</span> <span class=mi>3</span><span class=p>,</span> <span class=nx>b</span><span class=o>:</span> <span class=mi>4</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>,</span> <span class=p>...</span><span class=nx>z</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>myObj</span><span class=p>;</span> <span class=c1>// object destructuring here
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span> <span class=c1>// 1
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>y</span><span class=p>);</span> <span class=c1>// 2
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>z</span><span class=p>);</span> <span class=c1>// { a: 3, b: 4 }
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// z is the rest of the object destructured: myObj object minus x and y properties destructured
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>n</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>,</span> <span class=p>...</span><span class=nx>z</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>n</span><span class=p>);</span> <span class=c1>// { x: 1, y: 2, a: 3, b: 4 }
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// Here z object properties are spread into n
+</span></span></span></code></pre></td></tr></table></div></div><a href=#external-resources><h3 id=external-resources><span class=hanchor arialabel=Anchor># </span>External resources</h3></a><ul><li><a href=https://github.com/tc39/proposal-object-rest-spread rel=noopener>TC39 - Object rest/spread</a></li><li><a href=https://github.com/wesbos/es6-articles/blob/master/28---Spread-Operator-Introduction rel=noopener>Spread operator introduction - WesBos</a></li><li><a href=https://codeburst.io/javascript-the-spread-operator-a867a71668ca rel=noopener>JavaScript & the spread operator</a></li><li><a href=https://davidwalsh.name/spread-operator rel=noopener>6 Great uses of the spread operator</a></li></ul><a href=#promises><h2 id=promises><span class=hanchor arialabel=Anchor># </span>Promises</h2></a><p>A promise is an object which can be returned synchronously from an asynchronous function (
+<a href=https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261#3cd0 rel=noopener>ref</a>).</p><p>Promises can be used to avoid
+<a href=http://callbackhell.com/ rel=noopener>callback hell</a>, and they are more and more frequently encountered in modern JavaScript projects.</p><a href=#sample-code-2><h3 id=sample-code-2><span class=hanchor arialabel=Anchor># </span>Sample code</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>fetchingPosts</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>((</span><span class=nx>res</span><span class=p>,</span> <span class=nx>rej</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>$</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;/posts&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>done</span><span class=p>(</span><span class=nx>posts</span> <span class=p>=&gt;</span> <span class=nx>res</span><span class=p>(</span><span class=nx>posts</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>fail</span><span class=p>(</span><span class=nx>err</span> <span class=p>=&gt;</span> <span class=nx>rej</span><span class=p>(</span><span class=nx>err</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>fetchingPosts</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>posts</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>posts</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span><span class=nx>err</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#explanation-1><h3 id=explanation-1><span class=hanchor arialabel=Anchor># </span>Explanation</h3></a><p>When you do an <em>Ajax request</em> the response is not synchronous because you want a resource that takes some time to come. It even may never come if the resource you have requested is unavailable for some reason (404).</p><p>To handle that kind of situation, ES2015 has given us <em>promises</em>. Promises can have three different states:</p><ul><li>Pending</li><li>Fulfilled</li><li>Rejected</li></ul><p>Let’s say we want to use promises to handle an Ajax request to fetch the resource X.</p><a href=#create-the-promise><h4 id=create-the-promise><span class=hanchor arialabel=Anchor># </span>Create the promise</h4></a><p>We firstly are going to create a promise. We will use the jQuery get method to do our Ajax request to X.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>xFetcherPromise</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>(</span> <span class=c1>// Create promise using &#34;new&#34; keyword and store it into a variable
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kd>function</span><span class=p>(</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=p>{</span> <span class=c1>// Promise constructor takes a function parameter which has resolve and reject parameters itself
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>$</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;X&#34;</span><span class=p>)</span> <span class=c1>// Launch the Ajax request
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=p>.</span><span class=nx>done</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>X</span><span class=p>)</span> <span class=p>{</span> <span class=c1>// Once the request is done...
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>resolve</span><span class=p>(</span><span class=nx>X</span><span class=p>);</span> <span class=c1>// ... resolve the promise with the X value as parameter
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=p>})</span>
+</span></span><span class=line><span class=cl>      <span class=p>.</span><span class=nx>fail</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span> <span class=c1>// If the request has failed...
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>reject</span><span class=p>(</span><span class=nx>error</span><span class=p>);</span> <span class=c1>// ... reject the promise with the error as parameter
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=p>});</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>As seen in the above sample, the Promise object takes an <em>executor</em> function which takes two parameters <strong>resolve</strong> and <strong>reject</strong>. Those parameters are functions which when called are going to move the promise <em>pending</em> state to respectively a <em>fulfilled</em> and <em>rejected</em> state.</p><p>The promise is in pending state after instance creation and its <em>executor</em> function is executed immediately. Once one of the function <em>resolve</em> or <em>reject</em> is called in the <em>executor</em> function, the promise will call its associated handlers.</p><a href=#promise-handlers-usage><h4 id=promise-handlers-usage><span class=hanchor arialabel=Anchor># </span>Promise handlers usage</h4></a><p>To get the promise result (or error), we must attach to it handlers by doing the following:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>xFetcherPromise</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>X</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>X</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span></code></pre></td></tr></table></div></div><p>If the promise succeeds, <em>resolve</em> is executed and the function passed as <code>.then</code> parameter is executed.</p><p>If it fails, <em>reject</em> is executed and the function passed as <code>.catch</code> parameter is executed.</p><blockquote><p><strong>Note :</strong> If the promise has already been fulfilled or rejected when a corresponding handler is attached, the handler will be called, so there is no race condition between an asynchronous operation completing and its handlers being attached.
+<a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Description rel=noopener>(Ref: MDN)</a></p></blockquote><a href=#external-resources-1><h3 id=external-resources-1><span class=hanchor arialabel=Anchor># </span>External Resources</h3></a><ul><li><a href=https://scotch.io/tutorials/javascript-promises-for-dummies rel=noopener>JavaScript Promises for dummies - Jecelyn Yeen</a></li><li><a href=https://davidwalsh.name/promises rel=noopener>JavaScript Promise API - David Walsh</a></li><li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises rel=noopener>Using promises - MDN</a></li><li><a href=https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261 rel=noopener>What is a promise - Eric Elliott</a></li><li><a href=https://developers.google.com/web/fundamentals/getting-started/primers/promises rel=noopener>JavaScript Promises: an Introduction - Jake Archibald</a></li><li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise rel=noopener>Promise documentation - MDN</a></li></ul><a href=#imports--exports><h2 id=imports--exports><span class=hanchor arialabel=Anchor># </span>Imports / Exports</h2></a><p>ES6 modules are used to access variables or functions in a module explicitly exported by the modules it imports.</p><p>I highly recommend to take a look at MDN resources on import/export (see external resources below), it is both straightforward and complete.</p><a href=#explanation-with-sample-code-1><h4 id=explanation-with-sample-code-1><span class=hanchor arialabel=Anchor># </span>Explanation with sample code</h4></a><a href=#named-exports><h4 id=named-exports><span class=hanchor arialabel=Anchor># </span>Named exports</h4></a><p>Named exports are used to export several values from a module.</p><blockquote><p><strong>Note :</strong> You can only name-export
+<a href=https://en.wikipedia.org/wiki/First-class_citizen rel=noopener>first-class citizens</a> that have a name.</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// mathConstants.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>export</span> <span class=kr>const</span> <span class=nx>pi</span> <span class=o>=</span> <span class=mf>3.14</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>exp</span> <span class=o>=</span> <span class=mf>2.7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>alpha</span> <span class=o>=</span> <span class=mf>0.35</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// -------------
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// myFile.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>pi</span><span class=p>,</span> <span class=nx>exp</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./mathConstants.js&#39;</span><span class=p>;</span> <span class=c1>// Named import -- destructuring-like syntax
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>pi</span><span class=p>)</span> <span class=c1>// 3.14
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>exp</span><span class=p>)</span> <span class=c1>// 2.7
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// -------------
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// mySecondFile.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=o>*</span> <span class=nx>as</span> <span class=nx>constants</span> <span class=nx>from</span> <span class=s1>&#39;./mathConstants.js&#39;</span><span class=p>;</span> <span class=c1>// Inject all exported values into constants variable
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>constants</span><span class=p>.</span><span class=nx>pi</span><span class=p>)</span> <span class=c1>// 3.14
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>constants</span><span class=p>.</span><span class=nx>exp</span><span class=p>)</span> <span class=c1>// 2.7
+</span></span></span></code></pre></td></tr></table></div></div><p>While named imports looks like <em>destructuring</em>, they have a different syntax and are not the same. They don’t support default values nor <em>deep</em> destructuring.</p><p>Besides, you can do aliases but the syntax is different from the one used in destructuring:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>foo</span> <span class=nx>as</span> <span class=nx>bar</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;myFile.js&#39;</span><span class=p>;</span> <span class=c1>// foo is imported and injected into a new bar variable
+</span></span></span></code></pre></td></tr></table></div></div><a href=#default-import--export><h4 id=default-import--export><span class=hanchor arialabel=Anchor># </span>Default import / export</h4></a><p>Concerning the default export, there is only a single default export per module. A default export can be a function, a class, an object or anything else. This value is considered the “main” exported value since it will be the simplest to import.
+<a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export#Description rel=noopener>Ref: MDN</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// coolNumber.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>ultimateNumber</span> <span class=o>=</span> <span class=mi>42</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=k>default</span> <span class=nx>ultimateNumber</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ------------
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// myFile.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=nx>number</span> <span class=nx>from</span> <span class=s1>&#39;./coolNumber.js&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// Default export, independently from its name, is automatically injected into number variable;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>number</span><span class=p>)</span> <span class=c1>// 42
+</span></span></span></code></pre></td></tr></table></div></div><p>Function exporting:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// sum.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>export</span> <span class=k>default</span> <span class=kd>function</span> <span class=nx>sum</span><span class=p>(</span><span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>x</span> <span class=o>+</span> <span class=nx>y</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>// -------------
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// myFile.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=nx>sum</span> <span class=nx>from</span> <span class=s1>&#39;./sum.js&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=nx>sum</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span> <span class=c1>// 3
+</span></span></span></code></pre></td></tr></table></div></div><a href=#external-resources-2><h3 id=external-resources-2><span class=hanchor arialabel=Anchor># </span>External resources</h3></a><ul><li><a href=https://ponyfoo.com/articles/es6#modules rel=noopener>ES6 Modules in bulletpoints</a></li><li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export rel=noopener>Export - MDN</a></li><li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import rel=noopener>Import - MDN</a></li><li><a href=https://www.sitepoint.com/understanding-es6-modules/ rel=noopener>Understanding ES6 Modules</a></li><li><a href=https://ponyfoo.com/articles/es6-destructuring-in-depth#special-case-import-statements rel=noopener>Destructuring special case - import statements</a></li><li><a href=https://medium.com/@kentcdodds/misunderstanding-es6-modules-upgrading-babel-tears-and-a-solution-ad2d5ab93ce0 rel=noopener>Misunderstanding ES6 Modules - Kent C. Dodds</a></li><li><a href=http://exploringjs.com/es6/ch_modules.html#sec_modules-in-javascript rel=noopener>Modules in JavaScript</a></li></ul><a href=#async-await><h2 id=async-await><span class=hanchor arialabel=Anchor># </span>Async Await</h2></a><p>In addition to Promises, there is a new syntax you might encounter to handle asynchronous code named <em>async / await</em>.</p><p>The purpose of async/await functions is to simplify the behavior of using promises synchronously and to perform some behavior on a group of Promises. Just as Promises are similar to structured callbacks, async/await is similar to combining generators and promises. Async functions <em>always</em> return a Promise. (
+<a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function rel=noopener>Ref: MDN</a>)</p><blockquote><p><strong>Note :</strong> You must understand what promises are and how they work before trying to understand async / await since they rely on it.</p></blockquote><blockquote><p><strong>Note 2:</strong>
+<a href=https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9#f3f0 rel=noopener><em>await</em> must be used in an <em>async</em> function</a>, which means that you can’t use await in the top level of our code since that is not inside an async function.</p></blockquote><a href=#sample-code-3><h3 id=sample-code-3><span class=hanchor arialabel=Anchor># </span>Sample code</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>getGithubUser</span><span class=p>(</span><span class=nx>username</span><span class=p>)</span> <span class=p>{</span> <span class=c1>// async keyword allows usage of await in the function and means function returns a promise
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>response</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>fetch</span><span class=p>(</span><span class=sb>`https://api.github.com/users/</span><span class=si>${</span><span class=nx>username</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span> <span class=c1>// Execution is paused here until the Promise returned by fetch is resolved
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>return</span> <span class=nx>response</span><span class=p>.</span><span class=nx>json</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>getGithubUser</span><span class=p>(</span><span class=s1>&#39;mbeaudru&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>user</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>user</span><span class=p>))</span> <span class=c1>// logging user response - cannot use await syntax since this code isn&#39;t in async function
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span><span class=nx>err</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>));</span> <span class=c1>// if an error is thrown in our async function, we will catch it here
+</span></span></span></code></pre></td></tr></table></div></div><a href=#explanation-with-sample-code-2><h3 id=explanation-with-sample-code-2><span class=hanchor arialabel=Anchor># </span>Explanation with sample code</h3></a><p><em>Async / Await</em> is built on promises but they allow a more imperative style of code.</p><p>The <em>async</em> operator marks a function as asynchronous and will always return a <em>Promise</em>. You can use the <em>await</em> operator in an <em>async</em> function to pause execution on that line until the returned Promise from the expression either resolves or rejects.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>myFunc</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// we can use await operator because this function is async
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>return</span> <span class=s2>&#34;hello world&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>myFunc</span><span class=p>().</span><span class=nx>then</span><span class=p>(</span><span class=nx>msg</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>msg</span><span class=p>))</span> <span class=c1>// &#34;hello world&#34; -- myFunc&#39;s return value is turned into a promise because of async operator
+</span></span></span></code></pre></td></tr></table></div></div><p>When the <em>return</em> statement of an async function is reached, the Promise is fulfilled with the value returned. If an error is thrown inside an async function, the Promise state will turn to <em>rejected</em>. If no value is returned from an async function, a Promise is still returned and resolves with no value when execution of the async function is complete.</p><p><em>await</em> operator is used to wait for a <em>Promise</em> to be fulfilled and can only be used inside an <em>async</em> function body. When encountered, the code execution is paused until the promise is fulfilled.</p><blockquote><p><strong>Note :</strong> <em>fetch</em> is a function that returns a Promise that allows to do an AJAX request</p></blockquote><p>Let’s see how we could fetch a github user with promises first:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>getGithubUser</span><span class=p>(</span><span class=nx>username</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>fetch</span><span class=p>(</span><span class=sb>`https://api.github.com/users/</span><span class=si>${</span><span class=nx>username</span><span class=si>}</span><span class=sb>`</span><span class=p>).</span><span class=nx>then</span><span class=p>(</span><span class=nx>response</span> <span class=p>=&gt;</span> <span class=nx>response</span><span class=p>.</span><span class=nx>json</span><span class=p>());</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>getGithubUser</span><span class=p>(</span><span class=s1>&#39;mbeaudru&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>user</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>user</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span><span class=nx>err</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div><p>Here’s the <em>async / await</em> equivalent:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>getGithubUser</span><span class=p>(</span><span class=nx>username</span><span class=p>)</span> <span class=p>{</span> <span class=c1>// promise + await keyword usage allowed
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>response</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>fetch</span><span class=p>(</span><span class=sb>`https://api.github.com/users/</span><span class=si>${</span><span class=nx>username</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span> <span class=c1>// Execution stops here until fetch promise is fulfilled
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>return</span> <span class=nx>response</span><span class=p>.</span><span class=nx>json</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>getGithubUser</span><span class=p>(</span><span class=s1>&#39;mbeaudru&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>user</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>user</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span><span class=nx>err</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div><p><em>async / await</em> syntax is particularly convenient when you need to chain promises that are interdependent.</p><p>For instance, if you need to get a token in order to be able to fetch a blog post on a database and then the author informations:</p><blockquote><p><strong>Note :</strong> <em>await</em> expressions needs to be wrapped in parentheses to call its resolved value’s methods and properties on the same line.</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>fetchPostById</span><span class=p>(</span><span class=nx>postId</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>token</span> <span class=o>=</span> <span class=p>(</span><span class=kr>await</span> <span class=nx>fetch</span><span class=p>(</span><span class=s1>&#39;token_url&#39;</span><span class=p>)).</span><span class=nx>json</span><span class=p>().</span><span class=nx>token</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>post</span> <span class=o>=</span> <span class=p>(</span><span class=kr>await</span> <span class=nx>fetch</span><span class=p>(</span><span class=sb>`/posts/</span><span class=si>${</span><span class=nx>postId</span><span class=si>}</span><span class=sb>?token=</span><span class=si>${</span><span class=nx>token</span><span class=si>}</span><span class=sb>`</span><span class=p>)).</span><span class=nx>json</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>author</span> <span class=o>=</span> <span class=p>(</span><span class=kr>await</span> <span class=nx>fetch</span><span class=p>(</span><span class=sb>`/users/</span><span class=si>${</span><span class=nx>post</span><span class=p>.</span><span class=nx>authorId</span><span class=si>}</span><span class=sb>`</span><span class=p>)).</span><span class=nx>json</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>post</span><span class=p>.</span><span class=nx>author</span> <span class=o>=</span> <span class=nx>author</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>post</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>fetchPostById</span><span class=p>(</span><span class=s1>&#39;gzIrzeo64&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>post</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>post</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span><span class=nx>err</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#error-handling><h4 id=error-handling><span class=hanchor arialabel=Anchor># </span>Error handling</h4></a><p>Unless we add <em>try / catch</em> blocks around <em>await</em> expressions, uncaught exceptions – regardless of whether they were thrown in the body of your <em>async</em> function or while it’s suspended during <em>await</em> – will reject the promise returned by the <em>async</em> function. Using the <code>throw</code> statement in an async function is the same as returning a Promise that rejects.
+<a href=https://ponyfoo.com/articles/understanding-javascript-async-await#error-handling rel=noopener>(Ref: PonyFoo)</a>.</p><blockquote><p><strong>Note :</strong> Promises behave the same!</p></blockquote><p>With promises, here is how you would handle the error chain:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>getUser</span><span class=p>()</span> <span class=p>{</span> <span class=c1>// This promise will be rejected!
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>return</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>((</span><span class=nx>res</span><span class=p>,</span> <span class=nx>rej</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>rej</span><span class=p>(</span><span class=s2>&#34;User not found !&#34;</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>getAvatarByUsername</span><span class=p>(</span><span class=nx>userId</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>getUser</span><span class=p>(</span><span class=nx>userId</span><span class=p>).</span><span class=nx>then</span><span class=p>(</span><span class=nx>user</span> <span class=p>=&gt;</span> <span class=nx>user</span><span class=p>.</span><span class=nx>avatar</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>getUserAvatar</span><span class=p>(</span><span class=nx>username</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>getAvatarByUsername</span><span class=p>(</span><span class=nx>username</span><span class=p>).</span><span class=nx>then</span><span class=p>(</span><span class=nx>avatar</span> <span class=p>=&gt;</span> <span class=p>({</span> <span class=nx>username</span><span class=p>,</span> <span class=nx>avatar</span> <span class=p>}));</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>getUserAvatar</span><span class=p>(</span><span class=s1>&#39;mbeaudru&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>res</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>res</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span><span class=nx>err</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>));</span> <span class=c1>// &#34;User not found !&#34;
+</span></span></span></code></pre></td></tr></table></div></div><p>The equivalent with <em>async / await</em>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>getUser</span><span class=p>()</span> <span class=p>{</span> <span class=c1>// The returned promise will be rejected!
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>throw</span> <span class=s2>&#34;User not found !&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>getAvatarByUsername</span><span class=p>(</span><span class=nx>userId</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>user</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>getUser</span><span class=p>(</span><span class=nx>userId</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>user</span><span class=p>.</span><span class=nx>avatar</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>getUserAvatar</span><span class=p>(</span><span class=nx>username</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>avatar</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>getAvatarByUsername</span><span class=p>(</span><span class=nx>username</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=p>{</span> <span class=nx>username</span><span class=p>,</span> <span class=nx>avatar</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>getUserAvatar</span><span class=p>(</span><span class=s1>&#39;mbeaudru&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>res</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>res</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span><span class=nx>err</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>));</span> <span class=c1>// &#34;User not found !&#34;
+</span></span></span></code></pre></td></tr></table></div></div><a href=#external-resources-3><h3 id=external-resources-3><span class=hanchor arialabel=Anchor># </span>External resources</h3></a><ul><li><a href=https://javascript.info/async-await rel=noopener>Async/Await - JavaScript.Info</a></li><li><a href=http://rossboucher.com/await/#/ rel=noopener>ES7 Async/Await</a></li><li><a href=https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9 rel=noopener>6 Reasons Why JavaScript’s Async/Await Blows Promises Away</a></li><li><a href=https://dev.to/kayis/javascript-awaits rel=noopener>JavaScript awaits</a></li><li><a href=https://medium.com/@Abazhenov/using-async-await-in-express-with-node-8-b8af872c0016 rel=noopener>Using Async Await in Express with Node 8</a></li><li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function rel=noopener>Async Function</a></li><li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await rel=noopener>Await</a></li><li><a href=https://medium.com/@Abazhenov/using-async-await-in-express-with-node-8-b8af872c0016 rel=noopener>Using async / await in express with node 8</a></li></ul><a href=#truthy--falsy><h2 id=truthy--falsy><span class=hanchor arialabel=Anchor># </span>Truthy / Falsy</h2></a><p>In JavaScript, a truthy or falsy value is a value that is being casted into a boolean when evaluated in a boolean context. An example of boolean context would be the evaluation of an <code>if</code> condition:</p><p>Every value will be casted to <code>true</code> unless they are equal to:</p><ul><li><code>false</code></li><li><code>0</code></li><li><code>""</code> (empty string)</li><li><code>null</code></li><li><code>undefined</code></li><li><code>NaN</code></li></ul><p>Here are examples of <em>boolean context</em>:</p><ul><li><code>if</code> condition evaluation</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=nx>myVar</span><span class=p>)</span> <span class=p>{}</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>myVar</code> can be any
+<a href=https://en.wikipedia.org/wiki/First-class_citizen rel=noopener>first-class citizen</a> (variable, function, boolean) but it will be casted into a boolean because it’s evaluated in a boolean context.</p><ul><li>After logical <strong>NOT</strong> <code>!</code> operator</li></ul><p>This operator returns false if its single operand can be converted to true; otherwise, returns true.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=o>!</span><span class=mi>0</span> <span class=c1>// true -- 0 is falsy so it returns true
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=o>!!</span><span class=mi>0</span> <span class=c1>// false -- 0 is falsy so !0 returns true so !(!0) returns false
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=o>!!</span><span class=s2>&#34;&#34;</span> <span class=c1>// false -- empty string is falsy so NOT (NOT false) equals false
+</span></span></span></code></pre></td></tr></table></div></div><ul><li>With the <em>Boolean</em> object constructor</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=k>new</span> <span class=nb>Boolean</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span> <span class=c1>// false
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>new</span> <span class=nb>Boolean</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span> <span class=c1>// true
+</span></span></span></code></pre></td></tr></table></div></div><ul><li>In a ternary evaluation</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>myVar</span> <span class=o>?</span> <span class=s2>&#34;truthy&#34;</span> <span class=o>:</span> <span class=s2>&#34;falsy&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><p>myVar is evaluated in a boolean context.</p><p>Be careful when comparing 2 values. The object values (that should be cast to true) is <strong>not</strong> being casted to Boolean but it forced to convert into a primitive value one using
+<a href=http://javascript.info/object-toprimitive rel=noopener>ToPrimitives specification</a>. Internally, when an object is compared to Boolean value like <code>[] == true</code>, it does <code>[].toString() == true</code> so…</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>let</span> <span class=nx>a</span> <span class=o>=</span> <span class=p>[]</span> <span class=o>==</span> <span class=kc>true</span> <span class=c1>// a is false since [].toString() give &#34;&#34; back.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>b</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=kc>true</span> <span class=c1>// b is true since [1].toString() give &#34;1&#34; back.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>c</span> <span class=o>=</span> <span class=p>[</span><span class=mi>2</span><span class=p>]</span> <span class=o>==</span> <span class=kc>true</span> <span class=c1>// c is false since [2].toString() give &#34;2&#34; back.
+</span></span></span></code></pre></td></tr></table></div></div><a href=#external-resources-4><h3 id=external-resources-4><span class=hanchor arialabel=Anchor># </span>External resources</h3></a><ul><li><a href=https://developer.mozilla.org/en-US/docs/Glossary/Truthy rel=noopener>Truthy (MDN)</a></li><li><a href=https://developer.mozilla.org/en-US/docs/Glossary/Falsy rel=noopener>Falsy (MDN)</a></li><li><a href=http://adripofjavascript.com/blog/drips/truthy-and-falsy-values-in-javascript.html rel=noopener>Truthy and Falsy values in JS - Josh Clanton</a></li></ul><a href=#anamorphisms-and-catamorphisms><h2 id=anamorphisms-and-catamorphisms><span class=hanchor arialabel=Anchor># </span>Anamorphisms and Catamorphisms</h2></a><a href=#anamorphisms><h3 id=anamorphisms><span class=hanchor arialabel=Anchor># </span>Anamorphisms</h3></a><p>Anamorphisms are functions that map from some object to a more complex structure containing the type of the object. It is the process of <em>unfolding</em> a simple structure into a more complex one. Consider unfolding an integer to a list of integers. The integer is our initial object and the list of integers is the more complex structure.</p><p><strong>Sample code</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>downToOne</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>list</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>;</span> <span class=o>--</span><span class=nx>i</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>list</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>list</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>downToOne</span><span class=p>(</span><span class=mi>5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//=&gt; [ 5, 4, 3, 2, 1 ]
+</span></span></span></code></pre></td></tr></table></div></div><a href=#catamorphisms><h3 id=catamorphisms><span class=hanchor arialabel=Anchor># </span>Catamorphisms</h3></a><p>Catamorphisms are the opposite of Anamorphisms, in that they take objects of more complex structure and <em>fold</em> them into simpler structures. Take the following example <code>product</code> which take a list of integers and returns a single integer.</p><p><strong>Sample code</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=nx>product</span><span class=p>(</span><span class=nx>list</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>product</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kr>const</span> <span class=nx>n</span> <span class=k>of</span> <span class=nx>list</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>product</span> <span class=o>=</span> <span class=nx>product</span> <span class=o>*</span> <span class=nx>n</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>product</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>product</span><span class=p>(</span><span class=nx>downToOne</span><span class=p>(</span><span class=mi>5</span><span class=p>))</span> <span class=c1>// 120
+</span></span></span></code></pre></td></tr></table></div></div><a href=#external-resources-5><h3 id=external-resources-5><span class=hanchor arialabel=Anchor># </span>External resources</h3></a><ul><li><a href=http://raganwald.com/2016/11/30/anamorphisms-in-javascript.html rel=noopener>Anamorphisms in JavaScript</a></li><li><a href=https://en.wikipedia.org/wiki/Anamorphism rel=noopener>Anamorphism</a></li><li><a href=https://en.wikipedia.org/wiki/Catamorphism rel=noopener>Catamorphism</a></li></ul><a href=#generators><h2 id=generators><span class=hanchor arialabel=Anchor># </span>Generators</h2></a><p>Another way to write the <code>downToOne</code> function is to use a Generator. To instantiate a <code>Generator</code> object, one must use the <code>function *</code> declaration. Generators are functions that can be exited and later re-entered with its context (variable bindings) saved across re-entrances.</p><p>For example, the <code>downToOne</code> function above can be rewritten as:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kd>function</span> <span class=o>*</span> <span class=nx>downToOne</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>;</span> <span class=o>--</span><span class=nx>i</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=nx>i</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[...</span><span class=nx>downToOne</span><span class=p>(</span><span class=mi>5</span><span class=p>)]</span> <span class=c1>// [ 5, 4, 3, 2, 1 ]
+</span></span></span></code></pre></td></tr></table></div></div><p>Generators return an iterable object. When the iterator’s <code>next()</code> function is called, it is executed until the first <code>yield</code> expression, which specifies the value to be returned from the iterator or with <code>yield*</code>, which delegates to another generator function. When a <code>return</code> expression is called in the generator, it will mark the generator as done and pass back as the return value. Further calls to <code>next()</code> will not return any new values.</p><p><strong>Sample code</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// Yield Example
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>function</span> <span class=o>*</span> <span class=nx>idMaker</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>index</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>while</span> <span class=p>(</span><span class=nx>index</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>yield</span> <span class=nx>index</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>index</span> <span class=o>=</span> <span class=nx>index</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>gen</span> <span class=o>=</span> <span class=nx>idMaker</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>().</span><span class=nx>value</span><span class=p>;</span> <span class=c1>// 0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>().</span><span class=nx>value</span><span class=p>;</span> <span class=c1>// 1
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>().</span><span class=nx>value</span><span class=p>;</span> <span class=c1>// undefined
+</span></span></span></code></pre></td></tr></table></div></div><p>The <code>yield*</code> expression enables a generator to call another generator function during iteration.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// Yield * Example
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>function</span> <span class=o>*</span> <span class=nx>genB</span><span class=p>(</span><span class=nx>i</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>yield</span> <span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>yield</span> <span class=nx>i</span> <span class=o>+</span> <span class=mi>2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>yield</span> <span class=nx>i</span> <span class=o>+</span> <span class=mi>3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=o>*</span> <span class=nx>genA</span><span class=p>(</span><span class=nx>i</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>yield</span> <span class=nx>i</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>yield</span><span class=o>*</span> <span class=nx>genB</span><span class=p>(</span><span class=nx>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>yield</span> <span class=nx>i</span> <span class=o>+</span> <span class=mi>10</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>gen</span> <span class=o>=</span> <span class=nx>genA</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>().</span><span class=nx>value</span><span class=p>;</span> <span class=c1>// 10
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>().</span><span class=nx>value</span><span class=p>;</span> <span class=c1>// 11
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>().</span><span class=nx>value</span><span class=p>;</span> <span class=c1>// 12
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>().</span><span class=nx>value</span><span class=p>;</span> <span class=c1>// 13
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>().</span><span class=nx>value</span><span class=p>;</span> <span class=c1>// 20
+</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// Generator Return Example
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>function</span><span class=o>*</span> <span class=nx>yieldAndReturn</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>yield</span> <span class=s2>&#34;Y&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=s2>&#34;R&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>yield</span> <span class=s2>&#34;unreachable&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>gen</span> <span class=o>=</span> <span class=nx>yieldAndReturn</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>();</span> <span class=c1>// { value: &#34;Y&#34;, done: false }
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>();</span> <span class=c1>// { value: &#34;R&#34;, done: true }
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gen</span><span class=p>.</span><span class=nx>next</span><span class=p>();</span> <span class=c1>// { value: undefined, done: true }
+</span></span></span></code></pre></td></tr></table></div></div><a href=#external-resources-6><h3 id=external-resources-6><span class=hanchor arialabel=Anchor># </span>External resources</h3></a><ul><li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators#Generators rel=noopener>Mozilla MDN Web Docs, Iterators and Generators</a></li></ul><a href=#static-methods><h2 id=static-methods><span class=hanchor arialabel=Anchor># </span>Static Methods</h2></a><a href=#short-explanation><h3 id=short-explanation><span class=hanchor arialabel=Anchor># </span>Short explanation</h3></a><p>The <code>static</code> keyword is used in classes to declare static methods. Static methods are functions in a class that belongs to the class object and are not available to any instance of that class.</p><a href=#sample-code-4><h3 id=sample-code-4><span class=hanchor arialabel=Anchor># </span>Sample code</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>class</span> <span class=nx>Repo</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>getName</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;Repo name is modern-js-cheatsheet&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Note that we did not have to create an instance of the Repo class
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>Repo</span><span class=p>.</span><span class=nx>getName</span><span class=p>())</span> <span class=c1>// Repo name is modern-js-cheatsheet
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>r</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Repo</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>r</span><span class=p>.</span><span class=nx>getName</span><span class=p>())</span> <span class=c1>// Uncaught TypeError: r.getName is not a function
+</span></span></span></code></pre></td></tr></table></div></div><a href=#detailed-explanation><h3 id=detailed-explanation><span class=hanchor arialabel=Anchor># </span>Detailed explanation</h3></a><p>Static methods can be called within another static method by using the <code>this</code> keyword, this doesn’t work for non-static methods though. Non-static methods cannot directly access static methods using the <code>this</code> keyword.</p><a href=#calling-other-static-methods-from-a-static-method><h5 id=calling-other-static-methods-from-a-static-method><span class=hanchor arialabel=Anchor># </span>Calling other static methods from a static method.</h5></a><p>To call a static method from another static method, the <code>this</code> keyword can be used like so;</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>class</span> <span class=nx>Repo</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>getName</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;Repo name is modern-js-cheatsheet&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>modifyName</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>getName</span><span class=p>()</span> <span class=o>+</span> <span class=s1>&#39;-added-this&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>Repo</span><span class=p>.</span><span class=nx>modifyName</span><span class=p>())</span> <span class=c1>// Repo name is modern-js-cheatsheet-added-this
+</span></span></span></code></pre></td></tr></table></div></div><a href=#calling-static-methods-from-non-static-methods><h4 id=calling-static-methods-from-non-static-methods><span class=hanchor arialabel=Anchor># </span>Calling static methods from non-static methods.</h4></a><p>Non-static methods can call static methods in 2 ways;</p><ol><li><a href=#using-the-class-name><h6 id=using-the-class-name><span class=hanchor arialabel=Anchor># </span>Using the class name.</h6></a></li></ol><p>To get access to a static method from a non-static method we use the class name and call the static method like a property. e.g <code>ClassName.StaticMethodName</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>class</span> <span class=nx>Repo</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>getName</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;Repo name is modern-js-cheatsheet&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>useName</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>Repo</span><span class=p>.</span><span class=nx>getName</span><span class=p>()</span> <span class=o>+</span> <span class=s1>&#39; and it contains some really important stuff&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// we need to instantiate the class to use non-static methods
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>r</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Repo</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>r</span><span class=p>.</span><span class=nx>useName</span><span class=p>())</span> <span class=c1>// Repo name is modern-js-cheatsheet and it contains some really important stuff
+</span></span></span></code></pre></td></tr></table></div></div><ol start=2><li><a href=#using-the-constructor><h5 id=using-the-constructor><span class=hanchor arialabel=Anchor># </span>Using the constructor</h5></a></li></ol><p>Static methods can be called as properties on the constructor object.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>class</span> <span class=nx>Repo</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=nx>getName</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s2>&#34;Repo name is modern-js-cheatsheet&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>useName</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Calls the static method as a property of the constructor
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>constructor</span><span class=p>.</span><span class=nx>getName</span><span class=p>()</span> <span class=o>+</span> <span class=s1>&#39; and it contains some really important stuff&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// we need to instantiate the class to use non-static methods
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>r</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Repo</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>r</span><span class=p>.</span><span class=nx>useName</span><span class=p>())</span> <span class=c1>// Repo name is modern-js-cheatsheet and it contains some really important stuff
+</span></span></span></code></pre></td></tr></table></div></div><a href=#external-resources-7><h3 id=external-resources-7><span class=hanchor arialabel=Anchor># </span>External resources</h3></a><ul><li><a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static rel=noopener>static keyword- MDN</a></li><li><a href=https://javascript.info/class#static-methods rel=noopener>Static Methods- Javascript.info</a></li><li><a href=http://odetocode.com/blogs/scott/archive/2015/02/02/static-members-in-es6.aspx rel=noopener>Static Members in ES6- OdeToCode</a></li></ul></article><hr><div class=page-end><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://deuxfois.github.io/quartz/js/graph.243ea0d4fc79317e06f846bd698ba136.js></script></div></div><div id=contact_buttons><footer><p>Made by DeuxFois using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://deuxfois.github.io/quartz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>
