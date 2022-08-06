@@ -7,28 +7,36 @@
 <div class="singlePage">
     {{partial "header.html" .}}
     {{$url := urls.Parse .Site.BaseURL }}
-    <a href="{{$url}}" class="back-button">↩</a>
+    
+
     <!-- navigation menu path -->
     {{$host := strings.TrimRight "/" $url.Path }}
     {{$curPage := strings.TrimPrefix $host (strings.TrimRight "/" .Page.RelPermalink)}}
     {{$path := split $curPage "/"}}
     {{$currPath := $url }}
+    {{$backPath := $url }}
     <div class="navigation-menu">
     {{range $i, $p := $path}}
+      {{$p = lower $p}}
+
+      {{if eq $i (sub (len $path) 1)}}
+      {{ $backPath = $url }}
+       
+      {{end}}
+
       {{if eq $i 0}}
-        <a href="/">home</a>
+        <a href="{{$currPath}}">home</a>
       {{else if eq $i 1}}
         {{$currPath = printf "%s%s" $currPath $p}}
         <a href="{{$currPath}}">{{$p}}</a>
       {{else}}
-      <!-- concatenate current path with p -->
       {{$currPath = printf "%s/%s" $currPath $p}}
         <a href="{{$currPath}}">{{$p}}</a>
       {{end}}
       <span style="color:var(--gray)">/</span>
     {{end}}
     </div>
-
+    <a href="{{$backPath}}" class="back-button">↩</a>
 
     <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
