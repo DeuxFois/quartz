@@ -1,15 +1,15 @@
 # Semestre1
 
 ## Concurrence dans les systèmes
-[Concurrence](Master/Concurrence.md)
+[concurrence-donnees](master/concurrence-donnees.md)
 
 ## Droit
-[Droit](Master/Droit.md)
+[droit](master/droit.md)
 
 ## Graphisme
-[Graphisme](Master/Graphisme.md)
+[graphisme](master/graphisme.md)
 
 ## Paradigmes - Java et Scala
-[paradigmes](Master/paradigmes.md)
+[paradigmes](master/paradigmes.md)
 
 

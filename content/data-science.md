@@ -1,11 +1,11 @@
-# [Statistic](Data-Science/Statistic.md)
+# [statistic](data-science/statistic.md)
 
 
-# [Dimensionality-reduction](Data-Science/Dimensionality-reduction.md)
+# [dimensionality-reduction](data-science/dimensionality-reduction.md)
 
 
 
-# [Machine-Learning](Data-Science/Machine-Learning.md)
+# [machine-learning](data-science/machine-learning.md)
 
 
 

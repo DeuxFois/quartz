@@ -3,30 +3,31 @@
 It is the interconnection of multiple devices, generally termed as Hosts connected using multiple paths for the purpose of sending/receiving data or media.  
 For this purpose, we need a **protocol**, a set of rules or algorithms which define the way how two entities can communicate across the network.
 
-###  [HTTP](Web-Network/HTTP.md)
+###  [http](web-network/http.md)
 ##### TCP
 ##### UDP 
 ##### Websocket
 # Web 
 
-### [MDN](Web-Network/MDN.md)
+### [MDN](web-network/MDN.md)
 
 
-###  [HTML](Web-Network/HTML.md)
+###  [HTML](web-network/HTML.md)
 
 
-###  [Modern Javascript](Web-Network/Modern-Javascript.md)
+###  [Modern Javascript](web-network/Modern-Javascript.md)
 
 
-###  [Node](Web-Network/Node.md)
+###  [Node](web-network/Node.md)
 
 
-###  [CSS](Web-Network/CSS.md)
+###  [CSS](web-network/CSS.md)
 
 
 
 
 # Usefull links
+
 ### CSS generators
 [bennettfeely](https://bennettfeely.com)  
 [layout](https://layout.bradwoods.io)  
@@ -67,6 +68,7 @@ For this purpose, we need a **protocol**, a set of rules or algorithms which def
 [AI-powered copywriter](https://t.co/rtaSGwiSzV)  
 [create high-performing content](https://t.co/yskBtRhzOn)
 ### Courses & doc
+[roadmap and usefull links](https://resourcify.me/#/)
 https://mdn.dev/  
 [learn javascript](https://github.com/bmorelli25/Become-A-Full-Stack-Web-Developer/#learn-javascript)  
 [you don't know JS](https://github.com/getify/You-Dont-Know-JS)  
