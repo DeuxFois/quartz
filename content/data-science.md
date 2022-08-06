@@ -10,7 +10,7 @@
 
 
 
-
+---
 
 
 
@@ -30,9 +30,6 @@ http://export.arxiv.org/list/stat.ML/recent
 http://export.arxiv.org/list/cs.LG/recent
 
 ### Courses and Learning
-https://www.kaggle.com/  
-https://ai.google/education/  
-https://github.com/microsoft/Data-Science-For-Beginners
 <details>
 <summary> khanacademy </summary>
 
@@ -47,22 +44,23 @@ https://github.com/microsoft/Data-Science-For-Beginners
 <details>
 <summary> Stanford ML courses </summary>
 
--   [http://cs229.stanford.edu/summer2019/cs229-notes1.pdf](http://cs229.stanford.edu/summer2019/cs229-notes1.pdf)
-    
--   [http://cs229.stanford.edu/summer2019/cs229-notes2.pdf](http://cs229.stanford.edu/summer2019/cs229-notes2.pdf)
-    
--   [http://cs229.stanford.edu/summer2019/cs229-notes3.pdf](http://cs229.stanford.edu/summer2019/cs229-notes3.pdf)
-    
--   [http://cs229.stanford.edu/summer2019/cs229-notes4.pdf](http://cs229.stanford.edu/summer2019/cs229-notes4.pdf)
-    
--   [http://cs229.stanford.edu/summer2019/cs229-notes5.pdf](http://cs229.stanford.edu/summer2019/cs229-notes5.pdf)
+-   [notes1.pdf](http://cs229.stanford.edu/summer2019/cs229-notes1.pdf)
+-   [notes2.pdf](http://cs229.stanford.edu/summer2019/cs229-notes2.pdf)
+-   [notes3.pdf](http://cs229.stanford.edu/summer2019/cs229-notes3.pdf)
+-   [notes4.pdf](http://cs229.stanford.edu/summer2019/cs229-notes4.pdf)
+-   [notes5.pdf](http://cs229.stanford.edu/summer2019/cs229-notes5.pdf)
 </details>
+
+https://www.kaggle.com/  
+https://ai.google/education/  
+https://github.com/microsoft/Data-Science-For-Beginners
 
 https://www.coursera.org/projects/exploratory-data-analysis-python-pandas   
 https://www.coursera.org/learn/data-analysis-with-python   
 https://www.coursera.org/professional-certificates/ibm-data-science    
 https://www.hackerrank.com/   
 ### Books
+The StatQuest Illustrated Guide To Machine Learning  
 https://codingvidya.com/best-books-to-learn-neural-networks/
 
 
