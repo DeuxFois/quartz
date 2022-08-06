@@ -1,0 +1,651 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Resources   Java 8 Javadoc  Java SE8 for the Really Impatient: A Short Course on the Basics by Cay S."><title>Modern Java</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://deuxfois.github.io/quartz//icon.png><link href=https://deuxfois.github.io/quartz/styles.5d20a0a2089fd938e7279230bf6ab75b.min.css rel=stylesheet><link href=https://deuxfois.github.io/quartz/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://deuxfois.github.io/quartz/js/darkmode.69b2c08ae0f08c3a3f86259a122e1f06.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/util.9825137f5e7825e8553c68ce39ac9e44.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script src=https://deuxfois.github.io/quartz/js/popover.37b1455b8f0603154072b9467132c659.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/code-title.b35124ad8db0ba37162b886afb711cbc.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/clipboard.c20857734e53a3fb733b7443879efa61.min.js></script>
+<script src=https://deuxfois.github.io/quartz/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const BASE_URL="https://deuxfois.github.io/quartz/",fetchData=Promise.all([fetch("https://deuxfois.github.io/quartz/indices/linkIndex.bdfdbb2fa198007e24905e97e2574c63.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://deuxfois.github.io/quartz/indices/contentIndex.b40f75720c4258fc3b183c591d471cd9.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const n=new URL(BASE_URL),s=n.pathname,o=window.location.pathname,i=s==o;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts();const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=i&&!0;drawGraph("https://deuxfois.github.io/quartz",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:2,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2}),initPopover("https://deuxfois.github.io/quartz",!0,!0)},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/deuxfois.github.io\/quartz\/js\/router.9d4974281069e9ebb189f642ae1e3ca2.min.js"
+    attachSPARouting(init, render)
+  </script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://deuxfois.github.io/quartz/js/full-text-search.0ec5fb908204b9e13989f2c640c0870b.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://deuxfois.github.io/quartz/>⛄ DeuxFoi's blog</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><div class=navigation-menu><a href=https://deuxfois.github.io/quartz/>home</a>
+<span style=color:var(--gray)>/</span>
+<a href=https://deuxfois.github.io/quartz/master>master</a>
+<span style=color:var(--gray)>/</span>
+<a href=https://deuxfois.github.io/quartz/master/programmation-multi-paradigme>programmation-multi-paradigme</a>
+<span style=color:var(--gray)>/</span>
+<a href=https://deuxfois.github.io/quartz/master/programmation-multi-paradigme/modern-java>modern-java</a>
+<span style=color:var(--gray)>/</span></div><a href=https://deuxfois.github.io/quartz/master/programmation-multi-paradigme class=back-button>↩</a><article><h1>Modern Java</h1><ul class=tags><li><a href=https://deuxfois.github.io/quartz/tags/multi-paradigme/>Multi paradigme</a></li><li><a href=https://deuxfois.github.io/quartz/tags/s1/>S1</a></li></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#resources>Resources</a></li><li><a href=#java-8-optional>Java 8 Optional</a></li><li><a href=#lambda-expressions>Lambda Expressions</a><ol><li><a href=#useful-functions>Useful functions</a></li><li><a href=#method-and-constructor-references>Method and Constructor References</a></li><li><a href=#generified-functional-interfaces>Generified Functional Interfaces</a></li></ol></li><li><a href=#streams>Streams</a><ol><li><a href=#create>Create</a></li><li><a href=#transform>Transform</a></li><li><a href=#collect>Collect</a></li><li><a href=#grouping-results>Grouping Results</a></li><li><a href=#partitioning-results>Partitioning Results</a></li><li><a href=#parallel-streams>Parallel Streams</a></li><li><a href=#primitive-type-streams>Primitive-Type Streams</a></li><li><a href=#intstream>IntStream</a></li><li><a href=#creating-objects-using-generic-types>Creating objects using Generic Types</a></li></ol></li><li><a href=#interface-default-methods>Interface Default Methods</a></li><li><a href=#collections>Collections</a></li><li><a href=#generic-static-methods>Generic Static Methods</a></li><li><a href=#io-improvements--files-readers-etc>I/O Improvements – Files, Readers, etc</a><ol><li><a href=#working-with-files-on-disk>Working with files on disk</a></li></ol></li><li><a href=#annotations>Annotations</a></li><li><a href=#collections-and-collections>Collections and Collections</a></li><li><a href=#minor-changes>Minor Changes</a></li><li><a href=#numbers-and-math>Numbers and Math</a></li><li><a href=#base64>Base64</a></li><li><a href=#locale-httpsdocsoraclecomjavase8docsapijavautillocalehtml>Locale <a href=https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html>https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html</a></a></li><li><a href=#jdbc>JDBC</a></li><li><a href=#date--time>Date / Time</a></li><li><a href=#etc>Etc</a></li><li><a href=#phil-varner>Phil Varner</a></li></ol></nav></details></aside><a href=#resources><h2 id=resources><span class=hanchor arialabel=Anchor># </span>Resources</h2></a><ul><li><a href=https://docs.oracle.com/javase/8/docs/api/overview-summary.html rel=noopener>Java 8 Javadoc</a></li><li><a href=http://horstmann.com/java8/ rel=noopener>Java SE8 for the Really Impatient: A Short Course on the Basics</a> by Cay S. Horstmann</li><li><a href=https://www.manning.com/books/java-8-in-action rel=noopener>Java 8 in Action: Lambdas, streams, and functional-style programming</a> by Raoul-Gabriel Urma, Mario Fusco, and Alan Mycroft</li><li><a href=http://horstmann.com/heig-vd/spring2015/poo/ rel=noopener>http://horstmann.com/heig-vd/spring2015/poo/</a></li></ul><a href=#java-8-optional><h2 id=java-8-optional><span class=hanchor arialabel=Anchor># </span>Java 8 Optional</h2></a><p>Optional is a functional replacement for null. Javadoc:
+<a href=https://philvarner.github.io/pages/java.util.Optional%3CT%3E rel=noopener>https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html</a></p><p>Java Optional Method Summary</p><table><thead><tr><th>Method</th><th>Description</th></tr></thead><tbody><tr><td>empty()</td><td>create Optional with an empty value</td></tr><tr><td>of(T)</td><td>create an optional with a non-null value</td></tr><tr><td>ofNullable(T)</td><td>create an optional with a possibly null reference</td></tr><tr><td>ifPresent(Consumer&lt;? super T>)</td><td>if the underlying value is not empty, execute the Consumer with it as an argument</td></tr><tr><td>isPresent()</td><td>if value is not emtpy, return true</td></tr><tr><td>get()</td><td>get the underlying value, or if null, throw NoSuchElementException</td></tr><tr><td>orElseGet(T)</td><td>get the underlying value, or if null, return the argument. Argument can be null.</td></tr><tr><td>orElse(Supplier&lt;? extends T>)</td><td>get the underlying value, or if null, execute the Supplier function and return the result</td></tr><tr><td>orElseThrow(Supplier&lt;? extends X>)</td><td>get the underlying value, or if null, execute the Supplier function and throw the result</td></tr><tr><td>filter(Predicate&lt;? super T>)</td><td>if the predicate is true, return the Optional, other wise return empty Optional</td></tr><tr><td>map(Function&lt;? super T,? extends U>)</td><td>apply the Function, and return the non-null result auto-wrapped as an Optional, or if null an empty Optional</td></tr><tr><td>flatMap(Function&lt;? super T, Optional>)</td><td>apply the Optional-bearing Function, and return without wrapping as an Optional</td></tr></tbody></table><p>Tips</p><ul><li>Prefer ifPresent over isPresent/get</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// length of the value or &#34;&#34; if nothing
+</span></span><span class=line><span class=cl>int length = res.orElse(&#34;&#34;).length();
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// run the lambda if there is a value
+</span></span><span class=line><span class=cl>res.ifPresent(v -&gt; results.add(v)); 
+</span></span></code></pre></td></tr></table></div></div><p>Return an Optional</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Optional&lt;Double&gt; squareRoot(double x) {
+</span></span><span class=line><span class=cl>   if (x &gt;= 0) { return Optional.of(Math.sqrt(x)); }
+</span></span><span class=line><span class=cl>   else { return Optional.empty(); }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>Uses of filter, map, and flatMap</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>System.out.println(&#34;empty().filter(\&#34;foo\&#34;::equals)&#34; + &#34; =&gt; &#34; + empty().filter(&#34;foo&#34;::equals));
+</span></span><span class=line><span class=cl>// empty().filter(&#34;foo&#34;::equals) =&gt; Optional.empty
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>System.out.println(&#34;of(\&#34;foo\&#34;).filter(\&#34;foo\&#34;::equals)&#34; + &#34; =&gt; &#34; + of(&#34;foo&#34;).filter(&#34;foo&#34;::equals));
+</span></span><span class=line><span class=cl>// of(&#34;foo&#34;).filter(&#34;foo&#34;::equals) =&gt; Optional[foo]
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>System.out.println(&#34;ofNullable(null).filter(\&#34;foo\&#34;::equals)&#34; + &#34; =&gt; &#34; + ofNullable(null).filter(&#34;foo&#34;::equals));
+</span></span><span class=line><span class=cl>// ofNullable(null).filter(&#34;foo&#34;::equals) =&gt; Optional.empty
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>System.out.println(&#34;empty().map(\&#34;foo\&#34;::equals)&#34; + &#34; =&gt; &#34; + empty().map(&#34;foo&#34;::equals));
+</span></span><span class=line><span class=cl>// empty().map(&#34;foo&#34;::equals) =&gt; Optional.empty
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>System.out.println(&#34;of(\&#34;foo\&#34;).map(\&#34;foo\&#34;::equals)&#34; + &#34; =&gt; &#34; + of(&#34;foo&#34;).map(&#34;foo&#34;::equals));
+</span></span><span class=line><span class=cl>// of(&#34;foo&#34;).map(&#34;foo&#34;::equals) =&gt; Optional[true]
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>System.out.println(&#34;ofNullable(null).map(\&#34;foo\&#34;::equals)&#34; + &#34; =&gt; &#34; + ofNullable(null).map(&#34;foo&#34;::equals));
+</span></span><span class=line><span class=cl>// ofNullable(null).map(&#34;foo&#34;::equals) =&gt; Optional.empty
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>System.out.println(&#34;empty().flatMap(s -&gt; ofNullable(\&#34;foo\&#34;.equals(s)))&#34; + &#34; =&gt; &#34; + empty().flatMap(s -&gt; ofNullable(&#34;foo&#34;.equals(s))));
+</span></span><span class=line><span class=cl>// empty().flatMap(s -&gt; ofNullable(&#34;foo&#34;.equals(s))) =&gt; Optional.empty
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>System.out.println(&#34;of(\&#34;foo\&#34;).flatMap(s -&gt; ofNullable(\&#34;foo\&#34;.equals(s)))&#34; + &#34; =&gt; &#34; + of(&#34;foo&#34;).flatMap(s -&gt; ofNullable(&#34;foo&#34;.equals(s))));
+</span></span><span class=line><span class=cl>// of(&#34;foo&#34;).flatMap(s -&gt; ofNullable(&#34;foo&#34;.equals(s))) =&gt; Optional[true]
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>System.out.println(&#34;ofNullable(null).flatMap(s -&gt; ofNullable(\&#34;foo\&#34;.equals(s)))&#34; + &#34; =&gt; &#34; + ofNullable(null).flatMap(s -&gt; ofNullable(&#34;foo&#34;.equals(s))));
+</span></span><span class=line><span class=cl>// ofNullable(null).flatMap(s -&gt; ofNullable(&#34;foo&#34;.equals(s))) =&gt; Optional.empty 
+</span></span></code></pre></td></tr></table></div></div><a href=#lambda-expressions><h2 id=lambda-expressions><span class=hanchor arialabel=Anchor># </span>Lambda Expressions</h2></a><p>Used to contruct implementations of
+<a href=https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html rel=noopener>Functional Interfaces</a> without explicitly creating new classes and instances. All functional interfaces implement exactly one method, which allows for syntactic sugar to implement that one method with much less code.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>() -&gt; expression | statement
+</span></span><span class=line><span class=cl>param -&gt; expression | statement
+</span></span><span class=line><span class=cl>(params) -&gt; expression | statement
+</span></span><span class=line><span class=cl>(params) -&gt; { expressions and statements }
+</span></span><span class=line><span class=cl>(types) (params) -&gt; { expressions and statements } 
+</span></span></code></pre></td></tr></table></div></div><ul><li>optional types before parameters</li><li>final and annotations can be used on typed parameters</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>() -&gt; System.out.println(&#34;I&#39;m a function that prints this statement.&#34;); 
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>a -&gt; a * 2        // calculate double of a (idiomatic)
+</span></span><span class=line><span class=cl>(a) -&gt; a * 2      // without the type, with parens
+</span></span><span class=line><span class=cl>(int a) -&gt; a * 2  // with type and parens
+</span></span><span class=line><span class=cl>(final int a) -&gt; a * 2  // with final, type and parens (final only works with a type)
+</span></span><span class=line><span class=cl>(@NonNull int a) -&gt; a * 2  // with an annotation, type and parens (annotations only work with a type) 
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>(a, b) -&gt; a + b   // Sum of 2 parameters, inferred types (idiomatic)
+</span></span><span class=line><span class=cl>(int a, int b) -&gt; a + b   // Sum of 2 parameters, explicit types
+</span></span><span class=line><span class=cl>(int, int) (tx, status) -&gt; a + b  // explicit types, alternate syntax 
+</span></span></code></pre></td></tr></table></div></div><p>If the lambda is more than one expression, we must use <code>{ }</code> and <code>return</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>(x, y) -&gt; {
+</span></span><span class=line><span class=cl>    int sum = x + y;
+</span></span><span class=line><span class=cl>    int avg = sum / 2;
+</span></span><span class=line><span class=cl>    return avg;
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>Within a lambda, you can reference only parameters and final variables from the outer scope.</p><p>A lambda expression cannot stand alone in Java, it need to be associated to a functional interface.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>@FunctionalInterface
+</span></span><span class=line><span class=cl>interface MyMath {
+</span></span><span class=line><span class=cl>    int getDoubleOf(int a);
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>MyMath d = a -&gt; a * 2; // associated to the interface
+</span></span><span class=line><span class=cl>d.getDoubleOf(4); // is 8 
+</span></span></code></pre></td></tr></table></div></div><a href=#useful-functions><h3 id=useful-functions><span class=hanchor arialabel=Anchor># </span>Useful functions</h3></a><p>Return the input parameter</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>x -&gt; x
+</span></span><span class=line><span class=cl>// or
+</span></span><span class=line><span class=cl>Function.identity() 
+</span></span></code></pre></td></tr></table></div></div><a href=#method-and-constructor-references><h3 id=method-and-constructor-references><span class=hanchor arialabel=Anchor># </span>Method and Constructor References</h3></a><p>Allows referencing methods and constructors without writing an explicit lambda function</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Lambda Form:
+</span></span><span class=line><span class=cl>getPrimes(numbers, a -&gt; StaticMethod.isPrime(a));
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Method Reference:
+</span></span><span class=line><span class=cl>getPrimes(numbers, StaticMethod::isPrime); 
+</span></span></code></pre></td></tr></table></div></div><table><thead><tr><th>Style</th><th>Method Reference</th><th>Lambda Form</th></tr></thead><tbody><tr><td><em>Class</em>::staticMethod</td><td><code>MyClass::staticMethod</code></td><td><code>n -> MyClass.staticMethod(n)</code></td></tr><tr><td><em>Class</em>::instanceMethod</td><td><code>String::toUpperCase</code></td><td><code>(String w) -> w.toUpperCase()</code></td></tr><tr><td>…</td><td><code>String::compareTo</code></td><td><code>(String s, String t) -> s.compareTo(t)</code></td></tr><tr><td>…</td><td><code>System.out::println</code></td><td><code>x -> System.out.println(x)</code></td></tr><tr><td><em>instance</em>::instanceMethod</td><td><code>manager::getByID</code></td><td><code>(int id) -> manager.getByID(id)</code></td></tr><tr><td>this::instanceMethod</td><td><code>this::getValueByID</code></td><td><code>(int id) -> this.getValueByID(id)</code></td></tr><tr><td>super::instanceMethod</td><td><code>super::aMethodThatIveOverridden</code></td><td><code>(int id) -> super.aMethodThatIveOverridden(id)</code></td></tr><tr><td><em>Class</em>::new</td><td><code>Double::new</code></td><td><code>n -> new Double(n)</code></td></tr><tr><td><em>Class</em>[]::new</td><td><code>String[]::new</code></td><td><code>(int n) -> new String[n]</code></td></tr><tr><td><em>primitive</em>[]::new</td><td><code>int[]::new</code></td><td><code>(int n) -> new int[n]</code></td></tr></tbody></table><p>Examples of static methods commonly used:</p><ul><li>System.out::println</li><li>Math::pow</li><li>StringUtils::isBlank (though s -> isBlank(s) with a static import is often more concise)</li></ul><a href=#generified-functional-interfaces><h3 id=generified-functional-interfaces><span class=hanchor arialabel=Anchor># </span>Generified Functional Interfaces</h3></a><table><thead><tr><th>Class</th><th>Description</th><th>Single method</th><th>Additional methods</th></tr></thead><tbody><tr><td>Function&lt;T,R></td><td>a function that accepts one argument and produces a result</td><td>R apply(T t)</td><td>andThen(Function), compose(Function), static identity()</td></tr><tr><td>Predicate</td><td>a boolean-valued function of one argument</td><td>boolean test(T t)</td><td>static isEqual(Object), and(Predicate), or(Predicate), negate()</td></tr><tr><td>Supplier</td><td>a supplier of values.</td><td>T get()</td><td>n/a</td></tr><tr><td>Consumer</td><td>an operation that accepts a single input argument and returns no result</td><td>void accept(T)</td><td>andThen(Consumer)</td></tr><tr><td>Runnable</td><td>an executable unit that takes no arguments and returns no result</td><td>void run()</td><td>n/a</td></tr><tr><td>Callable</td><td>an executable unit that returns a result. throws Exception. Typically used when the execution side-effects are purpose rather than the return value.</td><td>V call()</td><td>n/a</td></tr><tr><td>UnaryOperator</td><td>an operation on a single operand that produces a result of the same type as its operand.</td><td>R apply(T t)</td><td>static identity()</td></tr><tr><td>BiConsumer&lt;T,U></td><td>an operation that accepts two input arguments and returns no result</td><td>void accept(T t, U u)</td><td>andThen(BiConsumer)</td></tr><tr><td>BiFunction&lt;T,U,R></td><td>a function that accepts two arguments and produces a result.</td><td>R apply(T t, U u)</td><td>andThen(Function)</td></tr><tr><td>BinaryOperator</td><td>an operation upon two operands of the same type, producing a result of the same type as the operands.</td><td>R apply(T t, U u)</td><td>andThen(Function)</td></tr><tr><td>BiPredicate&lt;T,U></td><td>a predicate (boolean-valued function) of two arguments.</td><td>boolean test(T t, U u)</td><td>and(BiPredicate), or(BiPredicate), negate()</td></tr></tbody></table><p>Most interfaces also have a primitive-specific variant, to avoid autoboxing that that would happen were the generic functional interface version used.</p><p>Recommended:</p><ul><li>Supplier&lt;? extends T></li><li>Consumer&lt;? super T></li></ul><table><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody><tr><td>{Int,Long,Double}Function</td><td>a function that accepts an type-valued argument and produces a result.</td></tr><tr><td>{Int,Long,Double}Predicate</td><td>a predicate (boolean-valued function) of one long-valued argument.</td></tr><tr><td>{Int,Long,Double}Consumer</td><td>an operation that accepts a single type-valued argument and returns no result.</td></tr><tr><td>{Boolean,Int,Long,Double}Supplier</td><td>a supplier of type-valued results.</td></tr><tr><td>To{Int,Long,Double}Function</td><td>a function that produces a type-valued result.</td></tr><tr><td>To{Int,Long,Double}BiFunction&lt;T,U></td><td>a function that accepts two arguments and produces an type-valued result.</td></tr><tr><td>{Int,Long,Double}UnaryOperator</td><td>an operation on a single type-valued operand that produces a type-valued result.</td></tr><tr><td>{Int,Long,Double}BinaryOperator</td><td>an operation upon two type-valued operands and producing a type-valued result.</td></tr><tr><td>{Int,Long,Double}To{Int,Long,Double}Function</td><td>a function that accepts a type1-valued argument and produces an type2-valued result. If type1 == type2, use UnaryOperator variant instead.</td></tr><tr><td>Obj{Int,Long,Double}Consumer</td><td>an operation that accepts an object-valued and a type-valued argument, and returns no result.</td></tr></tbody></table><a href=#streams><h2 id=streams><span class=hanchor arialabel=Anchor># </span>Streams</h2></a><p><a href=https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html rel=noopener>https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html</a></p><p>Similar to collections, but</p><ul><li>Data representation rather than data store</li><li><em>immutable</em> (produce new streams)</li><li><em>lazy</em> (only computes what is necessary)</li></ul><p>Process</p><ul><li><strong>Create</strong> a stream (all Collections now have stream() method, or create using
+<a href=https://docs.oracle.com/javase/8/docs/api/java/util/stream/StreamSupport.html rel=noopener>StreamSupport</a> and a spliterator</li><li><strong>Transform</strong> the stream entries – filter, map, etc</li><li><strong>Reduce</strong> into a collection of entries or value – collect and Collectors, count</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Set&lt;String&gt; genres = 
+</span></span><span class=line><span class=cl>    Stream.of(&#34;Jazz&#34;, &#34;Blues&#34;, &#34;Rock&#34;) 
+</span></span><span class=line><span class=cl>        .map(String::toLowerCase)
+</span></span><span class=line><span class=cl>        .collect(Collectors.toSet()); 
+</span></span></code></pre></td></tr></table></div></div><a href=#create><h3 id=create><span class=hanchor arialabel=Anchor># </span>Create</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Stream&lt;String&gt; stream = Stream.of(&#34;Jazz&#34;, &#34;Blues&#34;, &#34;Rock&#34;); // stream from references
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Stream&lt;String&gt; stream = Stream.of(myArray); // from an array
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>list.stream(); // from a list
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>StreamSupport.stream(iterable.spliterator(), false); // from an iterable
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>StreamSupport.stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false) // from an iterator
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Stream&lt;Integer&gt; integers = Stream.iterate(0, n -&gt; n + 1); // Infinite stream, lazily generated
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Stream&lt;String&gt; strings = Arrays.stream(new String[] { &#34;a&#34;, &#34;b&#34;, &#34;c&#34;});
+</span></span><span class=line><span class=cl>Stream&lt;String&gt; strings = Stream.of(new String[] { &#34;a&#34;, &#34;b&#34;, &#34;c&#34;});
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>IntStream = Arrays.stream(new int[] {1, 2});
+</span></span><span class=line><span class=cl>Stream&lt;int[]&gt; arr1 = Stream.of(new int[] {1, 2});  // stream of int arrays, not stream of ints
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// static &lt;T&gt; Stream&lt;T&gt; stream(T[] array, int startInclusive, int endExclusive), also overloaded methods for primitives
+</span></span><span class=line><span class=cl>Stream&lt;String&gt; strings = Arrays.stream(new String[] { &#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;, &#34;e&#34;}, 2, 4) // preferable to using Stream.of(array).skip(n).limit(m), as it starts the stream at the start instead of iterating through the stream til the start 
+</span></span></code></pre></td></tr></table></div></div><p><strong>parallel</strong> Returns an equivalent stream that is parallel</p><a href=#transform><h3 id=transform><span class=hanchor arialabel=Anchor># </span>Transform</h3></a><p><em>filter(Predicate&lt;? super T>)</em> and <em>map(Function&lt;? super T,? extends R>)</em> are the most common. Filter retains elements that match the predicate, typically written as a lambda. Map applies the Function to each element, also typically written as a lambda.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// count of names longer than 24 characters
+</span></span><span class=line><span class=cl>long longNamesCount = list
+</span></span><span class=line><span class=cl>   .filter(n -&gt; n.length() &gt; 24)
+</span></span><span class=line><span class=cl>   .map(n -&gt; n * 2)  // doesn&#39;t do anything, count is still the same
+</span></span><span class=line><span class=cl>   .count();
+</span></span><span class=line><span class=cl>   
+</span></span><span class=line><span class=cl>// names longer than 24 characters, with name strings reversed
+</span></span><span class=line><span class=cl>Set&lt;String&gt; longNamesReversed = list
+</span></span><span class=line><span class=cl>   .filter(n -&gt; n.length() &gt; 24)
+</span></span><span class=line><span class=cl>   .map(n -&gt; StringUtils.reverse(n))
+</span></span><span class=line><span class=cl>   .collect(toSet()); 
+</span></span></code></pre></td></tr></table></div></div><p><strong>filter</strong> Stream filter(Predicate&lt;? super T>)</p><p>Remove elements not matching the Predicate.</p><p><strong>map</strong> signature: Stream map(Function&lt;? super T, ? extends R>)</p><p>Apply a Function to each element</p><p>Apply a Function to each element</p><p>// Apply “toLowerCase” for each element List list = Arrays.asList(new String[]{&ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo;}); res = list.stream().map(w -> w.toLowerCase()); list.stream().map(String::toLowerCase); // stream of [&ldquo;a&rdquo;, &ldquo;b&rdquo;, &ldquo;c&rdquo;]</p><p>Stream.of(1,2,3,4,5).map(x -> x + 1); // stream of [2, 3, 4, 5, 6]</p><p><strong>limit</strong> <code>limit(maxSize)</code> The first <em>n</em> elements</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Stream.of(1,2,3,4,5).limit(3);
+</span></span><span class=line><span class=cl>// stream of [1, 2, 3] 
+</span></span></code></pre></td></tr></table></div></div><p><strong>skip</strong> Discarding the first <em>n</em> elements</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Stream.of(1,2,3,4,5).skip(3);
+</span></span><span class=line><span class=cl>// stream of [4, 5] 
+</span></span></code></pre></td></tr></table></div></div><p><strong>distinct</strong> Remove duplicated elements</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Stream.of(1,0,0,1,0,1).distinct();
+</span></span><span class=line><span class=cl>// stream of [1, 0] 
+</span></span></code></pre></td></tr></table></div></div><p><strong>sorted</strong> Sort elements (must be <em>Comparable</em>)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Stream.of(2,1,5,3,4).sorted(); // must be Comparable
+</span></span><span class=line><span class=cl>//  stream of [1, 2, 3, 4, 5]
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// using sorted(Comparator&lt;? super T&gt; comparator)
+</span></span><span class=line><span class=cl>Stream.of(2,1,5,3,4).sorted((i1, i2) -&gt; -1 * Integer.compare(i1, i2)); // reverse sort
+</span></span><span class=line><span class=cl>// stream of [5, 4, 3, 2, 1] 
+</span></span></code></pre></td></tr></table></div></div><a href=#collect><h3 id=collect><span class=hanchor arialabel=Anchor># </span>Collect</h3></a><p>Collect to a collection, a value, or a boolean. Most commonly done with a statically imported method from
+<a href=https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html rel=noopener>Collectors</a></p><p><strong>toList</strong> and <strong>toSet</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Collect into a List
+</span></span><span class=line><span class=cl>List&lt;String&gt; myList = stream.collect(toList());
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Collect into a Set
+</span></span><span class=line><span class=cl>Set&lt;String&gt; mySet = stream.collect(toSet()); 
+</span></span></code></pre></td></tr></table></div></div><p><strong>toArray</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Collect into an array
+</span></span><span class=line><span class=cl>String[] myArray = stream.toArray(String[]::new); 
+</span></span></code></pre></td></tr></table></div></div><p><strong>toMap</strong></p><p>Collectors.toMap(Function keyFunction, Function valueFunction)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Map&lt;String, Foo&gt; result =
+</span></span><span class=line><span class=cl>    choices.stream().collect(Collectors.toMap(Foo::getName,
+</span></span><span class=line><span class=cl>                                              Function.identity())); 
+</span></span></code></pre></td></tr></table></div></div><p>Three toMap static methods</p><ul><li>simple key and value – static &lt;T,K,U> Collector&lt;T,?,Map&lt;K,U» toMap(Function&lt;? super T,? extends K> keyMapper, Function&lt;? super T,? extends U> valueMapper)</li><li>key, value, and merge function if there are duplicate keys in the stream – static &lt;T,K,U> Collector&lt;T,?,Map&lt;K,U» toMap(Function&lt;? super T,? extends K> keyMapper, Function&lt;? super T,? extends U> valueMapper, BinaryOperator mergeFunction)</li><li>key, value, merge, and a Supplier to supply the intial map – static &lt;T,K,U,M extends Map&lt;K,U» Collector&lt;T,?,M> toMap(Function&lt;? super T,? extends K> keyMapper, Function&lt;? super T,? extends U> valueMapper, BinaryOperator mergeFunction, Supplier mapSupplier)</li></ul><p>Also, all methods have a toMapConcurrent that returns a concurrent map for use with parallel streams, and the Supplier</p><p><strong>toCollection</strong></p><p>Transform the Stream into a specified Collection</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Collect into a specified Collection
+</span></span><span class=line><span class=cl>ConcurrentSkipListSet&lt;String&gt; mySet = stream.collect(toCollection(ConcurrentSkipListSet::new));
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Collect into an existing collection
+</span></span><span class=line><span class=cl>List&lt;?&gt; groups = ...;
+</span></span><span class=line><span class=cl>stream.collect(toCollection(() -&gt; groups)); 
+</span></span></code></pre></td></tr></table></div></div><p><strong>joining</strong></p><p>Concatenate the Stream values into a String.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Collect into a String, concatentating with no delmiter
+</span></span><span class=line><span class=cl>String str = Stream.of(&#34;a&#34;, &#34;b&#34;, &#34;c&#34;).collect(joining());
+</span></span><span class=line><span class=cl>//&gt; abc
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Collect into a String, concatenating with a delimter
+</span></span><span class=line><span class=cl>String str = Stream.of(&#34;a&#34;, &#34;b&#34;, &#34;c&#34;).collect(joining(&#34;, &#34;));
+</span></span><span class=line><span class=cl>//&gt; a, b, c
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Collect into a String, concatenating with a delimter, prefix, and suffix
+</span></span><span class=line><span class=cl>String str = Stream.of(&#34;a&#34;, &#34;b&#34;, &#34;c&#34;).collect(joining(&#34;, &#34;), &#34;before &#34;, &#34; after&#34;);
+</span></span><span class=line><span class=cl>//&gt; before a, b, c after 
+</span></span></code></pre></td></tr></table></div></div><p><strong>allMatch</strong> All entries of the stream match the predicate. boolean allMatch(Predicate&lt;? super T> predicate)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Check if there is a &#34;e&#34; in each elements
+</span></span><span class=line><span class=cl>boolean res = words.allMatch(n -&gt; n.contains(&#34;e&#34;)); 
+</span></span></code></pre></td></tr></table></div></div><p><strong>anyMatch</strong> Any entry in the stream matches the predicate. boolean anyMatch(Predicate&lt;? super T> predicate)</p><p><strong>noneMatch</strong> No entry in the stream matches the predicate. boolean noneMatch(Predicate&lt;? super T> predicate)</p><p><strong>findAny</strong> Find any entry in the stream that matches the predicate and return it. Faster than <strong>findFirst</strong> in parallel streams if any entry is sufficient.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Optional&lt;String&gt; contains a string or nothing
+</span></span><span class=line><span class=cl>Optional&lt;String&gt; res = stream
+</span></span><span class=line><span class=cl>   .filter(w -&gt; w.length() &gt; 10)
+</span></span><span class=line><span class=cl>   .findAny(); 
+</span></span></code></pre></td></tr></table></div></div><p><strong>findFirst</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Optional&lt;String&gt; contains a string or nothing
+</span></span><span class=line><span class=cl>Optional&lt;String&gt; res = stream
+</span></span><span class=line><span class=cl>   .filter(w -&gt; w.length() &gt; 10)
+</span></span><span class=line><span class=cl>   .findFirst(); 
+</span></span></code></pre></td></tr></table></div></div><p>Finds the first entry the stream that matches, not just any match. The semantics for this still hold even if the stream is parallel, which requires additional operations.</p><p><strong>reduce</strong>
+Reduce the elements to a single value (rarely used, given the other more specific methods) The BiFunction accumulator must be an associative function, e.g., (a op b) op c == a op (b op c)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// reduce to an object with the same type as the stream, with the initial value of the accumulator set to the first stream entry
+</span></span><span class=line><span class=cl>Optional&lt;String&gt; r1 = Stream.of(&#34;a&#34;, &#34;b&#34;, &#34;c&#34;).reduce((acc, e) -&gt; acc + &#34;|&#34; + e.toUpperCase());
+</span></span><span class=line><span class=cl>//&gt; A|B|C
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// reduce with an explicit initial accumulator state
+</span></span><span class=line><span class=cl>String r2 = Stream.of(&#34;a&#34;, &#34;b&#34;, &#34;c&#34;).reduce(&#34;&#34;, (acc, e) -&gt; acc + &#34;|&#34; + e.toUpperCase());
+</span></span><span class=line><span class=cl>//&gt; A|B|C
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// fused map / reduce (tbd)
+</span></span><span class=line><span class=cl> &lt;U&gt; U reduce(U identity,
+</span></span><span class=line><span class=cl>             BiFunction&lt;U,? super T,U&gt; accumulator,
+</span></span><span class=line><span class=cl>             BinaryOperator&lt;U&gt; combiner) 
+</span></span></code></pre></td></tr></table></div></div><a href=#grouping-results><h3 id=grouping-results><span class=hanchor arialabel=Anchor># </span>Grouping Results</h3></a><p><strong>Collectors.groupingBy</strong></p><p>collect a stream into a Map grouped by a function.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl> // I18nEntry has three attributes: locale, key, and value
+</span></span><span class=line><span class=cl>        List&lt;I18nEntry&gt; list = new ArrayList&lt;&gt;();
+</span></span><span class=line><span class=cl>        list.add(new I18nEntry(ENGLISH, &#34;key1&#34;, &#34;value1&#34;));
+</span></span><span class=line><span class=cl>        list.add(new I18nEntry(ENGLISH, &#34;key2&#34;, &#34;value2&#34;));
+</span></span><span class=line><span class=cl>        list.add(new I18nEntry(FRENCH, &#34;key3&#34;, &#34;value3&#34;));
+</span></span><span class=line><span class=cl>        list.add(new I18nEntry(FRENCH, &#34;key4&#34;, &#34;value4&#34;));
+</span></span><span class=line><span class=cl>        list.add(new I18nEntry(GERMAN, &#34;key5&#34;, &#34;value5&#34;));
+</span></span><span class=line><span class=cl>        list.add(new I18nEntry(GERMAN, &#34;key6&#34;, &#34;value6&#34;));
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        Map&lt;String, List&lt;I18nEntry&gt;&gt; mapOfLocaleStringToI18nEntry = list.stream()
+</span></span><span class=line><span class=cl>                .collect(groupingBy(w -&gt; w.getLocale().toString()));
+</span></span><span class=line><span class=cl>        System.out.println(mapOfLocaleStringToI18nEntry);
+</span></span><span class=line><span class=cl>        // {de=[I18nEntry{ de, &#39;key5&#39;, &#39;value5&#39;}, I18nEntry{ de, &#39;key6&#39;, &#39;value6&#39;}], 
+</span></span><span class=line><span class=cl>        // en=[I18nEntry{ en, &#39;key1&#39;, &#39;value1&#39;}, I18nEntry{ en, &#39;key2&#39;, &#39;value2&#39;}], 
+</span></span><span class=line><span class=cl>        // fr=[I18nEntry{ fr, &#39;key3&#39;, &#39;value3&#39;}, I18nEntry{ fr, &#39;key4&#39;, &#39;value4&#39;}]}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        Map&lt;String, Set&lt;String&gt;&gt; mapOfLocaleStringToSetOfI18nEntryNames
+</span></span><span class=line><span class=cl>                = list.stream().collect(groupingBy(w -&gt; w.getLocale().toString(),
+</span></span><span class=line><span class=cl>                mapping(I18nEntry::getKey, toSet())));
+</span></span><span class=line><span class=cl>        System.out.println(mapOfLocaleStringToSetOfI18nEntryNames);
+</span></span><span class=line><span class=cl>        // {de=[key5, key6], en=[key1, key2], fr=[key3, key4]}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        Map&lt;String, Map&lt;String, String&gt;&gt; mapOfLocaleStringToMapOfKeyValues =
+</span></span><span class=line><span class=cl>                list.stream().collect(groupingBy(w -&gt; w.getLocale().toString(),
+</span></span><span class=line><span class=cl>                        toMap(I18nEntry::getKey, I18nEntry::getValue)));
+</span></span><span class=line><span class=cl>        System.out.println(mapOfLocaleStringToMapOfKeyValues);
+</span></span><span class=line><span class=cl>        // {de={key5=value5, key6=value6}, en={key1=value1, key2=value2}, fr={key3=value3, key4=value4}} 
+</span></span></code></pre></td></tr></table></div></div><p>groupingByConcurrent does the same thing, only concurrently.</p><p><strong>Collectors.counting</strong> Count the number of values in a group</p><p><strong>Collectors.summing{Int|Long|Double}</strong> <code>summingInt</code>, <code>summingLong</code>, <code>summingDouble</code> to sum group values</p><table><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td>**Collectors.summarizing{Int</td><td>Long</td><td>Double}**</td></tr></tbody></table><table><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td>{Int</td><td>Long</td><td>Double}SummaryStatistics</td></tr></tbody></table><p><strong>Collectors.averaging{Int|Long|Double}</strong> <code>averagingInt</code>, <code>averagingLong</code>, …</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// Average length of each element of a group
+</span></span><span class=line><span class=cl>Collectors.averagingInt(String::length) 
+</span></span></code></pre></td></tr></table></div></div><p><em>PS</em>: Don’t forget Optional (like <code>Map&lt;T, Optional&lt;T>></code>) with some Collection methods (like <code>Collectors.maxBy</code>).</p><p><strong>reducing</strong></p><p><strong>minBy</strong></p><p><strong>maxBy</strong></p><p><strong>mapping</strong></p><p><strong>Finisher</strong> static &lt;T,A,R,RR> Collector&lt;T,A,RR> collectingAndThen(Collector&lt;T,A,R> downstream, Function&lt;R,RR> finisher)</p><p>peek</p><a href=#partitioning-results><h3 id=partitioning-results><span class=hanchor arialabel=Anchor># </span>Partitioning Results</h3></a><p>tbd</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl> // Partition students into passing and failing
+</span></span><span class=line><span class=cl>     Map&lt;Boolean, List&lt;Student&gt;&gt; passingFailing =
+</span></span><span class=line><span class=cl>         students.stream()
+</span></span><span class=line><span class=cl>                 .collect(Collectors.partitioningBy(s -&gt; s.getGrade() &gt;= PASS_THRESHOLD)); 
+</span></span></code></pre></td></tr></table></div></div><a href=#parallel-streams><h3 id=parallel-streams><span class=hanchor arialabel=Anchor># </span>Parallel Streams</h3></a><p>Be aware these lose any staticly-held context, e.g., security context in a servlet.</p><p><strong>Creation</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Stream&lt;String&gt; parStream = list.parallelStream();
+</span></span><span class=line><span class=cl>Stream&lt;String&gt; parStream = Stream.of(myArray).parallel(); 
+</span></span></code></pre></td></tr></table></div></div><p><strong>unordered</strong> Can speed up the <code>limit</code> or <code>distinct</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>stream.parallelStream().unordered().distinct(); 
+</span></span></code></pre></td></tr></table></div></div><p><em>PS</em>: Work with the streams library. Eg. use <code>filter(x -> x.length() &lt; 9)</code> instead of a <code>forEach</code> with an <code>if</code>.</p><p><a href=http://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#MutableReduction rel=noopener>http://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html#MutableReduction</a></p><a href=#primitive-type-streams><h3 id=primitive-type-streams><span class=hanchor arialabel=Anchor># </span>Primitive-Type Streams</h3></a><p>Wrappers (like Stream) are inefficients. It requires a lot of unboxing and boxing for each element. Better to use `IntStream`, `DoubleStream`, etc.</p><p><strong>Creation</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>IntStream stream = IntStream.of(1, 2, 3, 5, 7);
+</span></span><span class=line><span class=cl>stream = IntStream.of(myArray); // from an array
+</span></span><span class=line><span class=cl>stream = IntStream.range(5, 80); // range from 5 to 80
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Random gen = new Random();
+</span></span><span class=line><span class=cl>IntStream rand = gen(1, 9); // stream of randoms 
+</span></span></code></pre></td></tr></table></div></div><a href=#intstream><h3 id=intstream><span class=hanchor arialabel=Anchor># </span>IntStream</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>IntStream.of(3, 1, 4);  
+</span></span><span class=line><span class=cl>//&gt; 3, 1, 4
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>IntStream.rangeClosed(1, 5);  
+</span></span><span class=line><span class=cl>//&gt; 1, 2, 3, 4, 5
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>IntStream.range(1, 5);  
+</span></span><span class=line><span class=cl>//&gt; 1, 2, 3, 4
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>IntStream.iterate(1, i -&gt; i * 2).limit(5);  
+</span></span><span class=line><span class=cl>//&gt; 1, 2, 4, 8, 16
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>IntStream.generate(() -&gt; ThreadLocalRandom.current().nextInt(10)).limit(5);  
+</span></span><span class=line><span class=cl>//&gt; 5, 4, 9, 7, 1 
+</span></span></code></pre></td></tr></table></div></div><p>Use <em>mapToX</em> (mapToObj, mapToDouble, etc.) if the function yields Object, double, etc. values. boxed() min() max()</p><a href=#creating-objects-using-generic-types><h3 id=creating-objects-using-generic-types><span class=hanchor arialabel=Anchor># </span>Creating objects using Generic Types</h3></a><p>Definition:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl> T T[] toArray(IntFunction&lt;T[]&gt; constructor) {
+</span></span><span class=line><span class=cl>    int n = ...; // length of array
+</span></span><span class=line><span class=cl>    T[] result = constructor.apply(n);
+</span></span><span class=line><span class=cl>    // ... populate result array here
+</span></span><span class=line><span class=cl>    return result;
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>Calling</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>String[] array = MyClass.toArray(String[]::new); 
+</span></span></code></pre></td></tr></table></div></div><a href=#interface-default-methods><h2 id=interface-default-methods><span class=hanchor arialabel=Anchor># </span>Interface Default Methods</h2></a><p>default methods. Useful for adding new methods to existing interfaces without breaking existing implementations.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>interface Foo {
+</span></span><span class=line><span class=cl>    default boolean isTrue() { return true; }
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><a href=#collections><h2 id=collections><span class=hanchor arialabel=Anchor># </span>Collections</h2></a><p><strong>sort</strong> <code>sort(list, comparator)</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>list.sort((a, b) -&gt; a.length() - b.length())
+</span></span><span class=line><span class=cl>list.sort(Comparator.comparing(n -&gt; n.length())); // same
+</span></span><span class=line><span class=cl>list.sort(Comparator.comparing(String::length)); // same
+</span></span><span class=line><span class=cl>//&gt; [Bohr, Tesla, Darwin, Newton, Galilei, Einstein] 
+</span></span></code></pre></td></tr></table></div></div><p><strong>removeIf</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>list.removeIf(w -&gt; w.length() &lt; 6);
+</span></span><span class=line><span class=cl>//&gt; [Darwin, Galilei, Einstein, Newton] 
+</span></span></code></pre></td></tr></table></div></div><p><strong>Merge</strong> <code>merge(key, value, remappingFunction)</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Map&lt;String, String&gt; names = new HashMap&lt;&gt;();
+</span></span><span class=line><span class=cl>names.put(&#34;Albert&#34;, &#34;Ein?&#34;);
+</span></span><span class=line><span class=cl>names.put(&#34;Marie&#34;, &#34;Curie&#34;);
+</span></span><span class=line><span class=cl>names.put(&#34;Max&#34;, &#34;Plank&#34;);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Value &#34;Albert&#34; exists
+</span></span><span class=line><span class=cl>// {Marie=Curie, Max=Plank, Albert=Einstein}
+</span></span><span class=line><span class=cl>names.merge(&#34;Albert&#34;, &#34;stein&#34;, (old, val) -&gt; old.substring(0, 3) + val);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// Value &#34;Newname&#34; don&#39;t exists
+</span></span><span class=line><span class=cl>// {Marie=Curie, Newname=stein, Max=Plank, Albert=Einstein}
+</span></span><span class=line><span class=cl>names.merge(&#34;Newname&#34;, &#34;stein&#34;, (old, val) -&gt; old.substring(0, 3) + val); 
+</span></span></code></pre></td></tr></table></div></div><a href=#generic-static-methods><h2 id=generic-static-methods><span class=hanchor arialabel=Anchor># </span>Generic Static Methods</h2></a><p>Definition</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>public class SomeStaticMethods {
+</span></span><span class=line><span class=cl>    public static &lt;T&gt; boolean method1(T t) { ... } 
+</span></span><span class=line><span class=cl>    public static &lt;T&gt; boolean methodThatOnlyConsumes(List&lt;? extends T&gt; listT) { ... } 
+</span></span><span class=line><span class=cl>    public static &lt;T&gt; boolean methodThatOnlyAdds(List&lt;? super T&gt; listT) { ... } 
+</span></span><span class=line><span class=cl>    public static &lt;T&gt; boolean methodThatDoesBoth(List&lt;T&gt; listT) { ... } 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    public static &lt;T&gt; T method3(boolean b) { ... } 
+</span></span><span class=line><span class=cl>    public static &lt;T&gt; List&lt;? super T&gt; method4(boolean b) { ... } 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    public static &lt;T,U&gt; U method5(T t) { ... } 
+</span></span><span class=line><span class=cl>    public static &lt;T,U&gt; List&lt;? super U&gt; method6(List&lt;? extends T&gt; listT) { ... } 
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>Invocation</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>SomeStaticMethods.&lt;String&gt;method();
+</span></span><span class=line><span class=cl>SomeStaticMethods.&lt;String,String&gt;method();
+</span></span><span class=line><span class=cl>``
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>## try-with-resources
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Resource assigned in try that implements AutoCloseable has implicity finally &#34;close()&#34; call.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>```java
+</span></span><span class=line><span class=cl>try (Stream&lt;Path&gt; paths = Files.list(directoryPath)) {
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><a href=#io-improvements--files-readers-etc><h2 id=io-improvements--files-readers-etc><span class=hanchor arialabel=Anchor># </span>I/O Improvements – Files, Readers, etc</h2></a><a href=#working-with-files-on-disk><h3 id=working-with-files-on-disk><span class=hanchor arialabel=Anchor># </span>Working with files on disk</h3></a><ul><li>Use a Path instead File. No need to specify file-system specific delimiters.</li><li>Immutable, so great for concurrency.</li><li>Construct with
+<a href=https://docs.oracle.com/javase/8/docs/api/java/nio/file/Paths.html rel=noopener>Paths</a></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// non-cross platform construction
+</span></span><span class=line><span class=cl>Path absoluteToDirectory2 = Paths.getPath(&#34;/usr/var/logs&#34;); 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// cross platform construction
+</span></span><span class=line><span class=cl>// &#34;/&#34; is the root, not the delimiter!
+</span></span><span class=line><span class=cl>Path absoluteToDirectory = Paths.getPath(&#34;/&#34;, &#34;usr&#34;, &#34;var&#34;, &#34;logs&#34;); 
+</span></span><span class=line><span class=cl>Path relativeToDirectory = Paths.getPath(&#34;logs&#34;);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Path absoluteToFile = Paths.getPath(&#34;/&#34;, &#34;usr&#34;, &#34;var&#34;, &#34;logs&#34;, &#34;access.log&#34;); 
+</span></span><span class=line><span class=cl>Path relativeToFile = Paths.getPath(&#34;logs&#34;, &#34;access.log&#34;);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// windows?
+</span></span><span class=line><span class=cl>Path absoluteToFile = Paths.getPath(&#34;c:\\&#34;, &#34;usr&#34;, &#34;var&#34;, &#34;logs&#34;, &#34;access.log&#34;); 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>```java
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Resolve paths relative to other paths
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>```java
+</span></span><span class=line><span class=cl>Path logPath = Paths.getPath(&#34;/usr/var/logs&#34;); 
+</span></span><span class=line><span class=cl>Path accessPartialPath = Paths.getPath(&#34;tomcat&#34;, &#34;access.log&#34;);
+</span></span><span class=line><span class=cl>Path accessPath = logPath.resolve(accessPartialPath); 
+</span></span><span class=line><span class=cl>// normalize tbd
+</span></span><span class=line><span class=cl>// relativize tbd 
+</span></span></code></pre></td></tr></table></div></div><p>Path#toFile File#toPath, oh yeah</p><p>Path path = Paths.getPath(“logs”, “access.log”); BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>byte[] bytes = Files.readAllBytes(path);
+</span></span><span class=line><span class=cl>String fileString = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+</span></span><span class=line><span class=cl>List&lt;String&gt; lines = Files.readAllLines(path); 
+</span></span></code></pre></td></tr></table></div></div><ul><li>static Path write(Path, Iterable&lt;? extends CharSequence>, OpenOption…)</li></ul><p>Files.write(path, content.getBytes(StandardCharsets.UTF_8)); // create or overwrite semantics Files.write(path, content.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);</p><ul><li>java.nio.file.Files<ul><li>static BufferedReader newBufferedReader(Path)</li><li>static BufferedWriter newBufferedWriter(Path, OpenOption…)</li><li>InputStream in = Files.newInputStream(path);</li><li>OutputStream out = Files.newOutputStream(path);</li><li>copy(InputStream, Path)</li><li>copy(Path, OutputStream)</li></ul></li></ul><p>*Files Stream methods</p><ul><li>static Stream list(Path dir) &ndash; list of Paths representing files and directories in a directory</li><li>static Stream walk(Path start, FileVisitOption&mldr; options) &ndash; walk a directory tree, with max depth</li><li>static Stream walk(Path start, int maxDepth, FileVisitOption&mldr; options) &ndash; walk a directory tree, with max depth</li><li>static Stream find(Path start, int maxDepth, BiPredicate&lt;Path, BasicFileAttributes> matcher, FileVisitOption&mldr; options)</li><li>BufferedReader<ul><li>lines() – same as Files.lines methods</li></ul></li></ul><p>FileVisitOption – only one FOLLOW_LINKS OpenOption</p><p><strong>Files.lines</strong></p><ul><li>static Stream lines(Path) &ndash; lazy, defaults to UTF-8</li><li>static Stream lines(Path path, Charset cs) stream of lines, one line per entry, but does not automatically close the File resource! So must wrap in a try()</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Path path = FileSystems.getDefault().getPath(&#34;/usr&#34;, &#34;var&#34;, &#34;logs&#34;, &#34;access.log&#34;); // &#34;/&#34; is the root, not the delimiter!
+</span></span><span class=line><span class=cl>try (Stream&lt;String&gt; lines = Files.lines(path)) {
+</span></span><span class=line><span class=cl>   Optional&lt;String&gt; timeoutEntry = lines.filter(s -&gt; s.startsWith(&#34;timeout:&#34;)).findAny();
+</span></span><span class=line><span class=cl>   ...
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>Exception thrown as UncheckedIOException</p><a href=#annotations><h2 id=annotations><span class=hanchor arialabel=Anchor># </span>Annotations</h2></a><a href=#collections-and-collections><h2 id=collections-and-collections><span class=hanchor arialabel=Anchor># </span>Collections and Collections</h2></a><ul><li><p>Iterable</p><ul><li>forEach</li></ul></li><li><p>Iterator</p><ul><li>forEachRemaining</li></ul></li><li><p>Collection interface</p><ul><li>boolean removeIf(Predicate&lt;? super E> filter)</li><li>Stream stream()</li><li>Stream parallelStream()</li><li>Spliterator spliterator()</li></ul></li><li><p>Collections static class (tbd)</p><ul><li><table><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>(unmodifiable</td><td>synchronized</td><td>checked</td><td>empty)Navigable(Set</td><td>Map)</td></tr></tbody></table></li><li><p>checkedQueue</p></li><li><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>emptySorted(Set</td><td>Map)</td></tr></tbody></table></li><li><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>empty(Set</td><td>Map)</td></tr></tbody></table></li></ul></li><li><p>List class</p><ul><li>void replaceAll(UnaryOperator operator)</li><li>void sort(Comparator&lt;? super E> c)</li></ul></li><li><p>Map</p><ul><li>forEach</li><li>replace</li><li>replaceAll</li><li>remove(key, value)</li><li>putIfAbsent</li><li>compute</li><li>computeIfAbsent</li><li>computeIfPresent</li><li>merge</li></ul></li><li><p>BitSet</p><ul><li>Stream stream</li></ul></li><li><p>NavigableSet</p></li><li><p>NavigableMap</p></li><li><p><a href=https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ConcurrentSkipListMap.html rel=noopener>https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ConcurrentSkipListMap.html</a></p></li><li><p><a href=https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CopyOnWriteArraySet.html rel=noopener>https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CopyOnWriteArraySet.html</a></p></li><li><p><a href=https://docs.oracle.com/javase/6/docs/api/java/util/SortedSet.html rel=noopener>https://docs.oracle.com/javase/6/docs/api/java/util/SortedSet.html</a></p></li><li><p><a href=https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CopyOnWriteArrayList.html rel=noopener>https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/CopyOnWriteArrayList.html</a></p></li></ul><a href=#minor-changes><h2 id=minor-changes><span class=hanchor arialabel=Anchor># </span>Minor Changes</h2></a><ul><li><p>Objects static class</p><ul><li>static boolean isNull(Object)</li><li>static boolean nonNull(Object)</li><li>static T requireNonNull(T, Supplier) &ndash; if not null, lazily generate an error message (complementary to eager requireNonNull(T) and requireNonNull(T, String) introduced in 7)</li></ul></li><li><p>String class</p><ul><li>static String join(CharSequence delimiter, CharSequence… elements)</li><li>static String join(CharSequence delimiter, Iterable&lt;? extends CharSequence> elements)</li></ul></li><li><p>Comparator</p><ul><li><p>comparing(Function&lt;? super T,? extends U> keyExtractor) – static method to create a Comparator typically converting T to Comparable like String or Integer</p></li><li><p>comparing(Function&lt;? super T,? extends U> keyExtractor, Comparator&lt;? super U> keyComparator) –</p></li><li><p>thenComparing(Function&lt;? super T,? extends U> keyExtractor) – tie breaker</p></li><li><p>naturalOrder – Comparator that’s the default for a Comparable type.</p></li><li><p>reverseOrder() - Returns a comparator that imposes the reverse of the natural ordering.</p></li><li><p>comparing(Function&lt;? super T,? extends U> keyExtractor, Comparator&lt;? super U> keyComparator)</p></li><li><table><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>comparing{Int</td><td>Double</td><td>Long}(To{Int</td><td>Double</td><td>Long}Function&lt;? super T>)</td></tr></tbody></table></li><li><p>nullsFirst(Comparator&lt;? super T> comparator)</p></li><li><p>nullsLast(Comparator&lt;? super T> comparator)</p></li><li><p>reversed() - Returns a comparator that imposes the reverse ordering of this comparator.</p></li></ul></li><li><p>Annotations? tbd</p></li></ul><a href=#numbers-and-math><h2 id=numbers-and-math><span class=hanchor arialabel=Anchor># </span>Numbers and Math</h2></a><p>BigInteger</p><ul><li>longValueExact(), intValueExact(), shortValueExact(), byteValueExact() throws ArithmeticException</li></ul><p>Primitive wrapper types</p><ul><li>hashCode() in native, so no boxing</li></ul><p>New methods in primitive wrapper types:</p><table><thead><tr><th>Method</th><th>Boolean</th><th>Byte</th><th>Short</th><th>Integer</th><th>Long</th><th>Float</th><th>Double</th></tr></thead><tbody><tr><td>sum()</td><td>—</td><td>—</td><td>—</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td>max()</td><td>—</td><td>—</td><td>—</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td>min()</td><td>—</td><td>—</td><td>—</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td>logicalAnd(T)</td><td>yes</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>logicalOr(T)</td><td>yes</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>logicalXor(T)</td><td>yes</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>toUnsignedInt(T)</td><td>—</td><td>yes</td><td>yes</td><td>—</td><td>—</td><td>—</td><td>—</td></tr><tr><td>toUnsignedLong(T)</td><td>—</td><td>yes</td><td>yes</td><td>yes</td><td>—</td><td>—</td><td>—</td></tr><tr><td>compareUnsigned(T)</td><td>—</td><td>—</td><td>—</td><td>yes</td><td>yes</td><td>—</td><td>—</td></tr><tr><td>divideUnsigned(T)</td><td>—</td><td>—</td><td>—</td><td>yes</td><td>yes</td><td>—</td><td>—</td></tr><tr><td>remainderUnsigned(T)</td><td>—</td><td>—</td><td>—</td><td>yes</td><td>yes</td><td>—</td><td>—</td></tr><tr><td>isFinite(T)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>yes</td><td>yes</td></tr></tbody></table><ul><li>Math.floorMod(x, n) – if x might be negative</li></ul><a href=#base64><h2 id=base64><span class=hanchor arialabel=Anchor># </span>Base64</h2></a><ul><li><a href=https://docs.oracle.com/javase/8/docs/api/java/util/Base64.html rel=noopener>Base64</a><ul><li>getEncoder / getDecoder - general Base64 encoder/decoder</li><li>getUrlEncoder / getUrlDecoder – URL and filename safe scheme</li><li>getMimeEncoder / getMimeDecoder – MIME type scheme</li><li>Encoder<ul><li>String encodeToString(byte[]) {</li><li>byte[] encode(byte[])</li><li>int encode(byte[], byte[]) {</li><li>ByteBuffer encode(ByteBuffer)</li><li>OutputStream wrap(OutputStream)</li><li>Encoder withoutPadding()</li></ul></li><li>Decoder<ul><li>byte[] decode(byte[] src)</li><li>byte[] decode(String src)</li><li>int decode(byte[] src, byte[] dst)</li><li>ByteBuffer decode(ByteBuffer buffer)</li><li>InputStream wrap(InputStream is)</li></ul></li></ul></li></ul><h2 id=locale-httpsdocsoraclecomjavase8docsapijavautillocalehtml>Locale
+<a href=https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html rel=noopener>https://docs.oracle.com/javase/8/docs/api/java/util/Locale.html</a></h2><ul><li>Locale.forLanguageTag(“en-US”)</li><li>Parts<ul><li>Language - two or three lowercase letters, e.g., en, de, jp, zh</li><li>Script - four letters, capitalized, e.g., Latn (Latin), Cyrl (Cyrillic), Hant (traditional Chinese characters) – Serbian (Latin or Cyrillic), Chinese (traditional or simplified)</li><li>Country - the country-specific variant of a language. two uppercase letters or three digits, e.g., en_US (English, United States), de_CH (German, Switzerland), zh_CN (Chinese, Mainland China), zh_TW (Taiwan)</li><li>Variant – language and country specific variant, two uppercase letters, e.g., Nyorsk Norwegian. Rare, as many are now use a different Language code, e.g., Nyorsk Norwegian now uses nn_NO instead of no_NO_NY.</li><li>Extensions – local preference for calendar, number, etc. Examples: Japanese calendar (u-ca-japanese), Thai numerals (u-nu-thai). ja_JP_JP_#u-ca-japanese</li></ul></li></ul><p>LanguageRange List ranges = Stream.of(&ldquo;de_CH&rdquo;, &ldquo;de&rdquo;, &ldquo;*_CH&rdquo;) // prefer Swiss German, then any German, than any language with a Swiss country variation .map(Locale.LanguageRange::new) .collect(toList()); // A list containing the Locale.LanguageRange objects for the given strings List matches = Locale.filter(ranges, Arrays.asList(Locale.getAvailableLocales())); // The matching locales: de\_CH, de, de\_AT, de\_LU, de\_DE, de\_LI, fr\_CH, it\_CH Locale bestMatch = Locale.lookup(ranges, locales);</p><a href=#jdbc><h2 id=jdbc><span class=hanchor arialabel=Anchor># </span>JDBC</h2></a><p>Java 7 - 4.1, Java 8 - 4.2</p><ul><li><table><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>methods to convert java.sql.{Date</td><td>Time</td><td>Timestamp} &lt;=> java.time.{LocalDate</td><td>LocalTime</td><td>LocalDateTime}</td></tr></tbody></table></li><li><p><strong>long Statement#executeLargeUpdate</strong> - when row count exceeds Integer.MAX_VALUE.</p></li><li><p>Statement and ResultSet</p><ul><li>getObject(column, Class type)</li><li>setObject(column, Class type)</li></ul></li></ul><a href=#date--time><h2 id=date--time><span class=hanchor arialabel=Anchor># </span>Date / Time</h2></a><ul><li><p>Immutable objects, unlike Date and Calendar</p></li><li><p>DateTimeFormatter – format and parse dates and times.</p></li><li><p>Instant - Date equivalent – a single point on the time line</p><ul><li>now() - current Instant</li></ul></li><li><p>Duration - delta between two instants</p><ul><li>between(Instant, Instant) - difference between two Instants</li><li><table><thead><tr><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>to{Nanos</td><td>Millis</td><td>Seconds</td><td>Minutes</td><td>Hours</td><td>Days} - convert a duration to a long representing that unit</td></tr></tbody></table></li></ul></li><li><p>Instant and Duration</p><ul><li><p>plus(Duration), minus(Duration)</p></li><li><table><thead><tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>plus{Nanos</td><td>Millis</td><td>Seconds</td><td>Minutes</td><td>Hours</td><td>Days}(long), minus{Nanos</td><td>Millis</td><td>Seconds</td><td>Minutes</td><td>Hours</td><td>Days}(long)</td></tr></tbody></table></li><li><p>multipliedBy(long)</p></li><li><p>dividedBy(long)</p></li><li><p>negated</p></li><li><p>isZero</p></li><li><p>isNegative</p></li></ul></li><li><p>Period - used when advancing a timezoned time</p></li><li><p>LocalDateTime - non-time zoned date/time</p></li><li><p>ZonedDateTime - time zoned date/time (GregorianCalendar equivalent)</p></li><li><p>TemporalAdjuster - calendar calculations, e.g., first Wednesday in June 2312</p></li></ul><a href=#etc><h2 id=etc><span class=hanchor arialabel=Anchor># </span>Etc</h2></a><ul><li>Scanner</li><li>DirectoryStream - J7, huge directory trees</li><li>@Repeatable annotations</li><li>annotation type use vs. only name use</li><li>annotation Method Parameter Reflection</li><li>Logger – all methods have a Supplier argument that lazily computes the error message</li><li>Regex<ul><li>Java 7 introduced named capturing groups.</li><li>Pattern.splitAsStream</li><li>Stream words = Pattern.compile("[\\P{L}]+").splitAsStream(contents);</li><li>Pattern#asPredicate – convert regex to predicate</li></ul></li><li>String contents = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);</li><li>this.foo = Objects.requireNonNull(foo); // throws NPE</li><li>BitSet - set of integers that is implemented as a sequence of bits. The ith bit is set if the set contains the integer i. That makes for very efficient set operations. Union/intersection/complement are simple bitwise or/and/not.</li><li>ProcessBuilder ProcessBuilder builder = new ProcessBuilder(“grep”, “-o”, “[A-Za-z_][A-Za-z_0-9]*”); builder.redirectInput(Paths.get(“Hello.java”).toFile()); builder.redirectOutput(Paths.get(“identifiers.txt”).toFile()); // or, builder.inheritIO() Process process = builder.start(); process.waitFor(1, TimeUnit.MINUTES);</li></ul><p>Objects.equals(a, b) instead of a.equals(b) hashCode using Objects.hash(first, second, …, last);</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl> List&lt;Long&gt; ids = stream(result.results()).map(JO::getID).collect(toList());
+</span></span><span class=line><span class=cl>                        groupFilter.setIDs(ids);
+</span></span><span class=line><span class=cl>                        Map&lt;Long,Group&gt; map = stream(groupManager.getGroups(startIndex, count, groupFilter.build(), sort))
+</span></span><span class=line><span class=cl>                                .collect(toMap(Group::getID, identity(), (v1, v2) -&gt; v1));
+</span></span><span class=line><span class=cl>                        groups = ids.stream().map(map::get).collect(toList()); 
+</span></span></code></pre></td></tr></table></div></div><a href=#phil-varner><h2 id=phil-varner><span class=hanchor arialabel=Anchor># </span>Phil Varner</h2></a><ul><li><p>Phil Varner</p></li><li><p><a rel=noopener class="internal-link broken" data-src=mailto:philvarner@gmail.com>philvarner@gmail.com</a></p></li><li><p><a href=https://github.com/philvarner rel=noopener>philvarner</a></p></li><li><p><a href=https://www.twitter.com/philvarner rel=noopener>philvarner</a></p></li></ul><p>Homepage of Phil Varner</p></article><hr><div class=page-end><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://deuxfois.github.io/quartz/js/graph.243ea0d4fc79317e06f846bd698ba136.js></script></div></div><div id=contact_buttons><footer><p>Made by DeuxFois using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=https://deuxfois.github.io/quartz/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div></body></html>
