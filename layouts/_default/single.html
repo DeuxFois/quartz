@@ -20,8 +20,7 @@
       {{$p = lower $p}}
 
       {{if eq $i (sub (len $path) 1)}}
-      {{ $backPath = $url }}
-       
+        {{ $backPath = $currPath }}  
       {{end}}
 
       {{if eq $i 0}}
