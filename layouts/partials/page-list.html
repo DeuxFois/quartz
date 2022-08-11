@@ -2,11 +2,10 @@
     {{- range . -}}
     <li class="section-li">
         <div class="section">
-            <p class="meta">
-                {{partial "date-fmt.html" .}}
-            </p>
+            
             <div class="desc">
-                <h3><a href="{{ .Permalink }}">{{- .Title -}}</a></h3>
+                {{ $lastUrlElement := index (last 1 (split (delimit (split .Permalink "/") "," "") ",")) 0 }}
+                <h3><a href="{{ .Permalink }}">{{$lastUrlElement}}</a></h3>
             </div>
             <div class="spacer"></div>
             <ul class="tags">
