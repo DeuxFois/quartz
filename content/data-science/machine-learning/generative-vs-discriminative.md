@@ -1,14 +1,24 @@
-## What's Generative or Discriminative model?
+# Generative vs Discriminative model
+### Introduction
+A **generative model** learns the joint probability distribution $p(x,y)$  
+A **discriminative model** learns the conditional probability distribution $p(y|x)$ - which you should read as "the probability of $y$ given $x$
 
-Let's say you have input data x and you want to classify the data into labels y. A **generative model** learns the joint probability distribution $$p(x,y)$$ and a **discriminative model** learns the conditional probability distribution $$p(y|x)$$ - which you should read as "the probability of $y$ given $x$
+<br/>
 
-Generative algorithms model p(x,y), which can be tranformed into p(y|x) by applying Bayes rule and then used for classification.
+Consider a classification problem in which we want to learn to distinguish between elephants and dogs, based on some features of an animal.   
 
-The overall gist is that discriminative models generally outperform generative models in classification tasks.
+An **discrmininative algorithm** like logistic regression or the perceptron algorithm (basically) tries to find a **decision boundary**, that is a straight line, that separates the elephants and dogs. Then, to classify a new animal as either an elephant or a dog, it checks on which side of the decision boundary it falls, and makes its prediction accordingly.  
 
-A generative algorithm models how the data was generated in order to categorize a signal. It asks the question: based on my generation assumptions, which category is most likely to generate this signal? A discriminative algorithm does not care about how the data was generated, it simply categorizes a given signal.
+An **Generative algorithm** is looking at each classes and tries to **build a model of what each class like**. Finally, to classify a new animal, we can match the new animal against the elephant model, and match it against the dog model, to see whether the new animal looks more like the elephants or more like the dogs we had seen in the training set.
+
+
+
+
+ **discriminative models generally outperform generative models in classification tasks**.
+
 ![](_resources/Pasted%20image%2020220704120136.png)
-## Example
+A generative algorithm models how the data was generated in order to categorize a signal. It asks the question: based on my generation assumptions, which category is most likely to generate this signal? A discriminative algorithm does not care about how the data was generated, it simply categorizes a given signal.
+# Example
 
 Let's say you have input data `x` and you want to classify the data into labels `y`. A generative model learns the **joint** probability distribution `p(x,y)` and a discriminative model learns the **conditional** probability distribution `p(y|x)` - which you should read as _"the probability of `y` given `x`"_.
 

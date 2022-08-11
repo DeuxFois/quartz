@@ -19,7 +19,6 @@ $$
 \end{aligned}
 $$
 # Naive Bayes
-## Assuptions
 
 ### independence assumption
 
