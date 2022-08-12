@@ -2,15 +2,21 @@
 tags:
   - supervised-learning
   - discriminative
-  - continuous value
+  - continuous-value
+  - discrete-value
+  - Classification
+  - generative
 ---
-# Bayes Law
+**⚠️ this article presume you know about the[normal law and multivariate normal law](data-science/statistic/gaussian.md)**
+
+## Bayes Law
+
 $$
 \underbrace{\mathbb{P}(Y \mid X)}_{\text {Posterior probability }}=\frac{\overbrace{\mathbb{P}(Y)}^{\text {Prior probability}} \cdot \overbrace{\mathbb{P}(X \mid Y)}^{\text {Likelihood}}}{\mathbb{P}(X)}
 $$
 the denominator is given by
-$\mathbb{P}(X) = {\mathbb{P}(X|Y=\mathbf{1})}\mathbb{P}(Y=1)+{\mathbb{P}(X|Y=\mathbf{0})}\mathbb{P}(Y=0)$  
-then we don’t actually need to calculate
+$p(x) = {p(x|y=1)}p(y=1)+{p(x|y=0)}p(y=0)$  
+if were calculating $p(y \mid x)$ in order to make a prediction then we don’t actually need to calculate
 the denominator, since
 $$
 \begin{aligned}
@@ -18,64 +24,83 @@ $$
 &=\arg \max _{y} p(x \mid y) p(y)
 \end{aligned}
 $$
-# Naive Bayes
+
+## Naive Bayes
 
 ### independence assumption
-
+all features are independent:
 $$
 P(x|y=c)=\prod\_{d=1}^D P(x\_d | y=c)
 $$
 
-i.e., given the label, all features are independent.
+$\Rightarrow$ Let $X=\left[X^{1}, X^{2}, \ldots X^{d}\right]$ the explanatory variables, with $d$ the number of explanatory variables
+$$
+\begin{aligned}
+\mathbb{P}(X=\mathbf{x} \mid Y=y) &=\mathbb{P}\left(X^{1}=x^{1}, X^{2}=x^{2}, \cdots, X^{d}=x^{d} \mid Y=y\right) \\
+&=\mathbb{P}\left(X^{1}=x^{1} \mid Y=y\right) \cdot \mathbb{P}\left(X^{2}=x^{2} \mid Y=y\right) \cdots \mathbb{P}\left(X^{d}=x^{d} \mid Y=y\right) \\
+&=\prod_{j=1}^{d} \mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)
+\end{aligned}
+$$
 
-### la probabilité $\mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)$ suit une loi normale (gaussienne) [gaussian](data-science/statistic/gaussian.md)
+### The probability $\mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)$ follow a normal distribution assumption
 $$
 \mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right) \sim \mathcal{N}\left(\mu_{y}^{j}, \sigma_{y}^{j^{2}}\right)
 $$
-- la probabilité $\mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)$ suit une loi normale (gaussienne) de moyenne $\mu_{y}^{j}$ et de variance $\sigma_{y}^{j^{2}}$
-- $\mu_{y}^{j}\left(\sigma_{y}^{j^{2}}\right)$ est la moyenne (variance) des valeurs prises par les données d'apprentissage appartenant à la classe $y$ pour la $j$-ième variable explicative
+$\mu_{y}^{j}\left(\sigma_{y}^{j^{2}}\right)$ is the mean (variance) of the values taken by the training data belonging to the class $y$ for the $j$-th explanatory variable
 $$
 \mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)=\frac{1}{\sqrt{2 \pi} \cdot \sigma_{y}^{j}} e^{-\frac{1}{2 \sigma_{y}^{j^{2}}}\left(x^{j}-\mu_{y}^{j}\right)^{2}}
 $$
 
-## Prédiction
-Pour une nouvelle observation $x$, on prédit sa classe $\hat{y}$ tel que :
+### Prediction
+  
+For a new observation $x$, we predict its class $\hat{y}$ such that:
 $$
 \begin{aligned}
-\hat{y} &=\underset{y}{\operatorname{argmax}} \mathbb{P}(Y=y \mid X=\mathbf{x}) \\
-&=\underset{y}{\operatorname{argmax}} \mathbb{P}(Y=y) \cdot \prod_{j=1}^{d} \mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)
+\hat{y} &=\underset{y}{\operatorname{argmax }} (\mathbb{ P}(Y=y \mid X=\mathbf{x})) \\
+&=\underset{y}{\operatorname{argmax }}( \mathbb{ P}(Y=y) \cdot \prod_{j=1}^{d} \mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right))
+\end{aligned}
+$$
+with $\mathbb{P}(Y=y) = \dfrac{m\_y}{m}$  
+![](_resources/Pasted%20image%2020220812164733.png)
+
+
+## Linear Discriminant Analysis (LDA)
+Analyse discriminante linéaire ou Linear Discriminant Analysis (LDA)
+- $\mathbb{P}(Y=y)=\frac{m_{y}}{m}$ like the naive bayes classifier
+- $\mathbb{P}(X=\mathbf{x} \mid Y=y)$   is modeled by a **multivariate normal distribution law**
+
+$$
+\begin{aligned}
+\mathbb{P}(X=\mathbf{x} \mid Y=y) & \sim \mathcal{N}\left(\boldsymbol{\mu}\_{y}, \boldsymbol{\Sigma}\right)
+&=\frac{1}{(2 \pi)^{\frac{d}{2}}|\boldsymbol{\Sigma}|^{\frac{1}{2}}} e^{-\frac{1}{2}\left(\mathbf{x}-\boldsymbol{\mu}\_{y}\right)^{T} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}\_{y}\right)}
 \end{aligned}
 $$
 
-# LDA
-Analyse discriminante linéaire ou Linear Discriminant Analysis (LDA)
-- est un algorithme génératif
-- $\mathbb{P}(Y=y)=\frac{m_{y}}{m}$ comme le classifieur bayésien naif
-- $\mathbb{P}(X=\mathbf{x} \mid Y=y)$ est modélisé par une loi de distribution normale multivariée
-$$
-\begin{aligned}
-\mathbb{P}(X=\mathbf{x} \mid Y=y) & \sim \mathcal{N}\left(\boldsymbol{\mu}_{y}, \boldsymbol{\Sigma}\right) 
-&=\frac{1}{(2 \pi)^{\frac{d}{2}}|\boldsymbol{\Sigma}|^{\frac{1}{2}}} e^{-\frac{1}{2}\left(\mathbf{x}-\boldsymbol{\mu}_{y}\right)^{T} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}_{y}\right)}
-\end{aligned}
-$$
 avec
-- $\boldsymbol{\mu}_{y} \in \mathbb{R}^{d}$ le vecteur moyenne pour les $d$ variables explicatives pour les données d'apprentissage qui appartiennent à la classe $y$
-- $\boldsymbol{\Sigma} \in \mathbb{R}^{d \times d}$ la matrice de covariance calculée à partir de toutes les données d'apprentissage (indépendamment de leur classe)
-- |. le déterminant
+- $\boldsymbol{\mu}_{y} \in \mathbb{R}^{d}$  the mean vector for the $d$ explanatory variables for the training data that belong to the class $y$
+- $\boldsymbol{\Sigma} \in \mathbb{R}^{d \times d}$ the covariance matrix calculated from all the training data (regardless of their class)
 
-# QDA 
-Analyse discriminante linéaire ou Linear Discriminant Analysis (LDA)
-- est un algorithme génératif
-- $\mathbb{P}(Y=y)=\frac{m_{y}}{m}$ comme le classifieur bayésien naif
-- $\mathbb{P}(X=\mathbf{x} \mid Y=y)$ est modélisé par une loi de distribution normale multivariée
+Pictorially, what the algorithm is doing can be seen in as follows:    
+ ![|500](_resources/Pasted%20image%2020220812112326.png)  
+Note that the two Gaussians have contours that are the same shape and orientation, since they share a covariance matrix $Σ$, but they have different means $µ_0$ and $µ_1$.
+### LDA and logistic regression
+The GDA model has an interesting relationship to logistic regression. If we view the quantity $p\left(y=1 \mid x ; \phi, \mu_{0}, \mu_{1}, \Sigma\right)$ as a function of $x$, we'll find that it can be expressed in the form
+$$
+p\left(y=1 \mid x ; \phi, \Sigma, \mu_{0}, \mu_{1}\right)=\frac{1}{1+\exp \left(-\theta^{T} x\right)},
+$$
+This is exactly the form that logistic regression-a discriminative algorithm-used to model $p(y=$ $1 \mid x)$
+
+When would we prefer one model over another? GDA and logistic regression will, in general, give different decision boundaries when trained on the same dataset. Which is better?
+Watch more : [LDA-vs-LogisticRegression](data-science/machine-learning/supervised-learning/bayes/LDA-vs-LogisticRegression.md)
+
+## QDA 
+Analyse discriminante quadratique ou Quadratic Discriminant Analysis (QDA)
+- similaire à l'Analyse Discriminante Linéaire
+- mais une matrice de covariance $\boldsymbol{\Sigma}_{y}$ est calculée pour chaque classe $y$
 $$
 \begin{aligned}
-\mathbb{P}(X=\mathbf{x} \mid Y=y) & \sim \mathcal{N}\left(\boldsymbol{\mu}_{y}, \boldsymbol{\Sigma}\right) \\
-&=\frac{1}{(2 \pi)^{\frac{d}{2}}|\boldsymbol{\Sigma}|^{\frac{1}{2}}} e^{-\frac{1}{2}\left(\mathbf{x}-\boldsymbol{\mu}_{y}\right)^{T} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}_{y}\right)}
+\mathbb{P}(X=\mathbf{x} \mid Y=y) & \sim \mathcal{N}\left(\boldsymbol{\mu}\_{y}, \boldsymbol{\Sigma}\_{y}\right) \\
+&=\frac{1}{(2 \pi)^{\frac{d}{2}}\left|\boldsymbol{\Sigma}\_{y}\right|^{\frac{1}{2}}} e^{-\frac{1}{2}\left(\mathbf{x}-\boldsymbol{\mu}\_{y}\right)^{T} \boldsymbol{\Sigma}\_{y}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}\_{y}\right)}
 \end{aligned}
 $$
-avec
-- $\boldsymbol{\mu}_{y} \in \mathbb{R}^{d}$ le vecteur moyenne pour les $d$ variables explicatives pour les données d'apprentissage qui appartiennent à la classe $y$
-- $\boldsymbol{\Sigma} \in \mathbb{R}^{d \times d}$ la matrice de covariance calculée à partir de toutes les données d'apprentissage (indépendamment de leur classe)
-- |. le déterminant
 ![](_resources/Pasted%20image%2020220704160714.png)

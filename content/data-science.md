@@ -37,7 +37,7 @@ http://export.arxiv.org/list/cs.LG/recent
 #### Courses
   <br/>
 <details>
-<summary> Stanford ML courses notes</summary>
+<summary> Stanford CC229 ML courses notes</summary>
 
 -   [notes1.pdf](http://cs229.stanford.edu/summer2019/cs229-notes1.pdf)
 -   [notes2.pdf](http://cs229.stanford.edu/summer2019/cs229-notes2.pdf)
