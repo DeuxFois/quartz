@@ -26,4 +26,4 @@ Pseudo-classes can be combined with classes, or other selectors, to specify diff
 ```
 
 
-![](Pasted%20image%2020220806160726.png)
+![](_resources/Pasted%20image%2020220806160726.png)
