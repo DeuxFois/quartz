@@ -4,15 +4,15 @@ tags:
   - discriminative
   - continuous value
 ---
-# Linear Regression
-#### Pros
+## Linear Regression
+### Pros
 
 -   Quick to compute and can be updated easily with new data
 -   Relatively easy to understand and explain
 
 Regularization techniques can be used to prevent **_overfitting_**
 
-#### Cons
+### Cons
 
 -   Unable to learn complex relationships
 -   Difficult to capture **_non-linear relationships_** (without first transforming data which can be complicated)
@@ -24,13 +24,13 @@ dataset : $\lbrace\mathbf{x}\_{i}, y\_{i} \rbrace\_{i=1}^{m}$  with $\mathbf{x}_
 output : $y_{i} \in \mathcal{Y}$
 
 $f: \mathbb{R}^{d} \mapsto \mathcal{Y}$  
-## Paramètre
+## Parameter
 $$\vec{(\beta)}^T = (\beta\_0,\beta\_1,...,\beta\_n) \in \mathbb{R}^{d+1}$$
 
-## Modèle
+## Model
 $$ f\_\beta(x) = \beta\_0 + \Sigma_{i=1}^m(\beta\_ix\_i)$$
 
-- Notation matricielle :
+- Matrix notation :
 $$
 f_{\boldsymbol{\beta}}(\mathbf{X}) \approx \tilde{\mathbf{X}} \boldsymbol{\beta}
 $$
@@ -54,13 +54,13 @@ y_{m}
 $$
 $$\mathbf{X} \in \mathbb{R}^{m \times d}, \tilde{\mathbf{X}} \in \mathbb{R}^{m \times(d+1)} \space \space \space \space  \space \boldsymbol{\beta} \in \mathbb{R}^{d+1}$$
 
-## coût 
-- fonction qu'on va chercher à minimiser (ou maximiser)
-- On veut $\boldsymbol{\beta}$ tel que $f_{\boldsymbol{\beta}}(\mathbf{x})$ soit proche de $y$ pour toutes les données d'apprentissage $\lbrace{x}\_{i}, {y}\_{i}\rbrace\_{i=1}^{m}$ :
+## Cost Function
+- the function that we will try to minimize
+- Since we want $\boldsymbol{\beta}$ such that $f_{\boldsymbol{\beta}}(\mathbf{x})$ is close to $y$ for all training data $\lbrace{x }\_{i}, {y}\_{i}\rbrace\_{i=1}^{m}$:
 $$
 \hat{y}\_{i}=f\_{\boldsymbol{\beta}}\left(\mathbf{x}\_{i}\right) \approx y\_{i} \quad \forall i \in\{1, \cdots, m\}
 $$
-- Trouver le meilleur vecteur $\vec{\beta}$ équivaut à minimiser le coût (quadratique) global des erreurs :
+- Finding the best vector $\vec{\beta}$ is equivalent to minimizing the global (quadratic) error cost:
 $$
 \mathbf{J}(\boldsymbol{\beta})=\frac{1}{2 m} \sum\_{i=1}^{m}\left(f\_{\boldsymbol{\beta}}\left(\mathbf{x}\_{i}\right)-y\_{i}\right)^{2}
 $$
@@ -68,33 +68,38 @@ $$
 $$
 ➡ \space \underset{\boldsymbol{\beta}}{\operatorname{argmin}}(\mathbf{J}(\boldsymbol{\beta}))
 $$
-Parmi toutes les droites possibles, on cherche la droite pour laquelle la somme des carrés des écarts verticaux des points à la droite est minimale.
-![](_resources/Pasted%20image%2020220630221441.png)
+![|650](_resources/Pasted%20image%2020220630221441.png)
 
-# Descente de gradient
-- Objectif : trouver le minimum d'une fonction-coût  
+
+## Gradient descent
+- Objective: find the minimum of the cost function
 <br/>
 
 1. initialisation : $\boldsymbol{\beta}^{(0)}$
-2. à chaque étape $k$, modifier $\boldsymbol{\beta}^{(k-1)}$ pour faire $\operatorname{diminuer} \mathbf{J}\left(\boldsymbol{\beta}^{(k)}\right)$
-3. arrêt lorsque le minimum est atteint
+2. at each step $k$, modify $\boldsymbol{\beta}^{(k-1)}$ to make $\operatorname{decrease} \mathbf{J}\left(\boldsymbol{\beta}^{(k )}\right)$
+3. stop when the minimum is reached
 
-Pour chaque variable $\beta_{j}$ :
+For each $\beta_{j}$ :
 $$
 \beta_{j}^{(k)}:=\beta\_{j}^{(k-1)}-\alpha \frac{1}{m} \sum\_{i=1}^{m}\left(f\_{\boldsymbol{\beta}(k-1)}\left(\mathbf{x}\_{i}\right)-y\_{i}\right) x\_{i j}
 $$
-Remarque $: \forall i, x_{i 0}=1$
-- $\alpha$ : pas d'apprentissage
-![](_resources/Pasted%20image%2020220701115156.png)
+⚠ $\forall i, x_{i 0}=1$
+- $\alpha$ = learning rate (step size)  
+![|650](Screenshot%20from%202022-08-13%2010-25-35.png)
+![|650](1_eeIvlwkMNG1wSmj3FR6M2g.gif)
 
-# Locally weighted linear regression
+## Locally weighted linear regression
 As evident from the image below, this algorithm cannot be used for making predictions when there exists a non-linear relationship between X and Y. In such cases, locally weighted linear regression is used.
 
 ![](https://media.geeksforgeeks.org/wp-content/uploads/Linear-Regression-on-non-linear-data.png)
-
-### Locally Weighted Linear Regression:
 
 The modified cost function is:
 $$
 \mathbf{J}(\boldsymbol{\beta})= \sum\_{i=1}^{m}w^{(i)}\left(f\_{\boldsymbol{\beta}}\left(\mathbf{x}\_{i}\right)-y\_{i}\right)^{2}
 $$
+A fairly standard choice for the weights is
+$$
+w^{(i)}=\exp \left(-\frac{\left(x^{(i)}-x\right)^{2}}{2 \tau^{2}}\right)
+$$
+By changing the value of $\tau$ we can choose a fatter or a thinner width for circled, in mathematical reprensentation it is the bandwidth of the Gaussian bell-shaped curve of the weighing function.
+![|650](_resources/Pasted%20image%2020220813075641.png)

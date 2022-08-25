@@ -2,12 +2,11 @@
 tags:
   - supervised-learning
   - discriminative
-  - continuous-value
   - discrete-value
-  - Classification
   - generative
+  - classification
 ---
-**⚠️ this article presume you know about the[normal law and multivariate normal law](data-science/statistic/gaussian.md)**
+**⚠️ this article presume you know about the [normal law and multivariate normal law](data-science/statistic/gaussian.md)**
 
 ## Bayes Law
 
@@ -15,8 +14,8 @@ $$
 \underbrace{\mathbb{P}(Y \mid X)}_{\text {Posterior probability }}=\frac{\overbrace{\mathbb{P}(Y)}^{\text {Prior probability}} \cdot \overbrace{\mathbb{P}(X \mid Y)}^{\text {Likelihood}}}{\mathbb{P}(X)}
 $$
 the denominator is given by
-$p(x) = {p(x|y=1)}p(y=1)+{p(x|y=0)}p(y=0)$  
-if were calculating $p(y \mid x)$ in order to make a prediction then we don’t actually need to calculate
+$p(x)={p(x|y=1)}p(y=1)+{p(x|y=0)}p(y=0)$  
+however, to calculate $p(y \mid x)$ in order to make a prediction we don’t need to calculate
 the denominator, since
 $$
 \begin{aligned}
@@ -27,8 +26,8 @@ $$
 
 ## Naive Bayes
 
-### independence assumption
-all features are independent:
+### assumptions :
+- all features are independent:
 $$
 P(x|y=c)=\prod\_{d=1}^D P(x\_d | y=c)
 $$
@@ -36,19 +35,19 @@ $$
 $\Rightarrow$ Let $X=\left[X^{1}, X^{2}, \ldots X^{d}\right]$ the explanatory variables, with $d$ the number of explanatory variables
 $$
 \begin{aligned}
-\mathbb{P}(X=\mathbf{x} \mid Y=y) &=\mathbb{P}\left(X^{1}=x^{1}, X^{2}=x^{2}, \cdots, X^{d}=x^{d} \mid Y=y\right) \\
-&=\mathbb{P}\left(X^{1}=x^{1} \mid Y=y\right) \cdot \mathbb{P}\left(X^{2}=x^{2} \mid Y=y\right) \cdots \mathbb{P}\left(X^{d}=x^{d} \mid Y=y\right) \\
-&=\prod_{j=1}^{d} \mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)
+{p}(X=\mathbf{x} \mid Y=y) &={p}\left(X^{1}=x^{1}, X^{2}=x^{2}, \cdots, X^{d}=x^{d} \mid Y=y\right) \\
+&={p}\left(X^{1}=x^{1} \mid Y=y\right) \cdot {p}\left(X^{2}=x^{2} \mid Y=y\right) \cdots {p}\left(X^{d}=x^{d} \mid Y=y\right) \\
+&=\prod_{j=1}^{d} {p}\left(X^{j}=x^{j} \mid Y=y\right)
 \end{aligned}
 $$
 
-### The probability $\mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)$ follow a normal distribution assumption
+-   The probability ${p}\left(X^{j}=x^{j} \mid Y=y\right)$ follow a normal distribution
 $$
-\mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right) \sim \mathcal{N}\left(\mu_{y}^{j}, \sigma_{y}^{j^{2}}\right)
+{p}\left(X^{j}=x^{j} \mid Y=y\right) \sim \mathcal{N}\left(\mu_{y}^{j}, \sigma_{y}^{j^{2}}\right)
 $$
 $\mu_{y}^{j}\left(\sigma_{y}^{j^{2}}\right)$ is the mean (variance) of the values taken by the training data belonging to the class $y$ for the $j$-th explanatory variable
 $$
-\mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right)=\frac{1}{\sqrt{2 \pi} \cdot \sigma_{y}^{j}} e^{-\frac{1}{2 \sigma_{y}^{j^{2}}}\left(x^{j}-\mu_{y}^{j}\right)^{2}}
+{p}\left(X^{j}=x^{j} \mid Y=y\right)=\frac{1}{\sqrt{2 \pi} \cdot \sigma_{y}^{j}} e^{-\frac{1}{2 \sigma_{y}^{j^{2}}}\left(x^{j}-\mu_{y}^{j}\right)^{2}}
 $$
 
 ### Prediction
@@ -57,21 +56,20 @@ For a new observation $x$, we predict its class $\hat{y}$ such that:
 $$
 \begin{aligned}
 \hat{y} &=\underset{y}{\operatorname{argmax }} (\mathbb{ P}(Y=y \mid X=\mathbf{x})) \\
-&=\underset{y}{\operatorname{argmax }}( \mathbb{ P}(Y=y) \cdot \prod_{j=1}^{d} \mathbb{P}\left(X^{j}=x^{j} \mid Y=y\right))
+&=\underset{y}{\operatorname{argmax }}( \mathbb{ P}(Y=y) \cdot \prod_{j=1}^{d} {p}\left(X^{j}=x^{j} \mid Y=y\right))
 \end{aligned}
 $$
-with $\mathbb{P}(Y=y) = \dfrac{m\_y}{m}$  
+with ${p}(Y=y) = \dfrac{m\_y}{m}$  
 ![](_resources/Pasted%20image%2020220812164733.png)
 
 
 ## Linear Discriminant Analysis (LDA)
-Analyse discriminante linéaire ou Linear Discriminant Analysis (LDA)
-- $\mathbb{P}(Y=y)=\frac{m_{y}}{m}$ like the naive bayes classifier
-- $\mathbb{P}(X=\mathbf{x} \mid Y=y)$   is modeled by a **multivariate normal distribution law**
+- ${p}(Y=y)=\frac{m_{y}}{m}$ like the naive bayes classifier
+- ${p}(X=\mathbf{x} \mid Y=y)$   is modeled by a **multivariate normal distribution law**
 
 $$
 \begin{aligned}
-\mathbb{P}(X=\mathbf{x} \mid Y=y) & \sim \mathcal{N}\left(\boldsymbol{\mu}\_{y}, \boldsymbol{\Sigma}\right)
+{p}(X=\mathbf{x} \mid Y=y) & \sim \mathcal{N}\left(\boldsymbol{\mu}\_{y}, \boldsymbol{\Sigma}\right)
 &=\frac{1}{(2 \pi)^{\frac{d}{2}}|\boldsymbol{\Sigma}|^{\frac{1}{2}}} e^{-\frac{1}{2}\left(\mathbf{x}-\boldsymbol{\mu}\_{y}\right)^{T} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}\_{y}\right)}
 \end{aligned}
 $$
@@ -99,7 +97,7 @@ Analyse discriminante quadratique ou Quadratic Discriminant Analysis (QDA)
 - mais une matrice de covariance $\boldsymbol{\Sigma}_{y}$ est calculée pour chaque classe $y$
 $$
 \begin{aligned}
-\mathbb{P}(X=\mathbf{x} \mid Y=y) & \sim \mathcal{N}\left(\boldsymbol{\mu}\_{y}, \boldsymbol{\Sigma}\_{y}\right) \\
+{p}(X=\mathbf{x} \mid Y=y) & \sim \mathcal{N}\left(\boldsymbol{\mu}\_{y}, \boldsymbol{\Sigma}\_{y}\right) \\
 &=\frac{1}{(2 \pi)^{\frac{d}{2}}\left|\boldsymbol{\Sigma}\_{y}\right|^{\frac{1}{2}}} e^{-\frac{1}{2}\left(\mathbf{x}-\boldsymbol{\mu}\_{y}\right)^{T} \boldsymbol{\Sigma}\_{y}^{-1}\left(\mathbf{x}-\boldsymbol{\mu}\_{y}\right)}
 \end{aligned}
 $$

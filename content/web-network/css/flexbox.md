@@ -1,184 +1,32 @@
+#### flex-flow
 
-### Simple example
-
-```css
-.container {
-  display: flex;
-}
-```
-
-```css
-.container > div {
-  flex: 1 1 auto;
-}
-```
-
-### Container
-
-```css
-  display: flex;
-  display: inline-flex;
-```
-
-```css
-  flex-direction: row;            /* ltr - default */
-  flex-direction: row-reverse;    /* rtl */
-  flex-direction: column;         /* top-bottom */
-  flex-direction: column-reverse; /* bottom-top */
-```
-
-```css
-  flex-wrap: nowrap; /* one-line */
-  flex-wrap: wrap;   /* multi-line */
-```
-
-```css
-  align-items: flex-start; /* vertical-align to top */
-  align-items: flex-end;   /* vertical-align to bottom */
-  align-items: center;     /* vertical-align to center */
-  align-items: stretch;    /* same height on all (default) */
-```
-
-```css
-  justify-content: flex-start;    /* [xxx        ] */
-  justify-content: center;        /* [    xxx    ] */
-  justify-content: flex-end;      /* [        xxx] */
-  justify-content: space-between; /* [x    x    x] */
-  justify-content: space-around;  /* [ x   x   x ] */
-  justify-content: space-evenly;  /* [  x  x  x  ] */
-```
-
-```css
-}
-```
-{: .-setup}
-
-### Child
-
-```css
-.container > div {
-```
-{: .-setup}
-
-```css
-  /* This: */
-  flex: 1 0 auto;
-
-  /* Is equivalent to this: */
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: auto;
-```
-
-```css
-  order: 1;
-```
-
-```css
-  align-self: flex-start;  /* left */
-  margin-left: auto;       /* right */
-```
-
-```css
-}
-```
-{: .-setup}
-
-
-## Tricks
-
-### Vertical center
+This is a shorthand for the `flex-direction` and `flex-wrap` properties, which together define the flex container’s main and cross axes. The default value is `row nowrap`.
 
 ```css
 .container {
-  display: flex;
-}
-
-.container > div {
-  width: 100px;
-  height: 100px;
-  margin: auto;
+  flex-flow: column wrap;
 }
 ```
+#### flex-grow
 
-### Vertical center (2)
+![two rows of items, the first has all equally-sized items with equal flex-grow numbers, the second with the center item at twice the width because its value is 2 instead of 1.|500](https://css-tricks.com/wp-content/uploads/2018/10/flex-grow.svg)
+
+  
+This defines the ability for a flex item to grow if necessary. It accepts a unitless value that serves as a proportion. It dictates what amount of the available space inside the flex container the item should take up.
+
+If all items have `flex-grow` set to `1`, the remaining space in the container will be distributed equally to all children. If one of the children has a value of `2`, that child would take up twice as much of the space either one of the others (or it will try, at least).
 
 ```css
-.container {
-  display: flex;
-  align-items: center;     /* vertical */
-  justify-content: center; /* horizontal */
+.item {
+  flex-grow: 4; /* default 0 */
 }
 ```
+#### gap, row-gap, column-gap
 
-### Reordering
+![|500](https://css-tricks.com/wp-content/uploads/2021/09/gap-1.svg)
+#### justify-content
 
-```css
-.container > .top {
- order: 1;
-}
+![flex items within a flex container demonstrating the different spacing options|500](https://css-tricks.com/wp-content/uploads/2018/10/justify-content.svg)
+#### align-content
 
-.container > .bottom {
- order: 2;
-}
-```
-
-### Mobile layout
-
-
-```css
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
-.container > .top {
-  flex: 0 0 100px;
-}
-
-.container > .content {
-  flex: 1 0 auto;
-}
-```
-
-A fixed-height top bar and a dynamic-height content area.
-
-### Table-like
-
-```css
-.container {
-  display: flex;
-}
-
-/* the 'px' values here are just suggested percentages */
-.container > .checkbox { flex: 1 0 20px; }
-.container > .subject  { flex: 1 0 400px; }
-.container > .date     { flex: 1 0 120px; }
-```
-
-This creates columns that have different widths, but size accordingly according
-to the circumstances.
-
-### Vertical
-
-
-```css
-.container {
-  align-items: center;
-}
-```
-
-Vertically-center all items.
-
-### Left and right
-
-```css
-.menu > .left  { align-self: flex-start; }
-.menu > .right { align-self: flex-end; }
-```
-
-## References
-{: .-one-column}
-
- * [MDN: Using CSS flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes)
- * [Ultimate flexbox cheatsheet](http://www.sketchingwithcss.com/samplechapter/cheatsheet.html)
+![examples of the align-content property where a group of items cluster at the top or bottom, or stretch out to fill the space, or have spacing.|500](https://css-tricks.com/wp-content/uploads/2018/10/align-content.svg)

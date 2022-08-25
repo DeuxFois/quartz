@@ -1,14 +1,13 @@
-# [statistic](data-science/statistic.md)
+[• Statistics and Probability](data-science/statistic.md)Theory are two highly related areas of Mathematics that are highly relevant to Data Science. From analysis to interpretation, they are an integral part of ML, being formerly the only method of prediction and classification.
 
+[• machine-learning](data-science/machine-learning.md) - a collection of tools and and techniques that tranforms data into (hopefully good) decisions by making classifications with **Classification**, like whether or not someone will like a movie, or quantitative predictions with **Regression**, like the price of an appartment 
 
-# [dimensionality-reduction](data-science/dimensionality-reduction.md)
-
-
-
-# [machine-learning](data-science/machine-learning.md)
+[• data transformation](data-science/data-analysis.md) i will here describe all methods of transformation for better analysis, and to help our ML algorithms with better datas to be the most efficient as possible (for exemple dimensionality reduction, detection of outliers ...)
 
 
 
+
+![](Pasted%20image%2020220825100237.png)
 
 ---
 
@@ -16,7 +15,7 @@
 
 
 # Usefull links
-
+[Awesome AI/ML/DL](https://github.com/neomatrix369/awesome-ai-ml-dl/blob/master/details/visualisation.md#visualisation)
 ### Pretrained Models
 https://aihub.cloud.google.com/u/0/  
 https://www.tensorflow.org/hub  
@@ -30,6 +29,9 @@ http://export.arxiv.org/list/stat.ML/recent
 http://export.arxiv.org/list/cs.LG/recent
 
 ### Courses and Learning
+#### Cheatsheet
+[Stanford Quick Reference Sheet](https://www.linkedin.com/posts/asif-bhat_quick-reference-sheet-ml-dl-ai-activity-6640966422036078592-BB4l/)  
+[Data Science Cheatsheet 2.0](https://github.com/aaronwangy/Data-Science-Cheatsheet)
 #### Youtube channels
 [StatQuest](https://www.youtube.com/c/joshstarmer)  
 [Machine Learnia (fr)](https://www.youtube.com/c/MachineLearnia)  
@@ -56,10 +58,12 @@ http://export.arxiv.org/list/cs.LG/recent
 
 </details>
 
-https://github.com/microsoft/Data-Science-For-Beginners
-https://www.coursera.org/projects/exploratory-data-analysis-python-pandas   
-https://www.coursera.org/learn/data-analysis-with-python   
-https://www.coursera.org/professional-certificates/ibm-data-science    
+https://github.com/microsoft/Data-Science-For-Beginners  
+https://github.com/microsoft/ML-For-Beginners
+
+https://www.coursera.org/projects/exploratory-data-analysis-python-pandas     
+https://www.coursera.org/learn/data-analysis-with-python     
+https://www.coursera.org/professional-certificates/ibm-data-science      
 
 #### Learning
 https://www.hackerrank.com/   
@@ -73,6 +77,7 @@ https://codingvidya.com/best-books-to-learn-neural-networks/
 
 <details>
 <summary> roadmap </summary>
+
 **_Step 1:_** Learn a programming language
 
 [Datacamp’s Introduction to Python for Data Science](https://www.datacamp.com/courses/intro-to-python-for-data-science)

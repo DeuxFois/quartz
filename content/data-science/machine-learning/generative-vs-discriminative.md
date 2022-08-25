@@ -16,7 +16,7 @@ An **Generative algorithm** is looking at each classes and tries to **build a mo
 
  **discriminative models generally outperform generative models in classification tasks**.
 
-![](_resources/Pasted%20image%2020220704120136.png)
+![](Pasted%20image%2020220819193120.png)
 A generative algorithm models how the data was generated in order to categorize a signal. It asks the question: based on my generation assumptions, which category is most likely to generate this signal? A discriminative algorithm does not care about how the data was generated, it simply categorizes a given signal.
 # Example
 
