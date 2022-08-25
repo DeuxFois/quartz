@@ -24,6 +24,13 @@ html {
   }
 }
 
+.katex {
+  font-size: 1.1em !important;
+} 
+img {
+  margin-left : 50% !important;
+  transform: translate(-50%, 0%);
+}
 
 body {
   margin: 0;
