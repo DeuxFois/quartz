@@ -28,7 +28,7 @@ $$\frac{13}{52} = \frac{1}{4}$$
 
 ## Théorème des probabilités totales
 
-![](Pasted%20image%2020220825075403.png)
+![](_resources/Pasted%20image%2020220825075403.png)
 
 $$|A\cup B| = |A|+|B|-|A\cap B|$$
 

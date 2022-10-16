@@ -85,8 +85,8 @@ $$
 $$
 ⚠ $\forall i, x_{i 0}=1$
 - $\alpha$ = learning rate (step size)  
-![|650](Screenshot%20from%202022-08-13%2010-25-35.png)
-![|650](1_eeIvlwkMNG1wSmj3FR6M2g.gif)
+![|650](_resources/Screenshot%20from%202022-08-13%2010-25-35.png)
+![|650](_resources/1_eeIvlwkMNG1wSmj3FR6M2g.gif)
 
 ## Locally weighted linear regression
 As evident from the image below, this algorithm cannot be used for making predictions when there exists a non-linear relationship between X and Y. In such cases, locally weighted linear regression is used.

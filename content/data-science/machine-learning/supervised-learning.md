@@ -5,16 +5,16 @@
 - $\mathcal{Y}=\lbrace\{-1,1\}\rbrace$ pour la classification binaire ou $\mathcal{Y}=\{1, \ldots, m\}$ pour la classification multi-classes ( $m$ classes).
 - $\mathcal{Y}=\mathbb{R}$ pour la régression.
 ### Classification
-Affecter une classe à une observation 
+> Affecter une classe à une observation (reconnaissances de caractères, pluie). 
 
-> (reconnaissances de  caractères, météo, pluie)  
-
-[bayes](data-science/machine-learning/supervised-learning/bayes.md)
+- [bayesian methods](data-science/machine-learning/supervised-learning/bayes.md)
+- [KNN](data-science/machine-learning/supervised-learning/knn.md)
+- SVM
+- Descision tree
 <br/>
 
 ### Régression
-Prédire une valeur réelle à partir d’une observation
->prédire une valeur réelle (météo, temperature)  
+>Prédire une valeur réelle à partir d’une observation (température).
 - [linear-regression](data-science/machine-learning/supervised-learning/linear-regression.md)
 - [logistic-regression](data-science/machine-learning/supervised-learning/logistic-regression.md)  
 <br/>  

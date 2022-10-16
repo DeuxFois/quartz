@@ -19,7 +19,7 @@ $$ f\_\beta(x) =  \frac{\mathrm{1} }{\mathrm{1} + e^{-x\beta^T} }  $$
  <details>
 <summary> that's the sigmoid function </summary>
 
-![](Screenshot%20from%202022-08-13%2010-34-25.png)
+![](_resources/Screenshot%20from%202022-08-13%2010-34-25.png)
 
 </details>
 

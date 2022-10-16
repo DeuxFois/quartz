@@ -2,12 +2,14 @@
 
 [• machine-learning](data-science/machine-learning.md) - a collection of tools and and techniques that tranforms data into (hopefully good) decisions by making classifications with **Classification**, like whether or not someone will like a movie, or quantitative predictions with **Regression**, like the price of an appartment 
 
-[• data transformation](data-science/data-analysis.md) i will here describe all methods of transformation for better analysis, and to help our ML algorithms with better datas to be the most efficient as possible (for exemple dimensionality reduction, detection of outliers ...)
+[• deep-learning](data-science/deep-learning.md) - based on multi-layer perceptron. It's gained attention in the last decades for its groundbreaking application in areas like image classification, speech recognition, and machine translation.
+
+[• data annalysis](data-science/data-analysis.md) i will here describe all methods of data transformation and analysis, to help our algorithms to be the most efficient as possible
 
 
 
 
-![](Pasted%20image%2020220825100237.png)
+![](_resources/Pasted%20image%2020220825100237.png)
 
 ---
 
@@ -30,7 +32,7 @@ http://export.arxiv.org/list/cs.LG/recent
 
 ### Courses and Learning
 #### Cheatsheet
-[Stanford Quick Reference Sheet](https://www.linkedin.com/posts/asif-bhat_quick-reference-sheet-ml-dl-ai-activity-6640966422036078592-BB4l/)  
+[Stanford Quick Reference Sheet](https://stanford.edu/~shervine/teaching/cs-229/)  
 [Data Science Cheatsheet 2.0](https://github.com/aaronwangy/Data-Science-Cheatsheet)
 #### Youtube channels
 [StatQuest](https://www.youtube.com/c/joshstarmer)  
