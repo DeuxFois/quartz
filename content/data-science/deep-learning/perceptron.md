@@ -1,5 +1,8 @@
 # Introduction
-the perceptron is a mathematical model. Originally, he was inspired by the human brain and was constitued by, what we might call, an artificial neuron. This one is composed with **inputs with different weights**, who represent the synapse. Each one are summed and this sum is multiply by an activation function who will take a value between 0 and 1.
+the perceptron is a mathematical model. Originally, he was inspired by the human brain and was constitued by, what we might call, an artificial neuron. The idea was to recreate the synapse with weigth who can grow or decrease if the neuron is important or not.
+but the functioning of the brain and neurons is, in fact, completely different.  However this model have interesting results.
+
+So, our neuron accept **inputs with different weights**, who represent the synapse. Each one are summed and this sum is multiply by an activation function who will take a value between 0 and 1.
 ![](_resources/Pasted%20image%2020221012153349.png)
 # Mathematical model
 ## Neuron
